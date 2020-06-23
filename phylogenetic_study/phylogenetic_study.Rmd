@@ -7,6 +7,8 @@ output:
   pandoc_args: --webtex
 ---
 
+# Overview
+
 For the traits, we use presence vs. absence of ejectives and uvulars. Hence, we can use the "Nonmarginal Ejective" and "Nonmarginal Uvular" columns in the datasheet. These are the number of ejectives/uvulars minus number of marginal ejectives/uvulars. For the logistic regression, these counts were used as the basis for the binary distinction. So if you have one uvular but it's coded as marginal it's going to be noted as FALSE.
 
 For the phylognetic traits, we use presence / absence of class, e.g. a language does or does not have ejectives or uvulars. This is basically a discrete variable model for phylogenetic reconstruction. Then we’ll have the probability of the trait (variable) at the root. 
@@ -21,86 +23,65 @@ The Indo-European and Sino-Tibetan phylogenies come from:
 ```{r echo=FALSE, message=FALSE}
 library(dplyr)
 library(knitr)
-library(phylotools)
-
-source('lib/functions.R')
+library(testthat)
 ```
 
-## Data prep
 
-Generate the traits data.
+# Data prep
+
+Data inspection and cleaning.
 
 ```{r}
-df <- read.csv('../uvulars_ejectives_pruned.csv', stringsAsFactors = FALSE)
+df <- read.csv('../uvulars_ejectives_pruned2.csv', stringsAsFactors = FALSE)
 ```
 
 Which sources are <NA> for Glottocodes? This issue is discussed in detail here: 
 
 * https://github.com/phoible/dev/issues/270
 
+Drop NAs.
+
 ```{r}
 df %>% filter(is.na(Glottocode))
+df <- df %>% filter(!is.na(Glottocode))
+expect_equal(nrow(df %>% filter(is.na(Glottocode))), 0)
 ```
 
 Extract relevant data for this analysis and then investigate ejectives and uvulars.
 
 ```{r}
-ejectives <- df %>% select(InventoryID, Glottocode, Nonmarginal_Ejective) %>% rename(has_ejectives = Nonmarginal_Ejective)
-uvulars <- df %>% select(InventoryID, Glottocode, Nonmarginal_Uvular) %>% rename(has_uvulars = Nonmarginal_Uvular)
+ejectives <- df %>% select(InventoryID, Source, Glottocode, Nonmarginal_Ejective) %>% rename(has_ejectives = Nonmarginal_Ejective)
+uvulars <- df %>% select(InventoryID, Source, Glottocode, Nonmarginal_Uvular) %>% rename(has_uvulars = Nonmarginal_Uvular)
 ```
 
-### Ejectives
+
+## Ejectives
 
 Check for duplicate Glottocodes (we can have only one data point per daughter node on the phylogeny).
 
 ```{r}
-e.dups <- ejectives %>% group_by(Glottocode) %>% filter(n()>1)
+e.dups <- ejectives %>% group_by(Source, Glottocode) %>% filter(n()>1)
 e.dups %>% arrange(Glottocode) %>% kable()
 ```
 
-There's disagreement about ejectives between inventories for:
+Drop some of these data points (TODO: until the final data file is procured).
 
-* barb1263: 0 vs 9 (862 vs 1239)
-* sand1273: 5 vs 6 (532 vs 1652)
-* trum1247: 0 vs 4 (588 vs 1939)
-* zuni1245: 4 vs 12 (648 vs 91)
-
-Since we're only interested in the presence vs absence of ejectives, we investigate why barb1263 and trum1247 differ. For detailed report, see:
-
-* https://github.com/bambooforest/phoible-scripts/blob/master/duplicates/duplicate-inventories.md
-
-In sum, the phonological inventory for barb1263:
-
-* https://phoible.org/inventories/view/1239
-
-incorrectly had ejectives (due to a misintrepretation of symbols in the source document). Refer to the issue here for more details:
-
-* https://github.com/phoible/dev/issues/265
-
-The phonological inventories for trum1247 are:
-
-* https://phoible.org/inventories/view/588
-* https://phoible.org/inventories/view/1939
-
-The first comes from UPSID via Monod-Becquelin (1975) and does not list ejectives at all. The second is from the more recent work by Guiardello (1999:1), who writes:
-
-```
-Trumai has 23 consonants and 6 vowels. In Guiardello (1992), the number of Trumai phonemic consonants was smaller, given that the analysis for some phones was different from the current one: the lateral fricative /ɬ/ was analyzed as an allophone of /l/, but now it is analyzed as a independent phoneme; the affricate /ts/ and the ejectives /t̪ʼ/, /tʼ/,/kʼ/, and /tsʼ/ were previously classified as consonant clusters (i.e. /t+s/ and /t+s+ʔ/), but now we believe they are more adequately analyzed as single phonemes. Therefore, the consonant chart presented here has some differences in relation to the one presented in previous work. 
+```{r}
+ejectives <- ejectives %>% filter(!(InventoryID %in% c(2883, 2037, 2031, 2207, 2345,2348, 2618, 2988)))
+expect_equal(nrow(ejectives %>% group_by(Source, Glottocode) %>% filter(n()>1)), 0)
 ```
 
-Therefore, we take the second inventory for analysis.
 
-
-### Uvulars
+## Uvulars
 
 Check for duplicate Glottocodes (we can have only one data point per daughter node on the phylogeny).
 
 ```{r}
-u.dups <- uvulars %>% group_by(Glottocode) %>% filter(n()>1)
+u.dups <- uvulars %>% group_by(Source, Glottocode) %>% filter(n()>1)
 u.dups %>% arrange(Glottocode) %>% kable()
 ```
 
-There's disagreement about the presence of absence of ejectives between inventories for:
+There's disagreement about the presence of absence of uvulars between inventories for:
 
 ```{r}
 u.dups %>% filter(Glottocode %in% c('ajab1235', 'basq1248', 'mose1249', 'nort2980', 'port1283', 'stan1288', 'west2368')) %>% arrange(Glottocode) %>% kable() 
@@ -168,14 +149,174 @@ Lastly, different dialects of Western Balochi:
 
 the first reports a uvular, the others do not. TODO: what to do here?
 
+For the time being, we drop the same inventories as we did with the ejectives (TODO: incorporate new data file).
+
+```{r}
+uvulars <- uvulars %>% filter(!(InventoryID %in% c(2883, 2037, 2031, 2207, 2345, 2348, 2618, 2988)))
+expect_equal(nrow(uvulars %>% group_by(Source, Glottocode) %>% filter(n()>1)), 0)
+```
+
+Note that we still have duplicate Glottocodes across sources.
+
+```{r}
+ejectives %>% group_by(Glottocode) %>% filter(n()>1) %>% kable()
+```
+
+```{r}
+uvulars %>% group_by(Glottocode) %>% filter(n()>1) %>% kable()
+```
+
+We remove the UPSID inventory for the time being given the trump hierarchy. TODO: fix this in the data file.
+
+```{r}
+ejectives <- ejectives %>% filter(!(InventoryID %in% c(648)))
+uvulars <- uvulars %>% filter(!(InventoryID %in% c(648)))
+```
+
+Since we've removed the same data points in the ejectives and uvulars data, make sure that they match.
+
+```{r}
+expect_true(all(ejectives$InventoryID %in% uvulars$InventoryID))
+expect_true(all(uvulars$InventoryID %in% ejectives$InventoryID))
+```
+
+Some clean up.
+
+```{r}
+rm(e.dups, u.dups)
+```
 
 
+## Formulate the traits files
+
+First select just the columns for Glottocodes and presence/absence of the variable. Then reformulate as "Y" (present) vs "N" (absent). Lastly, turn the dataframe into something that works in a discrete variable phylogenetic analysis.
+
+```{r}
+ejectives.traits <- ejectives %>% select(Glottocode, has_ejectives)
+table(ejectives.traits$has_ejectives)
+ejectives.traits <- mutate_at(ejectives.traits, vars(-Glottocode), function(x) ifelse(x==0, "N", "Y"))
+rownames(ejectives.traits) <- ejectives.traits[,1]
+colnames(ejectives.traits)[1] <- "taxa"
+head(ejectives.traits)
+table(ejectives.traits$has_ejectives)
+```
+
+```{r}
+uvulars.traits <- uvulars %>% select(Glottocode, has_uvulars)
+table(uvulars.traits$has_uvulars)
+uvulars.traits <- mutate_at(uvulars.traits, vars(-Glottocode), function(x) ifelse(x==0, "N", "Y"))
+rownames(uvulars.traits) <- uvulars.traits[,1]
+colnames(uvulars.traits)[1] <- "taxa"
+head(uvulars.traits)
+table(uvulars.traits$has_uvulars)
+```
+
+Combine the traits files so that the languages can be analyzed the distribution of ejectives and uvulars.
+
+```{r}
+traits <- left_join(ejectives.traits, uvulars.traits)
+rownames(traits) <- traits[,1]
+```
+
+Here is the cross-tabular distribution of ejectives vs uvulars.
+
+```{r}
+table(traits$has_ejectives, traits$has_uvulars) %>% kable()
+```
+
+Save the traits dataframes.
+
+```{r}
+save(traits, ejectives.traits, uvulars.traits, file="trees/traits.Rdata")
+```
 
 
+## Prune the phylogenies
+
+```{r echo=FALSE, message=FALSE}
+library(phylotools)
+source('lib/functions.R')
+```
+
+Prune the language phylogeneies with the daughter languages that we have in the traits data. This only needs to be run once.
 
 
+### Indo-European
+
+```{r}
+# Tree paths
+tree <- 'trees/indoeuropean-C-merged.nex'
+forest <- 'trees/indoeuropean-C-20k.nex'
+
+# Prune the trees
+pr_sum_tree <- PruneSummaryTree(tree, traits$taxa, 'Glottocode')
+pr_trees <- PruneForest(forest, traits$taxa, 'Glottocode')
+
+# Check that the summary tree tip labels are the same as (the first) posterior tree tip labels
+expect_true(setequal(pr_sum_tree$tip.label, pr_trees$STATE_0$tip.label))
+
+# Prune the traits data to match the tree tips for analysis
+data <- PruneTraits(traits, pr_sum_tree$tip.label)
+
+# Combine them into a list of R data objects for analysis with the BT3 wrapper
+pr_sum_tree <- list(data=data, tree=pr_sum_tree)
+pr_trees <- list(data=data, tree=pr_trees)
+save(pr_sum_tree, pr_trees, file='trees/ie-c-trees.Rdata')
+```
 
 
+### Sinotibetan (Zhang)
+```{r}
+# Tree paths
+tree <- 'trees/sinotibetan-zhang-merged.nex'
+forest <- 'trees/sinotibetan-zhang-10k.nex'
 
-## Formulate the traits file
+# Prune the trees
+pr_sum_tree <- PruneSummaryTree(tree, traits$taxa, 'Glottocode')
+pr_trees <- PruneForest(forest, traits$taxa, 'Glottocode')
+
+# Check that the summary tree tip labels are the same as (the first) posterior tree tip labels
+expect_true(setequal(pr_sum_tree$tip.label, pr_trees$STATE_0$tip.label))
+
+# Prune the traits data to match the tree tips for analysis
+data <- PruneTraits(traits, pr_sum_tree$tip.label)
+
+# Combine them into a list of R data objects for analysis with the BT3 wrapper
+pr_sum_tree <- list(data=data, tree=pr_sum_tree)
+pr_trees <- list(data=data, tree=pr_trees)
+save(pr_sum_tree, pr_trees, file='trees/sinotibetan-z-trees.Rdata')
+```
+
+
+### Utoaztecan
+
+TODO: something about this tree doesn't work (not dated?).
+
+```{r}
+# Tree paths
+# tree <- 'trees/utoaztecan-merged.nex'
+# forest <- 'trees/utoaztecan-800.nex'
+
+# Prune the trees
+# pr_sum_tree <- PruneSummaryTree(tree, traits$taxa, 'Glottocode')
+# pr_trees <- PruneForest(forest, traits$taxa, 'Glottocode')
+
+# Check that the summary tree tip labels are the same as (the first) posterior tree tip labels
+# expect_true(setequal(pr_sum_tree$tip.label, pr_trees$STATE_0$tip.label))
+
+# Prune the traits data to match the tree tips for analysis
+# data <- PruneTraits(traits, pr_sum_tree$tip.label)
+
+# Combine them into a list of R data objects for analysis with the BT3 wrapper
+# pr_sum_tree <- list(data=data, tree=pr_sum_tree)
+# pr_trees <- list(data=data, tree=pr_trees)
+# save(pr_sum_tree, pr_trees, file=paste0(.PathToPrunedTrees, 'sinotibetan-z-trees.Rdata'))
+```
+
+
+Clean up.
+
+```{r}
+rm(pr_sum_tree, pr_trees, tree, forest)
+```
 
