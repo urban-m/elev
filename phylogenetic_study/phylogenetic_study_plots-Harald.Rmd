@@ -40,7 +40,7 @@ library(phytools)
 library(phylotools)
 source('lib/functions.R')
 
-load("trees/traits.Rdata")
+load("../Harald/traits-harald.Rdata")
 ```
 
 Plot function.
@@ -77,7 +77,7 @@ The phylogeny comes from:
 Here are the traits plotted on the pruned phylogeny. 
 
 ```{r message=FALSE, warning=FALSE}
-load('trees/ie-c-trees.Rdata')
+load('trees/harald-ie-c-trees.Rdata')
 traits.print <- pr_sum_tree$data %>% select(-taxa)
 p <- reverse.time(ggtree(pr_sum_tree$tree, ladderize=T, right=T)) +
   geom_tiplab(align=T, linesize = .1, size = 1.5) 
@@ -147,7 +147,7 @@ Phylogeny comes from:
 Here are the traits plotted on the pruned phylogeny.
 
 ```{r message=FALSE, warning=FALSE}
-load('trees/sinotibetan-z-trees.Rdata')
+load('trees/harald-sinotibetan-z-trees.Rdata')
 traits.print <- pr_sum_tree$data %>% select(-taxa)
 p <- reverse.time(ggtree(pr_sum_tree$tree, ladderize=T, right=T)) +
   geom_tiplab(align=T, linesize = .1, size = 1.5) 

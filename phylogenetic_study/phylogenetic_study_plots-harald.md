@@ -57,7 +57,7 @@ library(phytools)
 library(phylotools)
 source('lib/functions.R')
 
-load("trees/traits.Rdata")
+load("../Harald/traits-harald.Rdata")
 ```
 
 Plot function.
@@ -95,14 +95,14 @@ The phylogeny comes from:
 Here are the traits plotted on the pruned phylogeny.
 
 ``` r
-load('trees/ie-c-trees.Rdata')
+load('trees/harald-ie-c-trees.Rdata')
 traits.print <- pr_sum_tree$data %>% select(-taxa)
 p <- reverse.time(ggtree(pr_sum_tree$tree, ladderize=T, right=T)) +
   geom_tiplab(align=T, linesize = .1, size = 1.5) 
 plot.tree(p, traits.print)
 ```
 
-![](phylogenetic_study_plots_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](phylogenetic_study_plots-Harald_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
 With this data, the IE pruned tree has this many data points:
 
@@ -110,7 +110,7 @@ With this data, the IE pruned tree has this many data points:
 nrow(pr_sum_tree$data)
 ```
 
-    ## [1] 58
+    ## [1] 75
 
 Here are the stochastic character maps.
 
@@ -130,13 +130,13 @@ treemaps <- make.simmap(pr_sum_tree$tree, data, model="ARD", nsim=10, Q="empiric
     ## Using pi estimated from the stationary distribution of Q assuming a flat prior.
     ## pi =
     ##        N        Y 
-    ## 0.939401 0.060599 
+    ## 0.959913 0.040087 
     ## 
     ## make.simmap is sampling character histories conditioned on the transition matrix
     ## 
     ## Q =
     ##               N            Y
-    ## N -2.431031e-05 2.431031e-05
+    ## N -2.174259e-05 2.174259e-05
     ## Y  0.000000e+00 0.000000e+00
     ## (estimated using likelihood);
     ## and (mean) root node prior probabilities
@@ -161,7 +161,7 @@ p <- plot(map, outline=T, lwd=c(3,3),
 title(main="Ejectives")
 ```
 
-![](phylogenetic_study_plots_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](phylogenetic_study_plots-Harald_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 ``` r
 p
@@ -185,19 +185,19 @@ treemaps <- make.simmap(pr_sum_tree$tree, data, model="ARD", nsim=10, Q="empiric
     ## Using pi estimated from the stationary distribution of Q assuming a flat prior.
     ## pi =
     ##        N        Y 
-    ## 0.775862 0.224138 
+    ## 0.840553 0.159447 
     ## 
     ## make.simmap is sampling character histories conditioned on the transition matrix
     ## 
     ## Q =
-    ##             N           Y
-    ## N -0.03393642  0.03393642
-    ## Y  0.11747149 -0.11747149
+    ##               N             Y
+    ## N -0.0009776741  0.0009776741
+    ## Y  0.0051540119 -0.0051540119
     ## (estimated using likelihood);
     ## and (mean) root node prior probabilities
     ## pi =
-    ##        N        Y 
-    ## 0.775861 0.224139
+    ##         N         Y 
+    ## 0.8405538 0.1594462
 
     ## Done.
 
@@ -216,7 +216,7 @@ p <- plot(map, outline=T, lwd=c(3,3),
 title(main="Uvulars")
 ```
 
-![](phylogenetic_study_plots_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](phylogenetic_study_plots-Harald_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 ``` r
 p
@@ -235,14 +235,14 @@ Phylogeny comes from:
 Here are the traits plotted on the pruned phylogeny.
 
 ``` r
-load('trees/sinotibetan-z-trees.Rdata')
+load('trees/harald-sinotibetan-z-trees.Rdata')
 traits.print <- pr_sum_tree$data %>% select(-taxa)
 p <- reverse.time(ggtree(pr_sum_tree$tree, ladderize=T, right=T)) +
   geom_tiplab(align=T, linesize = .1, size = 1.5) 
 plot.tree(p, traits.print)
 ```
 
-![](phylogenetic_study_plots_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](phylogenetic_study_plots-Harald_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 With this data, the ST pruned tree has this many data points:
 
@@ -250,7 +250,7 @@ With this data, the ST pruned tree has this many data points:
 nrow(pr_sum_tree$data)
 ```
 
-    ## [1] 39
+    ## [1] 72
 
 ``` r
 data <- pr_sum_tree$tree[["tip.label"]]
@@ -266,19 +266,19 @@ treemaps <- make.simmap(pr_sum_tree$tree, data, model="ARD", nsim=10, Q="empiric
     ## Using pi estimated from the stationary distribution of Q assuming a flat prior.
     ## pi =
     ##        N        Y 
-    ## 0.974359 0.025641 
+    ## 0.986109 0.013891 
     ## 
     ## make.simmap is sampling character histories conditioned on the transition matrix
     ## 
     ## Q =
     ##               N             Y
-    ## N -0.0002283211  0.0002283211
-    ## Y  0.0086761129 -0.0086761129
+    ## N -8.166243e-05  8.166243e-05
+    ## Y  5.797295e-03 -5.797295e-03
     ## (estimated using likelihood);
     ## and (mean) root node prior probabilities
     ## pi =
     ##          N          Y 
-    ## 0.97435872 0.02564128
+    ## 0.98610937 0.01389063
 
     ## Done.
 
@@ -297,7 +297,7 @@ p <- plot(map, outline=T, lwd=c(3,3),
 title(main="Ejectives")
 ```
 
-![](phylogenetic_study_plots_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](phylogenetic_study_plots-Harald_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
 ``` r
 p
@@ -321,19 +321,19 @@ treemaps <- make.simmap(pr_sum_tree$tree, data, model="ARD", nsim=10, Q="empiric
     ## Using pi estimated from the stationary distribution of Q assuming a flat prior.
     ## pi =
     ##        N        Y 
-    ## 0.820186 0.179814 
+    ## 0.831917 0.168083 
     ## 
     ## make.simmap is sampling character histories conditioned on the transition matrix
     ## 
     ## Q =
     ##               N             Y
-    ## N -6.600788e-05  6.600788e-05
-    ## Y  2.318698e-04 -2.318698e-04
+    ## N -3.795521e-05  3.795521e-05
+    ## Y  1.803341e-04 -1.803341e-04
     ## (estimated using likelihood);
     ## and (mean) root node prior probabilities
     ## pi =
     ##         N         Y 
-    ## 0.7784061 0.2215939
+    ## 0.8261243 0.1738757
 
     ## Done.
 
@@ -352,7 +352,7 @@ p <- plot(map, outline=T, lwd=c(3,3),
 title(main="Uvulars")
 ```
 
-![](phylogenetic_study_plots_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](phylogenetic_study_plots-Harald_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
 ``` r
 p
