@@ -14,6 +14,7 @@ require(rgdal)
 require(sp)
 require(boot)
 require(jaccard)
+require(ggplot2)
 
 ##Tell R where to find R tools
 Sys.setenv(PATH = paste(Sys.getenv("PATH"), "C:\\RTools40","C:\\RTools40\\usr\\bin", sep=";"))
@@ -110,7 +111,7 @@ plot(elevmodeluvulars)
 #Inspect plots of observed data and posterior predictive samples
 pp_check(elevmodeluvulars)
 
-#Assess posterior probability versucs chance
+#Assess posterior probability versus chance
 elevmodeluvularssamples<-posterior_samples(elevmodeluvulars)
 sum(elevmodeluvularssamples$b_elevationlog10 < 0) /nrow(elevmodeluvularssamples)
 
@@ -134,9 +135,35 @@ pp_check(elevmodelejectives)
 elevmodelejectivessamples<-posterior_samples(elevmodelejectives)
 sum(elevmodelejectivessamples$b_elevationlog10 < 0) /nrow(elevmodelejectivessamples)
 
-
 #transforming back and converting to percentages for reporting
 10^inv.logit(fixef(elevmodelejectives))
+
+#additional analyses  with numeric rather than binary values
+#plot distribution of number of uvulars and ejectives depending on altitude
+ggplot(elevdata, aes(group=Nonmarginal_Uvular, x=Nonmarginal_Uvular, y=elevation)) +
+  geom_boxplot(outlier.alpha=0.1) +
+  labs(x="Number of uvular consonants", y ="Elevation")
+ggplot(elevdata, aes(group=Nonmarginal_Ejective, x=Nonmarginal_Ejective, y=elevation)) +
+  geom_boxplot(outlier.alpha=0.1) +
+  labs(x="Number of ejective consonants", y ="Elevation")
+
+#build and assess models
+elevmodeluvularsnonbinary<-brm(Nonmarginal_Uvular ~ elevationlog10 + (1+ elevationlog10| macroarea2) +(1|family_id), family= 'gaussian', data=elevdata, warmup=6000, iter=8000, chains=4, prior=priors, control = list(adapt_delta = 0.99))
+summary(elevmodeluvularsnonbinary)
+plot(elevmodeluvularsnonbinary)
+pp_check(elevmodeluvularsnonbinary) ##CHECK, this looks questionable!!
+elevmodeluvularsnonbinarysamples<-posterior_samples(elevmodeluvularsnonbinary)
+sum(elevmodeluvularsnonbinarysamples$b_elevationlog10 < 0) /nrow(elevmodeluvularsnonbinarysamples)
+10^inv.logit(fixef(elevmodeluvularsnonbinary))
+
+elevmodelejectivesnonbinary<-brm(Nonmarginal_Ejectives ~ elevationlog10 + (1+ elevationlog10| macroarea2) +(1|family_id), family= 'gaussian', data=elevdata, warmup=6000, iter=8000, chains=4, prior=priors, control = list(adapt_delta = 0.99))
+elevmodelejectivesnonbinarysamples<-posterior_samples(elevmodelejectivesnonbinary)
+summary(elevmodelejectivesnonbinary)
+plot(elevmodelejectivesnonbinary)
+pp_check(elevmodelejectivesnonbinary) ##CHECK, this looks questionable!!
+elevmodelejectivesnonbinarysamples<-posterior_samples(elevmodelejectivesnonbinary)
+sum(elevmodelejectivesnonbinarysamples$b_elevationlog10 < 0) /nrow(elevmodelejectivesnonbinarysamples)
+10^inv.logit(fixef(elevmodelejectivesnonbinary))
 
 ##by-area and by-family analysis
 #by-area
@@ -182,4 +209,4 @@ familycountejectives<-aggregate(NonMarginal02~family_id, FUN='mean', data=elevda
 familycountejectives$NonMarginal02<-as.logical(familycountejectives$NonMarginal02)
 mean(familycountuvulars$NonMarginal01)
 sum(familycountuvulars$NonMarginal01==T)
-jaccard.test(familycountuvulars$NonMarginal01, familycountejectives$NonMarginal02, , px=0.2753036, py=0.2631579, method="exact")
+(familycountuvulars$NonMarginal01, familycountejectives$NonMarginal02, , px=0.2753036, py=0.2631579, method="exact")
