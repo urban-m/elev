@@ -47,7 +47,7 @@ Plot function.
 
 ```{r}
 # Define color schema
-color.scheme <- c('green','red')
+color.scheme <- c('blue','red')
 names(color.scheme) <- c('Y','N')
 
 # Function to reverse time in the plot
@@ -56,13 +56,14 @@ reverse.time <- function(p) { p$data$x <- p$data$x - max(p$data$x); return(p) }
 # Create tree and heatmap figure
 plot.tree <- function(pr_sum_tree_plot, features_plot) {
   gheatmap(pr_sum_tree_plot, features_plot,
-           colnames_position='top', width=2.2, offset=2000, color='black',
-           colnames_offset_y = 0.4, font.size = 2.5, colnames_angle = 40) +
+           colnames_position='top', color='black',
+           colnames_offset_y = 0.1, font.size = 2.5,
+           width=0.4, offset = 8) +
     scale_fill_manual(name="", values=color.scheme) + 
     scale_x_continuous(breaks=c(-6000,-4000,-2000,0)) +
     scale_y_continuous(expand = c(-0.01, 1)) +
     theme_tree2(axis.text.x=element_text(size=8)) +
-    theme(legend.position='none', axis.ticks.length=unit(4,"mm"), 
+    theme(legend.position='none',  
           axis.ticks=element_line(color='grey'))
 }
 ```
@@ -80,7 +81,7 @@ Here are the traits plotted on the pruned phylogeny.
 load('trees/ie-c-trees.Rdata')
 traits.print <- pr_sum_tree$data %>% select(-taxa)
 p <- reverse.time(ggtree(pr_sum_tree$tree, ladderize=T, right=T)) +
-  geom_tiplab(align=T, linesize = .1, size = 1.5) 
+  geom_tiplab(align=T, linesize = .1, size = 2) 
 plot.tree(p, traits.print)
 ```
 
