@@ -219,7 +219,7 @@ Here are the traits plotted on the pruned phylogeny.
     load('trees/sinotibetan-z-trees.Rdata')
     traits.print <- pr_sum_tree$data %>% select(-taxa)
     p <- reverse.time(ggtree(pr_sum_tree$tree, ladderize=T, right=T)) +
-      geom_tiplab(align=T, linesize = .1, size = 1.5) 
+      geom_tiplab(align=T, linesize = .1, size = 2) 
     plot.tree(p, traits.print)
 
 ![](phylogenetic_study_plots_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
