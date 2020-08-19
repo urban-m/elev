@@ -77,7 +77,7 @@ The phylogeny comes from:
 
 Here are the traits plotted on the pruned phylogeny. 
 
-```{r message=FALSE, warning=FALSE}
+```{r distribution_ejectives_uvulars_ie, message=FALSE, warning=FALSE}
 load('trees/ie-c-trees.Rdata')
 traits.print <- pr_sum_tree$data %>% select(-taxa)
 p <- reverse.time(ggtree(pr_sum_tree$tree, ladderize=T, right=T)) +
@@ -96,7 +96,7 @@ Here are the stochastic character maps.
 
 For ejectives:
 
-```{r}
+```{r simmap_ejectives_ie}
 data <- pr_sum_tree$tree[["tip.label"]]
 data <- data.matrix(data)
 
@@ -118,7 +118,7 @@ p
 
 For uvulars:
 
-```{r}
+```{r simmap_uvulars_ie}
 data <- pr_sum_tree$tree[["tip.label"]]
 data <- data.matrix(data)
 
@@ -147,7 +147,7 @@ Phylogeny comes from:
 
 Here are the traits plotted on the pruned phylogeny.
 
-```{r message=FALSE, warning=FALSE}
+```{r distribution_ejectives_uvulars_st, message=FALSE, warning=FALSE}
 load('trees/sinotibetan-z-trees.Rdata')
 traits.print <- pr_sum_tree$data %>% select(-taxa)
 p <- reverse.time(ggtree(pr_sum_tree$tree, ladderize=T, right=T)) +
@@ -162,7 +162,7 @@ nrow(pr_sum_tree$data)
 ```
 
 
-```{r}
+```{r simmap_ejectives_st}
 data <- pr_sum_tree$tree[["tip.label"]]
 data <- data.matrix(data)
 
@@ -184,7 +184,7 @@ p
 
 For uvulars:
 
-```{r}
+```{r simmap_uvulars_st}
 data <- pr_sum_tree$tree[["tip.label"]]
 data <- data.matrix(data)
 

@@ -101,7 +101,7 @@ Here are the traits plotted on the pruned phylogeny.
       geom_tiplab(align=T, linesize = .1, size = 2) 
     plot.tree(p, traits.print)
 
-![](phylogenetic_study_plots_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](phylogenetic_study_plots_files/figure-gfm/distribution_ejectives_uvulars_ie-1.png)<!-- -->
 
 With this data, the IE pruned tree has this many data points:
 
@@ -152,7 +152,7 @@ For ejectives:
               legend=2000, leg.txt=c("0",paste0("Posterior Probability (Y)"),"1"))
     title(main="Ejectives")
 
-![](phylogenetic_study_plots_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](phylogenetic_study_plots_files/figure-gfm/simmap_ejectives_ie-1.png)<!-- -->
 
     p
 
@@ -199,7 +199,7 @@ For uvulars:
               legend=2000, leg.txt=c("0",paste0("Posterior Probability (Y)"),"1"))
     title(main="Uvulars")
 
-![](phylogenetic_study_plots_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](phylogenetic_study_plots_files/figure-gfm/simmap_uvulars_ie-1.png)<!-- -->
 
     p
 
@@ -222,7 +222,7 @@ Here are the traits plotted on the pruned phylogeny.
       geom_tiplab(align=T, linesize = .1, size = 2) 
     plot.tree(p, traits.print)
 
-![](phylogenetic_study_plots_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](phylogenetic_study_plots_files/figure-gfm/distribution_ejectives_uvulars_st-1.png)<!-- -->
 
 With this data, the ST pruned tree has this many data points:
 
@@ -269,7 +269,7 @@ With this data, the ST pruned tree has this many data points:
               legend=2000, leg.txt=c("0",paste0("Posterior Probability (Y)"),"1"))
     title(main="Ejectives")
 
-![](phylogenetic_study_plots_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](phylogenetic_study_plots_files/figure-gfm/simmap_ejectives_st-1.png)<!-- -->
 
     p
 
@@ -316,7 +316,7 @@ For uvulars:
               legend=2000, leg.txt=c("0",paste0("Posterior Probability (Y)"),"1"))
     title(main="Uvulars")
 
-![](phylogenetic_study_plots_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](phylogenetic_study_plots_files/figure-gfm/simmap_uvulars_st-1.png)<!-- -->
 
     p
 
