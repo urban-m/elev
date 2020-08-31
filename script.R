@@ -140,11 +140,24 @@ sum(elevmodelejectivessamples$b_elevationlog10 < 0) /nrow(elevmodelejectivessamp
 
 #additional analyses  with numeric rather than binary values
 #plot distribution of number of uvulars and ejectives depending on altitude
-ggplot(elevdata, aes(group=Nonmarginal_Uvular, x=Nonmarginal_Uvular, y=elevation)) +
+elevdata %>% filter(Nonmarginal_Uvular < 15) %>%
+  ggplot(aes(group=Nonmarginal_Uvular, x=Nonmarginal_Uvular, y=elevation)) +
   geom_boxplot(outlier.alpha=0.1) +
   labs(x="Number of uvular consonants", y ="Elevation")
-ggplot(elevdata, aes(group=Nonmarginal_Ejective, x=Nonmarginal_Ejective, y=elevation)) +
+
+elevdata %>% filter(Nonmarginal_Ejective < 15) %>% 
+  ggplot(aes(group=Nonmarginal_Ejective, x=Nonmarginal_Ejective, y=elevation)) +
   geom_boxplot(outlier.alpha=0.1) +
+  labs(x="Number of ejective consonants", y ="Elevation")
+
+elevdata %>% filter(Nonmarginal_Uvular < 15) %>%
+  ggplot(aes(group=Nonmarginal_Uvular, x=Nonmarginal_Uvular, y=elevation)) +
+  geom_boxplot(outlier.alpha=0.1, width=2.5, varwidth=T) +
+  labs(x="Number of uvular consonants", y ="Elevation")
+
+elevdata %>% filter(Nonmarginal_Ejective < 15) %>% 
+  ggplot(aes(group=Nonmarginal_Ejective, x=Nonmarginal_Ejective, y=elevation)) +
+  geom_boxplot(outlier.alpha=0.1, width=2.5,  varwidth=T) +
   labs(x="Number of ejective consonants", y ="Elevation")
 
 #build and assess models
