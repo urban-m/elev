@@ -89,56 +89,6 @@ aggregate(NonMarginal01~macroarea2, FUN=length, data=nouvulars)
 aggregate(NonMarginal02~macroarea2, FUN=length, data=ejectives)
 aggregate(NonMarginal02~macroarea2, FUN=length, data=noejectives)
 
-## Modeling
-#Tranform elevation to its log10 for modelling
-elevdata <- mutate(elevdata, elevationlog10 = log10(elevation))
-
-
-#Bayesian logistic mixed effects regressions
-#set prior
-priors <-set_prior("normal(0, 2)", class="b", coef="elevationlog10")
-
-#Model for uvulars
-elevmodeluvulars<-brm(NonMarginal01 ~ elevationlog10 + (1+ elevationlog10| macroarea2) +(1|family_id), family= 'bernoulli', data=elevdata, warmup=6000, iter=8000, chains=4, prior=priors, control = list(adapt_delta = 0.99))
-
-#Model assessment and checks
-#check Rhat and ESS values
-summary(elevmodeluvulars)
-
-#Inspect chains
-plot(elevmodeluvulars)
-
-#Inspect plots of observed data and posterior predictive samples
-pp_check(elevmodeluvulars)
-
-#Assess posterior probability versus chance
-elevmodeluvularssamples<-posterior_samples(elevmodeluvulars)
-sum(elevmodeluvularssamples$b_elevationlog10 < 0) /nrow(elevmodeluvularssamples)
-
-#Converting log odds to probabilities and transform predictor back for reporting
-10^inv.logit(fixef(elevmodeluvulars3))
-
-#model for ejectives 
-elevmodelejectives<-brm(NonMarginal02 ~ elevationlog10 + (1+ elevationlog10| macroarea2) +(1|family_id), family= 'bernoulli', data=elevdata, warmup=6000, iter=8000, chains=4, prior=priors, control = list(adapt_delta = 0.99))
-
-#Model assessment and checks
-#check Rhat and ESS values
-summary(elevmodelejectives)
-
-#Inspect chains
-plot(elevmodelejectives)
-
-#Inspect plots of observed data and posterior predictive samples
-pp_check(elevmodelejectives)
-
-#Assess posterior probability versucs chance
-elevmodelejectivessamples<-posterior_samples(elevmodelejectives)
-sum(elevmodelejectivessamples$b_elevationlog10 < 0) /nrow(elevmodelejectivessamples)
-
-#transforming back and converting to percentages for reporting
-10^inv.logit(fixef(elevmodelejectives))
-
-#additional analyses  with numeric rather than binary values
 #plot distribution of number of uvulars and ejectives depending on altitude
 elevdata %>% filter(Nonmarginal_Uvular < 15) %>%
   ggplot(aes(group=Nonmarginal_Uvular, x=Nonmarginal_Uvular, y=elevation)) +
@@ -160,23 +110,63 @@ elevdata %>% filter(Nonmarginal_Ejective < 15) %>%
   geom_boxplot(outlier.alpha=0.1, width=2.5,  varwidth=T) +
   labs(x="Number of ejective consonants", y ="Elevation")
 
-#build and assess models
-elevmodeluvularsnonbinary<-brm(Nonmarginal_Uvular ~ elevationlog10 + (1+ elevationlog10| macroarea2) +(1|family_id), family= 'gaussian', data=elevdata, warmup=6000, iter=8000, chains=4, prior=priors, control = list(adapt_delta = 0.99))
-summary(elevmodeluvularsnonbinary)
-plot(elevmodeluvularsnonbinary)
-pp_check(elevmodeluvularsnonbinary) ##CHECK, this looks questionable!!
-elevmodeluvularsnonbinarysamples<-posterior_samples(elevmodeluvularsnonbinary)
-sum(elevmodeluvularsnonbinarysamples$b_elevationlog10 < 0) /nrow(elevmodeluvularsnonbinarysamples)
-10^inv.logit(fixef(elevmodeluvularsnonbinary))
+## Modeling
+#Tranform elevation to its log10 for modelling
+elevdata <- mutate(elevdata, elevationlog10 = log10(elevation))
 
-elevmodelejectivesnonbinary<-brm(Nonmarginal_Ejectives ~ elevationlog10 + (1+ elevationlog10| macroarea2) +(1|family_id), family= 'gaussian', data=elevdata, warmup=6000, iter=8000, chains=4, prior=priors, control = list(adapt_delta = 0.99))
-elevmodelejectivesnonbinarysamples<-posterior_samples(elevmodelejectivesnonbinary)
-summary(elevmodelejectivesnonbinary)
-plot(elevmodelejectivesnonbinary)
-pp_check(elevmodelejectivesnonbinary) ##CHECK, this looks questionable!!
-elevmodelejectivesnonbinarysamples<-posterior_samples(elevmodelejectivesnonbinary)
-sum(elevmodelejectivesnonbinarysamples$b_elevationlog10 < 0) /nrow(elevmodelejectivesnonbinarysamples)
-10^inv.logit(fixef(elevmodelejectivesnonbinary))
+#Bayesian logistic mixed effects regressions
+#set prior
+priors <-set_prior("normal(0, 2)", class="b", coef="elevationlog10")
+
+#Model for uvulars
+elevmodeluvulars<-brm(NonMarginal01 ~ elevationlog10 + (1+ elevationlog10| macroarea2) +(1|family_id), family= 'bernoulli', data=elevdata, warmup=6000, iter=8000, chains=4, prior=priors, control = list(adapt_delta = 0.99))
+
+#Model assessment and checks
+#check Rhat and ESS values
+summary(elevmodeluvulars)
+
+#Inspect chains
+plot(elevmodeluvulars)
+
+#Inspect plots of observed data and posterior predictive samples
+pp_check(elevmodeluvulars)
+pp_check(elevmodeluvulars, type="error_binned")
+
+#Assess predictive accuracy
+modelled_elevdata<-elevdata %>% drop_na(NonMarginal01, elevationlog10, macroarea2, family_id)
+elevmodeluvulars_pred <- predict(elevmodeluvulars, type = "response")[ , "Estimate"]
+elevmodeluvulars_pred <- as.numeric(elevmodeluvulars_pred > mean(modelled_elevdata$NonMarginal01))
+(classtab_elevmodeluvulars <- table(predicted = elevmodeluvulars_pred, observed = modelled_elevdata$NonMarginal01))
+(acc_elevmodeluvulars <- sum(diag(classtab_elevmodeluvulars)) / sum(classtab_elevmodeluvulars))
+
+#Assess posterior probability versus chance
+elevmodeluvularssamples<-posterior_samples(elevmodeluvulars)
+sum(elevmodeluvularssamples$b_elevationlog10 < 0) /nrow(elevmodeluvularssamples)
+
+#model for ejectives 
+elevmodelejectives<-brm(NonMarginal02 ~ elevationlog10 + (1+ elevationlog10| macroarea2) +(1|family_id), family= 'bernoulli', data=elevdata, warmup=6000, iter=8000, chains=4, prior=priors, control = list(adapt_delta = 0.99))
+
+#Model assessment and checks
+#check Rhat and ESS values
+summary(elevmodelejectives)
+
+#Inspect chains
+plot(elevmodelejectives)
+
+#Inspect plots of observed data and posterior predictive samples
+pp_check(elevmodelejectives)
+pp_check(elevmodelejectives, type="error_binned")
+
+#Assess predictive accuracy
+modelled_elevdata<-elevdata %>% drop_na(NonMarginal02, elevationlog10, macroarea2, family_id)
+elevmodelejectives_pred <- predict(elevmodelejectives, type = "response")[ , "Estimate"]
+elevmodelejectives_pred <- as.numeric(elevmodelejectives_pred > mean(modelled_elevdata$NonMarginal02))
+(classtab_elevmodelejectives <- table(predicted = elevmodelejectives_pred, observed = modelled_elevdata$NonMarginal02))
+(acc_elevmodelejectives <- sum(diag(classtab_elevmodelejectives)) / sum(classtab_elevmodelejectives))
+
+#Assess posterior probability versus chance
+elevmodelejectivessamples<-posterior_samples(elevmodelejectives)
+sum(elevmodelejectivessamples$b_elevationlog10 < 0) /nrow(elevmodelejectivessamples)
 
 ##by-area and by-family analysis
 #by-area
@@ -196,8 +186,8 @@ plot(meanelevarea$elevation, ejectiveproportionarea$NonMarginal02, bg="black", p
 lines(lowess(meanelevarea$elevation, ejectiveproportionarea$NonMarginal02, f=10, iter=10))
 
 #by family
-largefamilies<-c("afro1255", "araw1281", "atha1245", "atla1278", "aust1307", "cari1283", "gong1255", "mand1469", "maya1287", "mong1329", "nakh1245", "otom1299", "sali1255", "sino1245", "taik1256", "tupi1275", "turk1311", "ural1272")
 largefamilies<-filter(elevdata, family_id %in% c("afro1255", "araw1281", "atha1245", "atla1278", "aust1307", "cari1283", "gong1255", "mand1469", "maya1287", "mong1329", "nakh1245", "otom1299", "sali1255", "sino1245", "taik1256", "tupi1275", "turk1311", "ural1272"))
+
 #compute mean elevations and proportions of uvulars and ejectives per by area
 meanelevfamily<-aggregate(elevation~family_id, FUN="mean", data=largefamilies)
 uvularproportionfamily<-aggregate(NonMarginal01~family_id, FUN="mean", data=largefamilies)
@@ -222,4 +212,4 @@ familycountejectives<-aggregate(NonMarginal02~family_id, FUN='mean', data=elevda
 familycountejectives$NonMarginal02<-as.logical(familycountejectives$NonMarginal02)
 mean(familycountuvulars$NonMarginal01)
 sum(familycountuvulars$NonMarginal01==T)
-(familycountuvulars$NonMarginal01, familycountejectives$NonMarginal02, , px=0.2753036, py=0.2631579, method="exact")
+jaccard.test(familycountuvulars$NonMarginal01, familycountejectives$NonMarginal02, , px=0.2753036, py=0.2631579, method="exact")
