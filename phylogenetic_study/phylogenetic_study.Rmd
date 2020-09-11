@@ -9,7 +9,7 @@ output:
 
 # Overview
 
-For the traits, we use presence vs. absence of ejectives and uvulars. Hence, we can use the "Nonmarginal Ejective" and "Nonmarginal Uvular" columns in the datasheet. These are the number of ejectives/uvulars minus number of marginal ejectives/uvulars. For the logistic regression, these counts were used as the basis for the binary distinction. So if you have one uvular but it's coded as marginal it's going to be noted as FALSE.
+For the traits, we use presence vs. absence of ejectives and uvulars. Hence, we can use the "Nonmarginal Ejective" and "Nonmarginal Uvular" columns in the datasheet. These are the number of ejectives/uvulars minus number of marginal ejectives/uvulars. For the logistic regression, these counts were used as the basis for the binary distinction. So if there is one uvular but it is coded as marginal then it is going to be noted as FALSE.
 
 For the phylognetic traits, we use presence / absence of class, e.g. a language does or does not have ejectives or uvulars. This is basically a discrete variable model for phylogenetic reconstruction. Then we’ll have the probability of the trait (variable) at the root. 
 
@@ -32,7 +32,7 @@ library(testthat)
 Data inspection and cleaning.
 
 ```{r}
-df <- read.csv('../uvulars_ejectives_pruned2.csv', stringsAsFactors = FALSE)
+df <- read.csv('../statistical_model/uvulars_ejectives_pruned2.csv', stringsAsFactors = FALSE)
 ```
 
 Which sources are <NA> for Glottocodes? This issue is discussed in detail here: 
@@ -64,7 +64,7 @@ e.dups <- ejectives %>% group_by(Source, Glottocode) %>% filter(n()>1)
 e.dups %>% arrange(Glottocode) %>% kable()
 ```
 
-Drop some of these data points (TODO: until the final data file is procured).
+Drop some of these data points.
 
 ```{r}
 ejectives <- ejectives %>% filter(!(InventoryID %in% c(2883, 2037, 2031, 2207, 2345,2348, 2618, 2988)))
@@ -118,7 +118,7 @@ The inventories for Quechua include:
 * https://phoible.org/inventories/view/2037
 * https://phoible.org/inventories/view/2031
 
-The first two indicate one uvular. TODO: what to do?
+The first two indicate one uvular.
 
 Portuguese is listed in PHOIBLE twice:
 
@@ -147,9 +147,9 @@ Lastly, different dialects of Western Balochi:
 * https://phoible.org/inventories/view/2348
 * https://phoible.org/inventories/view/2618
 
-the first reports a uvular, the others do not. TODO: what to do here?
+the first reports a uvular, the others do not.
 
-For the time being, we drop the same inventories as we did with the ejectives (TODO: incorporate new data file).
+For the time being, we drop the same inventories as we did with the ejectives.
 
 ```{r}
 uvulars <- uvulars %>% filter(!(InventoryID %in% c(2883, 2037, 2031, 2207, 2345, 2348, 2618, 2988)))
@@ -166,7 +166,7 @@ ejectives %>% group_by(Glottocode) %>% filter(n()>1) %>% kable()
 uvulars %>% group_by(Glottocode) %>% filter(n()>1) %>% kable()
 ```
 
-We remove the UPSID inventory for the time being given the trump hierarchy. TODO: fix this in the data file.
+We remove the UPSID inventory for the time being given the trump hierarchy.
 
 ```{r}
 ejectives <- ejectives %>% filter(!(InventoryID %in% c(648)))

@@ -8,10 +8,19 @@ Prune the phylogenies
 =====================
 
 Prune the language phylogeneies with the daughter languages that we have
-in the traits data. This only needs to be run once.
+in the traits data. This only needs to be run once (per input source,
+i.e. phoible traits and extended phoible traits via Harald Hammarström).
 
 Indo-European
 -------------
+
+The phylogeny comes from:
+
+-   Chang W, Cathcart C, Hall D, & Garrett A. 2015. Ancestry-constrained
+    phylogenetic analysis supports the Indo-European steppe hypothesis.
+    Language, 91(1):194-244.
+
+<!-- -->
 
     # Tree paths
     tree <- 'trees/indoeuropean-C-merged.nex'
@@ -35,6 +44,14 @@ Indo-European
 
 Sinotibetan (Zhang)
 -------------------
+
+Phylogeny comes from:
+
+-   Zhang M, Yan S, Pan W, & Jin L. 2019. Phylogenetic evidence for
+    Sino-Tibetan origin in northern China in the Late Neolithic. Nature,
+    569, 112-115.
+
+<!-- -->
 
     # Tree paths
     tree <- 'trees/sinotibetan-zhang-merged.nex'
