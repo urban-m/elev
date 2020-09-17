@@ -1,0 +1,124 @@
+---
+title: "Production of maps and plots for descriptive statistics"
+author: "Matthias Urban"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: html_document
+---
+
+```{r message=FALSE}
+library(tidyverse)
+require(OpenStreetMap)
+require(rgdal)
+require(sp)
+require(ggplot2)
+```
+# Data preparation
+
+Read in data
+
+```{r}
+elevdata <- read.csv(file.choose(), header=T)
+```
+
+Change separator from comma to dot for coordinates and treat as numeric
+
+```{r}
+elevdata$latitude<-as.numeric(gsub(',','.',elevdata$latitude))
+elevdata$longitude<-as.numeric(gsub(',','.',elevdata$longitude))
+```
+
+Treat macroareas as factors
+
+```{r}
+elevdata$macroarea2<-as.factor(elevdata$macroarea2)
+```
+
+Reduce the data to a binary distinction between presence vs. absence of ejectives/uvulars
+
+```{r}
+elevdata<-mutate(elevdata, NonMarginal01 = as.logical(Nonmarginal_Uvular), NonMarginal01 = as.numeric(NonMarginal01))
+elevdata<-mutate(elevdata, NonMarginal02 = as.logical(Nonmarginal_Ejective), NonMarginal02 = as.numeric(NonMarginal02))
+```
+
+# Plot maps
+
+## Uvulars
+```{r}
+map <- openmap(c(80,-180), c(-70,180), type='nps', minNumTiles=100)
+plot(map)
+
+plotdatauvulars<- drop_na(elevdata %>% filter(NonMarginal01==T) %>% select(latitude, longitude))
+coordinates(plotdatauvulars)<-~longitude+latitude
+proj4string(plotdatauvulars)<-CRS("+init=epsg:4326")
+points(spTransform(plotdatauvulars,osm()), pch=21, col="white", bg="black", cex=1.2)
+
+plotdatanouvulars<-drop_na(elevdata %>% filter(NonMarginal01==F) %>% select(latitude, longitude))
+coordinates(plotdatanouvulars)<-~longitude+latitude
+proj4string(plotdatanouvulars)<-CRS("+init=epsg:4326")
+points(spTransform(plotdatanouvulars,osm()), pch=21, col="black", bg="white", cex=1.2)
+```
+
+## Ejectives
+```{r}
+map <- openmap(c(80,-180), c(-70,180), type='nps', minNumTiles=100)
+plot(map)
+
+plotdataejectives<- drop_na(elevdata %>% filter(NonMarginal02==T) %>% select(latitude, longitude))
+coordinates(plotdataejectives)<-~longitude+latitude
+proj4string(plotdataejectives)<-CRS("+init=epsg:4326")
+points(spTransform(plotdataejectives,osm()), pch=21, col="white", bg="black", cex=1.2)
+
+plotdatanoejectives<- drop_na(elevdata %>% filter(NonMarginal02==F) %>% select(latitude, longitude))
+coordinates(plotdatanoejectives)<-~longitude+latitude
+proj4string(plotdatanoejectives)<-CRS("+init=epsg:4326")
+points(spTransform(plotdatanoejectives,osm()), pch=21, col="black", bg="white", cex=1.2)
+```
+
+# Descriptive stats
+
+Subset data
+```{r}
+uvulars<-elevdata %>% filter(NonMarginal01==T)
+nouvulars<-elevdata %>% filter(NonMarginal01==F)
+ejectives<-elevdata %>% filter(NonMarginal02==T)
+noejectives<-elevdata %>% filter(NonMarginal02==F)
+```
+
+Compute global means
+```{r}
+mean(uvulars$elevation, na.rm=1)
+mean(nouvulars$elevation, na.rm=1)
+mean(ejectives$elevation, na.rm=1)
+mean(noejectives$elevation, na.rm=1)
+```
+
+Compute means by area
+```{r}
+aggregate(elevation~macroarea2, FUN='mean', data=uvulars)
+aggregate(elevation~macroarea2, FUN='mean', data=nouvulars)
+aggregate(elevation~macroarea2, FUN='mean', data=ejectives)
+aggregate(elevation~macroarea2, FUN='mean', data=noejectives)
+```
+
+Compute number of observations by area
+```{r}
+aggregate(NonMarginal01~macroarea2, FUN=length, data=uvulars)
+aggregate(NonMarginal01~macroarea2, FUN=length, data=nouvulars)
+aggregate(NonMarginal02~macroarea2, FUN=length, data=ejectives)
+aggregate(NonMarginal02~macroarea2, FUN=length, data=noejectives)
+```
+
+## Plot distribution of number of uvulars and ejectives depending on altitude
+```{r}
+elevdata %>% filter(Nonmarginal_Uvular < 15) %>%
+  ggplot(aes(group=Nonmarginal_Uvular, x=Nonmarginal_Uvular, y=elevation)) +
+  geom_boxplot(outlier.alpha=0.1) +
+  labs(x="Number of uvular consonants", y ="Elevation")
+```
+
+```{r}
+elevdata %>% filter(Nonmarginal_Ejective < 15) %>% 
+  ggplot(aes(group=Nonmarginal_Ejective, x=Nonmarginal_Ejective, y=elevation)) +
+  geom_boxplot(outlier.alpha=0.1) +
+  labs(x="Number of ejective consonants", y ="Elevation")
+```
