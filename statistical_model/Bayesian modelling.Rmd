@@ -1,0 +1,192 @@
+---
+title: Bayesian modelling of ejectives and uvulars (presence / absence) depending
+  on altitude
+author: "Matthias Urban"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document: default
+---
+
+# Overview
+
+This document describes the Bayesian modelling of ejectives and uvulars (presence / absence) depending on altitude and ancillary analyses
+
+# Required packages
+
+```{r message=FALSE}
+library(tidyverse)
+library(brms)
+library(boot)
+library(jaccard)
+library(ggplot2)
+```
+
+# Data preparation
+
+Read in data
+
+```{r}
+elevdata <- read.csv(file.choose(), header=T)
+```
+
+Change separator from comma to dot for coordinates and treat as numeric
+
+```{r}
+elevdata$latitude<-as.numeric(gsub(',','.',elevdata$latitude))
+elevdata$longitude<-as.numeric(gsub(',','.',elevdata$longitude))
+```
+
+Treat macroareas as factors
+
+```{r}
+elevdata$macroarea2<-as.factor(elevdata$macroarea2)
+```
+
+Reduce the data to a binary distinction between presence vs. absence of ejectives/uvulars
+
+```{r}
+elevdata<-mutate(elevdata, NonMarginal01 = as.logical(Nonmarginal_Uvular), NonMarginal01 = as.numeric(NonMarginal01))
+elevdata<-mutate(elevdata, NonMarginal02 = as.logical(Nonmarginal_Ejective), NonMarginal02 = as.numeric(NonMarginal02))
+```
+
+# Modeling
+
+
+## Bayesian logistic mixed effects regressions
+
+Tranform elevation to its log10 for modelling
+```{r}
+elevdata <- mutate(elevdata, elevationlog10 = log10(elevation))
+```
+
+Set prior
+```{r}
+priors <-set_prior("normal(0, 2)", class="b", coef="elevationlog10")
+```
+
+### Model for uvulars
+```{r}
+elevmodeluvulars<-brm(NonMarginal01 ~ elevationlog10 + (1+ elevationlog10| macroarea2) +(1|family_id), family= 'bernoulli', data=elevdata, warmup=6000, iter=8000, chains=4, prior=priors, control = list(adapt_delta = 0.99))
+```
+
+Model assessment and checks
+
+check Rhat and ESS values
+
+```{r}
+summary(elevmodeluvulars)
+```
+
+Inspect chains
+```{r}
+plot(elevmodeluvulars)#
+```
+
+Inspect plots of observed data and posterior predictive samples
+```{r}
+pp_check(elevmodeluvulars)
+pp_check(elevmodeluvulars, type="error_binned")
+```
+
+Assess predictive accuracy
+```{r}
+modelled_elevdata<-elevdata %>% drop_na(NonMarginal01, elevationlog10, macroarea2, family_id)
+elevmodeluvulars_pred <- predict(elevmodeluvulars, type = "response")[ , "Estimate"]
+elevmodeluvulars_pred <- as.numeric(elevmodeluvulars_pred > mean(modelled_elevdata$NonMarginal01))
+(classtab_elevmodeluvulars <- table(predicted = elevmodeluvulars_pred, observed = modelled_elevdata$NonMarginal01))
+(acc_elevmodeluvulars <- sum(diag(classtab_elevmodeluvulars)) / sum(classtab_elevmodeluvulars))
+```
+
+Assess posterior probability versus chance
+```{r}
+elevmodeluvularssamples<-posterior_samples(elevmodeluvulars)
+sum(elevmodeluvularssamples$b_elevationlog10 < 0) /nrow(elevmodeluvularssamples)
+```
+
+### Model for ejectives
+```{r}
+elevmodelejectives<-brm(NonMarginal02 ~ elevationlog10 + (1+ elevationlog10| macroarea2) +(1|family_id), family= 'bernoulli', data=elevdata, warmup=6000, iter=8000, chains=4, prior=priors, control = list(adapt_delta = 0.99))
+```
+
+Model assessment and checks
+
+Check Rhat and ESS values
+```{r}
+summary(elevmodelejectives)
+```
+
+Inspect chains
+```{r}
+plot(elevmodelejectives)
+```
+
+Inspect plots of observed data and posterior predictive samples
+```{r}
+pp_check(elevmodelejectives)
+pp_check(elevmodelejectives, type="error_binned")
+```
+
+Assess predictive accuracy
+```{r}
+modelled_elevdata<-elevdata %>% drop_na(NonMarginal02, elevationlog10, macroarea2, family_id)
+elevmodelejectives_pred <- predict(elevmodelejectives, type = "response")[ , "Estimate"]
+elevmodelejectives_pred <- as.numeric(elevmodelejectives_pred > mean(modelled_elevdata$NonMarginal02))
+(classtab_elevmodelejectives <- table(predicted = elevmodelejectives_pred, observed = modelled_elevdata$NonMarginal02))
+(acc_elevmodelejectives <- sum(diag(classtab_elevmodelejectives)) / sum(classtab_elevmodelejectives))
+```
+
+Assess posterior probability versus chance
+```{r}
+elevmodelejectivessamples<-posterior_samples(elevmodelejectives)
+sum(elevmodelejectivessamples$b_elevationlog10 < 0) /nrow(elevmodelejectivessamples)
+```
+
+## By-area and by-family analysis
+
+### By area
+compute mean elevations and proportions of uvulars and ejectives per by area
+```{r}
+meanelevarea<-aggregate(elevation~macroarea2, FUN="mean", data=elevdata)
+uvularproportionarea<-aggregate(NonMarginal01~macroarea2, FUN="mean", data=elevdata)
+ejectiveproportionarea<-aggregate(NonMarginal02~macroarea2, FUN="mean", data=elevdata)
+```
+
+Least squares regression
+```{r}
+summary(lm(uvularproportionarea$NonMarginal01~meanelevarea$elevation))
+summary(lm(ejectiveproportionarea$NonMarginal02~meanelevarea$elevation))
+```
+
+Plot results
+```{r}
+plot(meanelevarea$elevation, uvularproportionarea$NonMarginal01, bg="black", pch=21, xlab="Mean elevation per area", ylab="Proportion Uvulars")
+lines(lowess(meanelevarea$elevation, uvularproportionarea$NonMarginal01, f=10, iter=10))
+plot(meanelevarea$elevation, ejectiveproportionarea$NonMarginal02, bg="black", pch=21, xlab="Mean elevation per area", ylab="Proportion Ejectives")
+lines(lowess(meanelevarea$elevation, ejectiveproportionarea$NonMarginal02, f=10, iter=10))
+```
+
+### By family
+```{r}
+largefamilies<-filter(elevdata, family_id %in% c("afro1255", "araw1281", "atha1245", "atla1278", "aust1307", "cari1283", "gong1255", "mand1469", "maya1287", "mong1329", "nakh1245", "otom1299", "sali1255", "sino1245", "taik1256", "tupi1275", "turk1311", "ural1272"))
+```
+
+Compute mean elevations and proportions of uvulars and ejectives per by area
+```{r}
+meanelevfamily<-aggregate(elevation~family_id, FUN="mean", data=largefamilies)
+uvularproportionfamily<-aggregate(NonMarginal01~family_id, FUN="mean", data=largefamilies)
+ejectiveproportionfamily<-aggregate(NonMarginal02~family_id, FUN="mean", data=largefamilies)
+```
+
+Least squares regression
+```{r}
+summary(lm(uvularproportionfamily$NonMarginal01~meanelevfamily$elevation))
+summary(lm(ejectiveproportionfamily$NonMarginal02~meanelevfamily$elevation))
+```
+
+Plot results
+```{r}
+plot(meanelevfamily$elevation, uvularproportionfamily$NonMarginal01, bg="black", pch=21, xlab="Mean elevation per family", ylab="Proportion Uvulars")
+lines(lowess(meanelevfamily$elevation, uvularproportionfamily$NonMarginal01, f=10, iter=10))
+plot(meanelevfamily$elevation, ejectiveproportionfamily$NonMarginal02, bg="black", pch=21, xlab="Mean elevation per family", ylab="Proportion Ejectives")
+lines(lowess(meanelevfamily$elevation, ejectiveproportionfamily$NonMarginal02, f=10, iter=10))
+```
