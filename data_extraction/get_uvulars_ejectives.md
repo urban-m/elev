@@ -69,7 +69,6 @@ Get the PHOIBLE data and merge in the metadata from
 
 Get uvular consonant counts and their number of marginals.
 
-    # TODO: What about uvularization of consonants and/or vowels? I.e. < ʶ>
     uvulars <- phoible %>% filter(grepl("q|ɢ|ɴ|ʀ|χ|ʁ|ʛ|ʟ̠", Phoneme))
     uvular.counts <- uvulars %>% group_by(InventoryID) %>% summarize(Uvulars=n())
 
@@ -402,7 +401,7 @@ How are uvulars distributed in phoible (across duplicate languages)?
       ggtitle("")
     p
 
-![](uvulars_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+![](get_uvulars_ejectives_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
 
 How are uvulars distributed in phoible (across duplicate languages)?
 
@@ -615,7 +614,7 @@ How are uvulars distributed in phoible (across duplicate languages)?
       ggtitle("")
     p
 
-![](uvulars_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+![](get_uvulars_ejectives_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
 
 Distribution of uvular consonants per inventory (can’t use Glottocode
 because there are multiple doculects).
@@ -626,7 +625,7 @@ because there are multiple doculects).
 
     qplot(y=uvulars.counts$count)
 
-![](uvulars_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+![](get_uvulars_ejectives_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
 
 How are they distributed via macroarea?
 
@@ -649,7 +648,7 @@ there are multiple doculects).
 
     qplot(y=ejectives.counts$count)
 
-![](uvulars_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+![](get_uvulars_ejectives_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
 
 How are they distributed via macroarea?
 
