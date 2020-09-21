@@ -23,9 +23,13 @@ the following columns:
     InventoryID | Glottocode | ... | Uvulars | Ejectives | Marginal_Uvular | ...
     1 | aaaa1111 | ... | 2 | 4 | 1 | ...
 
+For uvulars, we extract consonants of all manners of articulation
+(rather than just stops). For ejectives, we extract all places of
+articulation.
+
 The final data file is available in the
 [uvulars\_ejectives\_pruned2.csv](../Data/uvulars_ejectives_pruned2.csv)
-file.
+file. Here we also add Urban’s extended macroareas.
 
 Data preparation
 ----------------
