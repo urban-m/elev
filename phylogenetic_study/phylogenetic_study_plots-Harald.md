@@ -2,7 +2,7 @@ Phylogenetic study of ejectives and uvulars (presense / absence) in IE
 and ST
 ================
 Steven Moran
-11 September, 2020
+21 September, 2020
 
 Analyses
 ========

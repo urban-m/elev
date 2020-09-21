@@ -32,7 +32,7 @@ library(testthat)
 Data inspection and cleaning.
 
 ```{r}
-df <- read.csv('../statistical_model/uvulars_ejectives_pruned2.csv', stringsAsFactors = FALSE)
+df <- read.csv('../Data/uvulars_ejectives_pruned2.csv', stringsAsFactors = FALSE)
 ```
 
 Which sources are <NA> for Glottocodes? This issue is discussed in detail here: 

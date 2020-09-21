@@ -2,7 +2,7 @@ Phylogenetic study of ejectives and uvulars (presense / absence) in IE
 and ST
 ================
 Steven Moran
-11 September, 2020
+21 September, 2020
 
 Overview
 ========
@@ -35,7 +35,7 @@ Data prep
 
 Data inspection and cleaning.
 
-    df <- read.csv('../statistical_model/uvulars_ejectives_pruned2.csv', stringsAsFactors = FALSE)
+    df <- read.csv('../Data/uvulars_ejectives_pruned2.csv', stringsAsFactors = FALSE)
 
 Which sources are <NA> for Glottocodes? This issue is discussed in
 detail here:
