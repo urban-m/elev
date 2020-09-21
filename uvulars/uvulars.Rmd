@@ -1,0 +1,220 @@
+---
+title: "PHOIBLE uvular and ejective consonants"
+author: "Steven Moran \\<steven.moran@uzh.ch\\>"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: github_document
+---
+
+# Overview
+
+This report extracts [uvulars](https://en.wikipedia.org/wiki/Uvular_consonant) and [ejectives](https://en.wikipedia.org/wiki/Ejective_consonant) from [PHOIBLE](https://phoible.org/).
+
+* Moran, Steven & McCloy, Daniel (eds.) 2019. PHOIBLE 2.0. Jena: Max Planck Institute for the Science of Human History. Online: http://phoible.org.
+
+The output data format for uvulars and ejectives data is a [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) file with the following columns:
+
+```
+InventoryID | Glottocode | ... | Uvulars | Ejectives | Marginal_Uvular | ...
+1 | aaaa1111 | ... | 2 | 4 | 1 | ...
+```
+
+The final data file is available in the [uvulars_ejectives_pruned2.csv](../Data/uvulars_ejectives_pruned2.csv) file.
+
+## Data preparation
+
+This report uses these [R](https://cran.r-project.org/) libraries:
+
+```{r, message=F, warning=F}
+library(tidyverse)
+library(knitr)
+```
+
+Get the PHOIBLE data and merge in the metadata from [Glottolog](https://glottolog.org/):
+
+* Hammarström, Harald & Forkel, Robert & Haspelmath, Martin & Bank, Sebastian. 2020. Glottolog 4.2.1. Jena: Max Planck Institute for the Science of Human History. Online: https://doi.org/10.5281/zenodo.3754591
+
+
+```{r}
+# Get PHOIBLE
+phoible <- read_csv(url('https://github.com/phoible/dev/blob/master/data/phoible.csv?raw=true'), col_types=c(InventoryID='i', Marginal='l', .default='c'))
+
+# Merge in Glottolog 4.1 data (https://glottolog.org/meta/downloads)
+languoids <- read.csv('glottolog_languoid.csv/languoid.csv', stringsAsFactors = FALSE) 
+geo <- read.csv("languages_and_dialects_geo.csv", stringsAsFactors = FALSE)
+phoible <- left_join(phoible, languoids, by=c("Glottocode"="id"))
+phoible <- left_join(phoible, geo)
+rm(geo, languoids)
+
+# Create phoible index
+index <- phoible %>% select(InventoryID, Glottocode, ISO6393, name, LanguageName, SpecificDialect, Source, family_id, level, status, latitude, longitude, country_ids, macroarea) %>% distinct()
+
+index <- index %>% rename(GlottologName = name, PhoibleName = LanguageName)
+```
+
+Get uvular consonant counts and their number of marginals.
+
+```{r}
+# TODO: What about uvularization of consonants and/or vowels? I.e. < ʶ>
+uvulars <- phoible %>% filter(grepl("q|ɢ|ɴ|ʀ|χ|ʁ|ʛ|ʟ̠", Phoneme))
+uvular.counts <- uvulars %>% group_by(InventoryID) %>% summarize(Uvulars=n())
+uvular.marginals <- uvulars %>% filter(Marginal) %>% group_by(InventoryID) %>% summarize(Marginal_Uvular=n())
+```
+
+Note that the features +dorsal and +back don't capture uvulars that are palatalized (negates [back]).
+
+```{r}
+t1 <- uvulars %>% select(Phoneme) %>% distinct()
+"χʲ" %in% t1$Phoneme
+t2 <- phoible %>% filter(back=="+" & dorsal=="+") %>% select(Phoneme) %>% distinct()
+"χʲ" %in% t2$Phoneme
+setdiff(t1$Phoneme, t2$Phoneme)
+rm(t1, t2)
+```
+
+Get ejectives counts and their number of marginals.
+
+```{r}
+ejectives <- phoible %>% filter(grepl("ʼ", Phoneme))
+ejective.counts <- ejectives %>% group_by(InventoryID) %>% summarize(Ejectives=n())
+ejective.marginals <- ejectives %>% filter(Marginal) %>% group_by(InventoryID) %>% summarize(Marginal_Ejective=n())
+```
+
+Join the data frames.
+
+```{r}
+df <- left_join(index, uvular.counts)
+df <- left_join(df, uvular.marginals)
+df <- left_join(df, ejective.counts)
+df <- left_join(df, ejective.marginals)
+rm(ejective.counts, ejective.marginals, uvular.counts, uvular.marginals)
+```
+
+Write the results to disk.
+
+```{r}
+write_csv(df, 'uvulars_ejectives.csv')
+```
+
+## Exploratory
+
+Have a look at the data.
+
+```{r}
+df %>% head() %>% kable()
+```
+
+Do any languages contain uvulars that are always marginal? Yes.
+
+```{r}
+kable(df[which(df$Uvulars==df$Marginal_Uvular),])
+kable(phoible %>% select(InventoryID, Glottocode, LanguageName, Phoneme) %>% filter(InventoryID==354) %>% filter(grepl("q|ɢ|ɴ|ʀ|χ|ʁ|ʛ|ʟ̠", Phoneme)))
+```
+
+Do any languages contain ejectives that are always marginal? Yes.
+
+```{r}
+kable(df[which(df$Ejectives==df$Marginal_Ejective),])
+kable(phoible %>% select(InventoryID, Glottocode, LanguageName, Phoneme) %>% filter(InventoryID==1276) %>% filter(grepl("ʼ", Phoneme)))
+```
+
+How many Glottocodes are there in phoible?
+
+```{r}
+nrow(phoible %>% select(Glottocode) %>% distinct())
+```
+
+How many phoible inventories have uvular consonants?
+
+```{r}
+nrow(uvulars %>% select(InventoryID) %>% distinct())
+```
+
+How many are marginal?
+
+```{r}
+nrow(uvulars %>% filter(Marginal) %>% group_by(InventoryID, Marginal)) # 21 rows
+kable(uvulars %>% filter(Marginal) %>% group_by(InventoryID, Marginal))
+```
+
+How many phoible inventories have ejectives?
+
+```{r}
+nrow(ejectives %>% select(InventoryID) %>% distinct())
+```
+
+How many are marginal?
+
+```{r}
+nrow(ejectives %>% filter(Marginal) %>% group_by(InventoryID, Marginal)) # 23 rows
+kable(ejectives %>% filter(Marginal) %>% group_by(InventoryID, Marginal))
+```
+
+How are uvulars distributed in phoible (across duplicate languages)?
+
+```{r}
+distribution.uvulars <- uvulars %>% group_by(Phoneme) %>% summarize(count=n()) %>% arrange(desc(count))
+kable(distribution.uvulars)
+
+# Order the frequency counts and plot the distribution of uvular consonants in the sample
+distribution.uvulars$Phoneme <- factor(distribution.uvulars$Phoneme, levels=distribution.uvulars$Phoneme[order(-distribution.uvulars$count)])
+
+# qplot(distribution.uvulars$Phoneme, distribution.uvulars$count)
+
+p <- ggplot(aes(y=count, x=Phoneme), data=distribution.uvulars) +
+  geom_bar(stat="identity", width = 0.3, color = "black") +
+  xlab("Segments") +
+  ylab("# of languages") +
+  theme_minimal() +
+  ggtitle("")
+p
+```
+
+How are uvulars distributed in phoible (across duplicate languages)?
+
+```{r}
+distribution.ejectives <- ejectives %>% group_by(Phoneme) %>% summarize(count=n()) %>% arrange(desc(count))
+kable(distribution.ejectives)
+
+# Order the frequency counts and plot the distribution of uvular consonants in the sample
+distribution.ejectives$Phoneme <- factor(distribution.ejectives$Phoneme, levels=distribution.ejectives$Phoneme[order(-distribution.ejectives$count)])
+
+# qplot(distribution.ejectives$Phoneme, distribution.ejectives$count)
+
+p <- ggplot(aes(y=count, x=Phoneme), data=distribution.ejectives) +
+  geom_bar(stat="identity", width = 0.3, color = "black") +
+  xlab("Segments") +
+  ylab("# of languages") +
+  theme_minimal() +
+  ggtitle("")
+p
+```
+
+Distribution of uvular consonants per inventory (can't use Glottocode because there are multiple doculects).
+
+```{r}
+uvulars.counts <- uvulars %>% select(InventoryID, Glottocode, Phoneme, macroarea) %>% group_by(InventoryID, Glottocode, macroarea) %>% summarize(count=n()) %>% arrange(desc(count))
+
+qplot(y=uvulars.counts$count)
+```
+
+How are they distributed via macroarea?
+
+```{r}
+kable(table(uvulars.counts$macroarea))
+```
+
+Distribution of ejective per inventory (can't use Glottocode because there are multiple doculects).
+
+```{r}
+ejectives.counts <- ejectives %>% select(InventoryID, Glottocode, Phoneme, macroarea) %>% group_by(InventoryID, Glottocode, macroarea) %>% summarize(count=n()) %>% arrange(desc(count))
+
+qplot(y=ejectives.counts$count)
+```
+
+How are they distributed via macroarea?
+
+```{r}
+kable(table(ejectives.counts$macroarea))
+```
+
+
