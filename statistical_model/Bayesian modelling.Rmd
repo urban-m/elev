@@ -26,7 +26,7 @@ library(ggplot2)
 Read in data
 
 ```{r}
-elevdata <- read.csv(file.choose(), header=T)
+elevdata <- read.csv(D:/Dropbox/Work/Current articles/Elevation segments/Data/uvulars_ejectives_pruned2.csv)', header =T)
 ```
 
 Change separator from comma to dot for coordinates and treat as numeric
