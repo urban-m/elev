@@ -2,7 +2,9 @@
 title: "Production of maps and plots for descriptive statistics"
 author: "Matthias Urban"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-output: html_document
+output: 
+  github_document:
+  pandoc_args: --webtex
 ---
 
 ```{r message=FALSE}
@@ -17,7 +19,7 @@ require(ggplot2)
 Read in data
 
 ```{r}
-elevdata <- read.csv(file.choose(), header=T)
+elevdata <- read.csv('../Data/uvulars_ejectives_pruned2.csv', header =T)
 ```
 
 Change separator from comma to dot for coordinates and treat as numeric
