@@ -1,13 +1,13 @@
 Production of maps and plots for descriptive statistics
 ================
 Matthias Urban
-21 September, 2020
+10 November, 2020
 
 ``` r
 library(tidyverse)
 require(OpenStreetMap)
 require(rgdal)
-require(sp)
+require(sf)
 require(ggplot2)
 ```
 
@@ -80,6 +80,7 @@ plotdataejectives<- drop_na(elevdata %>% filter(NonMarginal02==T) %>% select(lat
 plotdataejectives<-st_as_sf(plotdataejectives, coords = c("longitude", "latitude"), crs=4326)
 plotdataejectives<-st_transform(plotdataejectives, crs=3832)
 plot(plotdataejectives, pch=21, col="white", bg="black", cex=1.2, add=T)
+
 ```
 
 ![](Maps-and-descriptive-statistics_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
@@ -259,6 +260,8 @@ elevdata %>% filter(Nonmarginal_Uvular < 15) %>%
   geom_boxplot(outlier.alpha=0.1) +
   stat_summary(fun.data = nobservations, geom = "text", fun = median) +
   labs(x="Number of uvular consonants", y ="Elevation")
+
+
 ```
 
     ## Warning: Removed 97 rows containing non-finite values (stat_boxplot).
