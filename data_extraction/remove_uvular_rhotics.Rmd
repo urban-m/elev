@@ -1,0 +1,133 @@
+---
+title: "Remove uvular rhotics from counts"
+author: "Steven Moran"
+date: "(`r format(Sys.time(), '%d %B, %Y')`)"
+output: github_document
+---
+
+```{r, message=F, warning=F}
+library(tidyverse)
+library(knitr)
+library(testthat)
+```
+
+# Overview
+
+An anonymous reviewer notes that our decision to include uvular rhotics requires explicit justification. They would like to see if there is any impact on removing rhotics from the uvular counts on our results.
+
+We show in our [extraction code](get_uvulars_ejectives.md) how many rhotics are present in the data we extracted.
+
+```{r, message=F, warning=F}
+uvulars <- read_csv("uvulars.csv")
+```
+
+Here is that data repeated. There are 22 occurrences in 1255 observations.
+
+```{r}
+temp <- uvulars %>%
+  filter(grepl("ʀ", Phoneme)) %>%
+  select(InventoryID, Glottocode, LanguageName, SpecificDialect, Phoneme, Allophones, Marginal)
+
+temp %>% kable()
+```
+
+But note that these include multiple doculects for the same language, e.g. multiple different analyses of German or Dutch and their dialects. By Glottocode, we have only 13 observations.
+
+```{r}
+temp %>%
+  group_by(Glottocode) %>%
+  summarize(count = n()) %>%
+  kable()
+```
+
+Here is a glimpse at the uvulars data in general.
+
+```{r}
+uvulars %>%
+  select(InventoryID, Glottocode, LanguageName, SpecificDialect, Phoneme, Allophones, Marginal) %>%
+  head() %>%
+  kable()
+```
+
+Let's drop the rhotics and generate the counts. First get the uvulars without the rhotics.
+
+```{r}
+uvulars_no_rhotics <- uvulars %>% filter(!grepl("ʀ", Phoneme))
+```
+
+Test that they've all been removed.
+
+```{r}
+expect_equal(nrow(uvulars_no_rhotics %>% filter(grepl("ʀ", Phoneme))), 0)
+expect_equal(nrow(uvulars %>% filter(!grepl("ʀ", Phoneme))) + nrow(uvulars %>% filter(grepl("ʀ", Phoneme))), nrow(uvulars))
+```
+
+```{r}
+uvular_counts_minus_rhotics <- uvulars_no_rhotics %>%
+  group_by(InventoryID) %>%
+  summarize(Uvulars_no_rhotics = n())
+
+uvular_marginals_minus_rhotics <- uvulars_no_rhotics %>%
+  filter(Marginal) %>%
+  group_by(InventoryID) %>%
+  summarize(Marginal_Uvular_no_rhotics = n())
+```
+
+Since we do some hand annotation, e.g. adding in Urban's more fine-grained macroareas, we need to load up the data that we use in our analyses and then add in the new non-rhotic uvular counts.
+
+```{r}
+results <- read_csv("../Data/uvulars_ejectives_pruned2.csv")
+```
+
+A quick look:
+
+```{r}
+results %>%
+  head() %>%
+  kable()
+```
+
+Now let's merge in the new counts.
+
+```{r}
+results_uvulars <- left_join(results, uvular_counts_minus_rhotics)
+results_uvulars <- left_join(results_uvulars, uvular_marginals_minus_rhotics)
+```
+
+Have a look.
+
+```{r}
+results_uvulars %>%
+  head() %>%
+  kable()
+```
+
+Let's replace the NA with zeros.
+
+```{r}
+results_uvulars <- results_uvulars %>% mutate(Uvulars_no_rhotics = replace_na(Uvulars_no_rhotics, 0))
+results_uvulars <- results_uvulars %>% mutate(Marginal_Uvular_no_rhotics = replace_na(Marginal_Uvular_no_rhotics, 0))
+```
+
+Let's check where the counts differ and make sure we're getting the same languages that we noted above with rhotic uvulars.
+
+```{r}
+x <- results_uvulars %>% filter(Uvulars != Uvulars_no_rhotics)
+```
+
+Since we use a trump order for which inventories we include when there are duplicates, let's see which ones from our various doculects above are not in the final results.
+
+```{r}
+temp[which(!temp$InventoryID %in% results_uvulars$InventoryID), ] %>% kable()
+```
+
+And which ones were included.
+
+```{r}
+temp[which(temp$InventoryID %in% results_uvulars$InventoryID), ] %>% kable()
+```
+Write the non-rhotic uvular counts to disk.
+
+```{r}
+write_csv(results_uvulars, "../Data/uvulars_ejectives_pruned2_rhotics.csv")
+```
