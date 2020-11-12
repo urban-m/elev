@@ -112,7 +112,7 @@ results_uvulars <- results_uvulars %>% mutate(Marginal_Uvular_no_rhotics = repla
 Let's check where the counts differ and make sure we're getting the same languages that we noted above with rhotic uvulars. There are 11 observations.
 
 ```{r}
-results_uvulars %>% filter(Uvulars != Uvulars_no_rhotics)
+results_uvulars %>% filter(Uvulars != Uvulars_no_rhotics) %>% select(InventoryID, Glottocode, GlottologName, SpecificDialect, Source, Uvulars, Uvulars_no_rhotics) %>% kable()
 ```
 
 Since we use a trump order for which inventories we include when there are duplicates, let's see which ones from our various doculects above are not in the final results.
