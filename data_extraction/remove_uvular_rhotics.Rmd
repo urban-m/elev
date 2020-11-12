@@ -109,10 +109,10 @@ results_uvulars <- results_uvulars %>% mutate(Uvulars_no_rhotics = replace_na(Uv
 results_uvulars <- results_uvulars %>% mutate(Marginal_Uvular_no_rhotics = replace_na(Marginal_Uvular_no_rhotics, 0))
 ```
 
-Let's check where the counts differ and make sure we're getting the same languages that we noted above with rhotic uvulars.
+Let's check where the counts differ and make sure we're getting the same languages that we noted above with rhotic uvulars. There are 11 observations.
 
 ```{r}
-x <- results_uvulars %>% filter(Uvulars != Uvulars_no_rhotics)
+results_uvulars %>% filter(Uvulars != Uvulars_no_rhotics)
 ```
 
 Since we use a trump order for which inventories we include when there are duplicates, let's see which ones from our various doculects above are not in the final results.

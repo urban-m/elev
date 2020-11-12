@@ -185,9 +185,31 @@ Let’s replace the NA with zeros.
     results_uvulars <- results_uvulars %>% mutate(Marginal_Uvular_no_rhotics = replace_na(Marginal_Uvular_no_rhotics, 0))
 
 Let’s check where the counts differ and make sure we’re getting the same
-languages that we noted above with rhotic uvulars.
+languages that we noted above with rhotic uvulars. There are 11
+observations.
 
-    x <- results_uvulars %>% filter(Uvulars != Uvulars_no_rhotics)
+    results_uvulars %>% filter(Uvulars != Uvulars_no_rhotics)
+
+    ## # A tibble: 11 x 24
+    ##    InventoryID Glottocode ISO6393 GlottologName PhoibleName SpecificDialect
+    ##          <dbl> <chr>      <chr>   <chr>         <chr>       <chr>          
+    ##  1        1610 siwi1239   siz     Siwi          Siwi        <NA>           
+    ##  2        2157 stan1318   arb     Standard Ara… Arabic      Safad, Beirut,…
+    ##  3        1837 xiri1243   xir     Xiriâna       Xiriâna     <NA>           
+    ##  4        1411 ngom1272   jgo     Ngomba        Ngomba      <NA>           
+    ##  5        1874 japr1238   jru     Japrería      Japreria    <NA>           
+    ##  6         862 barb1263   boi     Barbareño     Barbareño   <NA>           
+    ##  7        1050 dutc1256   nld     Dutch         Dutch       Belgian Standa…
+    ##  8        1049 east2295   ydd     Eastern Yidd… Standard Y… <NA>           
+    ##  9        2200 luxe1241   ltz     Luxembourgish Luxembourg… Standard centr…
+    ## 10         459 mogh1245   mhj     Mogholi       MOGHOL      <NA>           
+    ## 11        2540 kara1462   kim     Taiga Sayan … Tofa        <NA>           
+    ## # … with 18 more variables: Source <chr>, family_id <chr>, level <chr>,
+    ## #   status <chr>, latitude <chr>, longitude <chr>, country_ids <chr>,
+    ## #   macroarea <chr>, macroarea2 <chr>, elevation <dbl>, Uvulars <dbl>,
+    ## #   Marginal_Uvular <dbl>, Nonmarginal_Uvular <dbl>, Ejectives <dbl>,
+    ## #   Marginal_Ejective <dbl>, Nonmarginal_Ejective <dbl>,
+    ## #   Uvulars_no_rhotics <dbl>, Marginal_Uvular_no_rhotics <dbl>
 
 Since we use a trump order for which inventories we include when there
 are duplicates, let’s see which ones from our various doculects above
