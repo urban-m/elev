@@ -1,5 +1,5 @@
 # Retrieve elevation from digital elevation model (DEM)
-# Steven Moran <steven.moran@uzh.ch>; example from Peter Ranacher
+# Steven Moran <steven.moran@unine.ch>; example from Peter Ranacher
 # DEM data available here: https://www.ngdc.noaa.gov/mgg/topo/gltiles.html
 # GLOBE model has global coverage with a spatial resolution of 1km
 
