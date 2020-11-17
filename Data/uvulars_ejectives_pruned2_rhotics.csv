@@ -1,16 +1,16 @@
 InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,family_id,level,status,latitude,longitude,country_ids,macroarea,macroarea2,elevation,Uvulars,Marginal_Uvular,Nonmarginal_Uvular,Ejectives,Marginal_Ejective,Nonmarginal_Ejective,Uvulars_no_rhotics,Marginal_Uvular_no_rhotics
-2552,abkh1244,abk,Abkhazian,Abkhaz,Abkhaz (Bzyb),ea,abkh1242,language,vulnerable,"43,056218","41,159115",GE RU TR,Eurasia,Europe,539,11,0,11,13,0,13,11,0
-2349,adyg1241,ady,Adyghe,Adyghe,NA,ea,abkh1242,language,vulnerable,44,"39,33",IL JO RU SY TR,Eurasia,Europe,304,6,0,6,14,0,14,6,0
-2310,kaba1278,kbd,Kabardian,Kabardian,Kabardian (Baksan),ea,abkh1242,language,vulnerable,"43,5082","43,3918",RU TR,Eurasia,Europe,1189,8,0,8,10,0,10,8,0
+2552,abkh1244,abk,Abkhazian,Abkhaz,Abkhaz (Bzyb),ea,abkh1242,language,vulnerable,"43,056218","41,159115",GE RU TR,Eurasia,Europe,539,11,0,11,13,0,13,8,0
+2349,adyg1241,ady,Adyghe,Adyghe,NA,ea,abkh1242,language,vulnerable,44,"39,33",IL JO RU SY TR,Eurasia,Europe,304,6,0,6,14,0,14,4,0
+2310,kaba1278,kbd,Kabardian,Kabardian,Kabardian (Baksan),ea,abkh1242,language,vulnerable,"43,5082","43,3918",RU TR,Eurasia,Europe,1189,8,0,8,10,0,10,6,0
 198,afad1236,aal,Afade,KOTOKO,NA,upsid,afro1255,language,vulnerable,"12,0551","14,6343",CM NG,Africa,Africa,287,0,0,0,4,0,4,0,0
 1342,afar1241,aar,Afar,Afar,NA,gm,afro1255,language,safe,"12,2281","41,8083",DJ ER ET,Africa,Africa,354,0,0,0,0,0,0,0,0
 1451,alab1254,alw,Alaba-K'abeena,Alaaba,NA,gm,afro1255,language,safe,"7,39014","38,1732",ET,Africa,Africa,1984,0,0,0,8,0,8,0,0
 2156,amha1245,amh,Amharic,Amharic,Gondar,uz,afro1255,language,safe,"11,708182","39,543456",DJ ET,Africa,Africa,3396,0,0,0,9,2,7,0,0
 1525,arbo1245,arv,Arbore,Arbore,NA,gm,afro1255,language,definitely endangered,"4,92183","36,7986",ET,Africa,Africa,576,0,0,0,6,0,6,0,0
 1396,argo1244,agj,Argobba,Argobba,NA,gm,afro1255,language,vulnerable,"10,6596","39,756",ET,Africa,Africa,2995,0,0,0,5,1,4,0,0
-1542,awng1244,awn,Awngi,Awngi,NA,gm,afro1255,language,safe,"10,9819","36,6916",ET,Africa,Africa,2107,4,0,4,0,0,0,4,0
+1542,awng1244,awn,Awngi,Awngi,NA,gm,afro1255,language,safe,"10,9819","36,6916",ET,Africa,Africa,2107,4,0,4,0,0,0,2,0
 1437,bade1248,bde,Bade,Bade,Western,gm,afro1255,language,safe,"12,789","10,6557",NG,Africa,Africa,301,0,0,0,0,0,0,0,0
-1248,bana1305,bcw,Bana,bana,NA,gm,afro1255,language,vulnerable,"10,3535","13,6131",CM,Africa,Africa,913,4,0,4,0,0,0,4,0
+1248,bana1305,bcw,Bana,bana,NA,gm,afro1255,language,vulnerable,"10,3535","13,6131",CM,Africa,Africa,913,4,0,4,0,0,0,2,0
 1612,bare1279,bva,Barain,Barein (Jalkiya),Jalkiya,gm,afro1255,language,definitely endangered,"11,1168","18,0764",TD,Africa,Africa,436,0,0,0,0,0,0,0,0
 249,beja1238,bej,Beja,BEJA,NA,upsid,afro1255,language,safe,"17,2436","36,6666",EG ER SD,Africa,Africa,370,0,0,0,0,0,0,0,0
 1401,besl1239,hna,Besleri,Besleri,NA,gm,afro1255,dialect,safe,NA,NA,NA,Africa,Africa,NA,0,0,0,0,0,0,0,0
@@ -25,7 +25,7 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 420,dera1248,kna,Dera (Nigeria),KANAKURU,NA,upsid,afro1255,language,safe,"10,072","12,0256",NG,Africa,Africa,213,0,0,0,0,0,0,0,0
 1299,dghw1239,dgh,Dghwede,Dghwede,NA,gm,afro1255,language,safe,"11,05751","13,77847",CM NG,Africa,Africa,718,0,0,0,0,0,0,0,0
 1552,east2652,hae,Eastern Oromo,"Oromo, Eastern",Harar,gm,afro1255,language,safe,"8,67428","41,4395",ET,Africa,Africa,1317,0,0,0,8,0,8,0,0
-132,egyp1253,arz,Egyptian Arabic,Egyptian Arabic,NA,spa,afro1255,language,safe,31,31,EG IL LY,Africa,Africa,17,6,0,6,0,0,0,6,0
+132,egyp1253,arz,Egyptian Arabic,Egyptian Arabic,NA,spa,afro1255,language,safe,31,31,EG IL LY,Africa,Africa,17,6,0,6,0,0,0,4,0
 1377,fali1285,fli,Fali,Kirya-Konzɘl,NA,gm,afro1255,language,safe,"10,5419","13,4087",CM NG,Africa,Africa,849,0,0,0,1,0,1,0,0
 1577,gava1241,gou,Gavar,Gavar,NA,gm,afro1255,language,safe,"10,5603","13,8188",CM,Africa,Africa,614,0,0,0,0,0,0,0,0
 901,gida1247,gid,Gidar,Kada,Guidar,ph,afro1255,language,safe,"9,874715","14,07845",CM TD,Africa,Africa,474,0,0,0,0,0,0,0,0
@@ -35,7 +35,7 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 1363,hadi1240,hdy,Hadiyya,Hadiyya,NA,gm,afro1255,language,safe,"7,57377","37,7577",ET,Africa,Africa,2288,0,0,0,10,0,10,0,0
 1397,hara1271,har,Harari,Harari,NA,gm,afro1255,language,safe,"9,30485","42,1332",ET,Africa,Africa,1853,1,0,1,3,0,3,1,0
 2188,haus1257,hau,Hausa,Hausa,"(Standard) (Kano) Hausa (spoken in Kano, Nigeria)",uz,afro1255,language,safe,"11,1513","8,7804",BF BJ CM NE NG TD,Africa,Africa,599,0,0,0,5,1,4,0,0
-1403,hdii1240,xed,Hdi,Hide,NA,gm,afro1255,language,safe,"10,942","13,6881",CM NG,Africa,Africa,583,4,0,4,0,0,0,4,0
+1403,hdii1240,xed,Hdi,Hide,NA,gm,afro1255,language,safe,"10,942","13,6881",CM NG,Africa,Africa,583,4,0,4,0,0,0,2,0
 2189,hebr1245,heb,Modern Hebrew,Hebrew,Oriental Dialect,uz,afro1255,language,safe,"31,1056","35,0179",IL JO LB PS SY,Eurasia,Western Asia,572,1,0,1,0,0,0,1,0
 1304,huba1236,hbb,Huba,Kilba,NA,gm,afro1255,language,safe,"10,3544","13,139",NG,Africa,Africa,543,0,0,0,0,0,0,0,0
 1465,inor1238,ior,Inor,Ennemor,NA,gm,afro1255,language,safe,"7,94883","37,7968",ET,Africa,Africa,2133,0,0,0,5,0,5,0,0
@@ -46,11 +46,11 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 2220,kera1255,ker,Kera,Kera,Standard,uz,afro1255,language,safe,"9,88165","15,1419",CM TD,Africa,Africa,354,0,0,0,0,0,0,0,0
 1457,kist1241,gru,Kistane,Goggot,NA,gm,afro1255,language,safe,"8,33561","38,4763",ET,Africa,Africa,2449,0,0,0,5,0,5,0,0
 1305,kofy1242,kwl,Pan,Kofyar,NA,gm,afro1255,language,safe,"8,79947","9,15279",NG,Africa,Africa,232,0,0,0,0,0,0,0,0
-1406,lagw1237,kot,Lagwan,Lagwan,NA,gm,afro1255,language,vulnerable,"11,5592","14,9884",CM NG TD,Africa,Africa,293,2,0,2,4,0,4,2,0
+1406,lagw1237,kot,Lagwan,Lagwan,NA,gm,afro1255,language,vulnerable,"11,5592","14,9884",CM NG TD,Africa,Africa,293,2,0,2,4,0,4,0,0
 1404,lama1288,hia,Lamang,Lamang,NA,gm,afro1255,language,safe,"11,0243","13,7362",NG,Africa,Africa,916,0,0,0,0,0,0,0,0
 1275,lele1276,lln,Lele (Chad),Lele,NA,gm,afro1255,language,safe,"9,158","15,81149",TD,Africa,Africa,426,0,0,0,0,0,0,0,0
-1098,liby1240,ayl,Libyan Arabic,Lebanese Arabic,NA,ph,afro1255,language,safe,"22,0032","15,0014",EG LY NE,Africa,Africa,587,3,0,3,0,0,0,3,0
-591,lish1246,trg,Lishán Didán,NEO-ARAMAIC,NA,upsid,afro1255,language,definitely endangered,38,47,AZ GE IL,Eurasia,Western Asia,897,3,0,3,0,0,0,3,0
+1098,liby1240,ayl,Libyan Arabic,Lebanese Arabic,NA,ph,afro1255,language,safe,"22,0032","15,0014",EG LY NE,Africa,Africa,587,3,0,3,0,0,0,2,0
+591,lish1246,trg,Lishán Didán,NEO-ARAMAIC,NA,upsid,afro1255,language,definitely endangered,38,47,AZ GE IL,Eurasia,Western Asia,897,3,0,3,0,0,0,2,0
 1315,maay1238,ymm,Maay,Maay,Lower Jubba,gm,afro1255,language,safe,"3,22288","43,6182",ET KE SO,Africa,Africa,500,0,0,0,0,0,0,0,0
 931,mada1293,mxu,Mada (Cameroon),Mada,Rija,ph,afro1255,language,safe,"10,8806","14,1142",CM,Africa,Africa,497,0,0,0,0,0,0,0,0
 2275,malt1254,mlt,Maltese,Maltese,Maltese (Standard),ea,afro1255,language,safe,"35,8884","14,4508",MT,Eurasia,Europe,52,0,0,0,0,0,0,0,0
@@ -62,11 +62,11 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 1458,mesq1240,mvz,Mesqan,Masqan,NA,gm,afro1255,language,safe,"8,10617","38,3386",ET,Africa,Africa,2161,0,0,0,5,0,5,0,0
 1598,mofu1248,mif,Mofu-Gudur,"Mofu, South",Gudur,gm,afro1255,language,safe,"10,567","14,0314",CM,Africa,Africa,551,0,0,0,0,0,0,0,0
 1409,molo1266,mlw,Moloko,Moloko,NA,gm,afro1255,language,severely endangered,"10,7933","14,2521",CM,Africa,Africa,673,0,0,0,0,0,0,0,0
-133,moro1292,ary,Moroccan Arabic,Moroccan Arabic,NA,spa,afro1255,language,safe,"32,5","-7,5",DZ EH MA,Africa,Africa,349,9,0,9,0,0,0,9,0
+133,moro1292,ary,Moroccan Arabic,Moroccan Arabic,NA,spa,afro1255,language,safe,"32,5","-7,5",DZ EH MA,Africa,Africa,349,9,0,9,0,0,0,6,0
 1597,mpad1242,mpi,Mpade,Kotoko,Makary,gm,afro1255,language,vulnerable,"12,4609","14,5833",CM NG TD,Africa,Africa,293,0,0,0,4,0,4,0,0
 1410,muya1243,muy,Muyang,Muyang,NA,gm,afro1255,language,safe,"10,86047","14,21246",CM,Africa,Africa,399,0,0,0,0,0,0,0,0
 794,mwag1236,sur,Mwaghavul,mwaghavul,NA,aa,afro1255,language,safe,"9,47205","8,96522",NG,Africa,Africa,1370,0,0,0,0,0,0,0,0
-2607,najd1235,ars,Najdi Arabic,Najdi Arabic,NA,ea,afro1255,language,safe,"30,3371","42,1773",AE IL IQ JO KW LB SA SY TR YE,Eurasia,Western Asia,442,3,0,3,0,0,0,3,0
+2607,najd1235,ars,Najdi Arabic,Najdi Arabic,NA,ea,afro1255,language,safe,"30,3371","42,1773",AE IL IQ JO KW LB SA SY TR YE,Eurasia,Western Asia,442,3,0,3,0,0,0,2,0
 125,ngas1240,anc,Ngas,Angas,NA,spa,afro1255,language,safe,"9,32042","9,46146",NG,Africa,Africa,1236,0,0,0,0,0,0,0,0
 491,ngiz1242,ngi,Ngizim,NGIZIM,NA,upsid,afro1255,language,vulnerable,"12,1051","11,0178",NG,Africa,Africa,318,0,0,0,0,0,0,0,0
 1624,nort3047,gis,North Giziga,Gisiga,North,gm,afro1255,language,safe,"10,6755","14,219",CM,Africa,Africa,469,0,0,0,0,0,0,0,0
@@ -83,7 +83,7 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 811,rend1243,rel,Rendille,rendille,NA,aa,afro1255,language,safe,"2,27065","37,3608",KE,Africa,Africa,523,0,0,0,0,0,0,0,0
 1370,saya1246,say,Saya,Syan,NA,gm,afro1255,language,vulnerable,"9,69441","9,71748",NG,Africa,Africa,447,0,0,0,0,0,0,0,0
 1464,seba1251,sgw,Sebat Bet Gurage,Gyeto,NA,gm,afro1255,language,safe,"8,11879","37,9891",ET,Africa,Africa,2271,0,0,0,5,0,5,0,0
-2621,sheh1240,shv,Jibbali,Jibbali,Jibbali (Central),ea,afro1255,language,definitely endangered,"17,29154","53,99526",OM YE,Eurasia,Western Asia,790,2,0,2,6,0,6,2,0
+2621,sheh1240,shv,Jibbali,Jibbali,Jibbali (Central),ea,afro1255,language,definitely endangered,"17,29154","53,99526",OM YE,Eurasia,Western Asia,790,2,0,2,6,0,6,1,0
 1080,sida1246,sid,Sidamo,Sidaama; Sidamo; Sidamic,NA,ph,afro1255,language,safe,"6,74176","38,3729",ET,Africa,Africa,1732,0,0,0,4,0,4,0,0
 1414,silt1240,stv,Silt'e,Silt'i,NA,gm,afro1255,language,safe,"7,77004","38,1449",ET,Africa,Africa,2091,0,0,0,6,0,6,0,0
 1610,siwi1239,siz,Siwi,Siwi,NA,gm,afro1255,language,vulnerable,"29,200415","25,519627",EG,Africa,Africa,-13,1,0,1,0,0,0,0,0
@@ -92,7 +92,7 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 2157,stan1318,arb,Standard Arabic,Arabic,"Safad, Beirut, Damascus, Kuwait",uz,afro1255,language,safe,"27,9625","43,8525",AE BH DJ DZ EG ER IL IQ JO KM KW LB LY MA OM PS QA SA SD SO SY TD TN TZ YE,Eurasia,Western Asia,622,2,0,2,0,0,0,1,0
 659,suda1236,apd,Sudanese Arabic,arabe,NA,aa,afro1255,language,safe,"17,8021","33,3179",CF EG ER ET LY SD TD,Africa,Africa,500,0,0,0,0,0,0,0,0
 1648,tach1250,shi,Tachelhit,Tachelhit,NA,gm,afro1255,language,safe,"29,7854","-7,77879",DZ MA,Africa,Africa,1031,2,0,2,0,0,0,2,0
-575,taha1241,thv,Tahaggart Tamahaq,TAMASHEQ,NA,upsid,afro1255,language,vulnerable,"22,5908","8,73169",DZ LY ML NE,Africa,Africa,991,3,0,3,0,0,0,3,0
+575,taha1241,thv,Tahaggart Tamahaq,TAMASHEQ,NA,upsid,afro1255,language,vulnerable,"22,5908","8,73169",DZ LY ML NE,Africa,Africa,991,3,0,3,0,0,0,2,0
 825,tama1365,taq,Tamasheq,tamasheq,NA,aa,afro1255,language,definitely endangered,"14,2038","-2,41269",BF ML,Africa,Africa,274,1,0,1,0,0,0,1,0
 123,tari1263,rif,Tarifiyt-Beni-Iznasen-Eastern Middle Atlas Berber,Shilha,NA,spa,afro1255,language,severely endangered,"34,916974","-3,430616",DZ ES MA,Africa,Africa,361,0,0,0,0,0,0,0,0
 824,tawa1286,ttq,Tawallammat Tamajaq,tamajaq,NA,aa,afro1255,language,safe,"13,9878","4,47692",BF ML NE NG,Africa,Africa,274,2,0,2,0,0,0,2,0
@@ -163,7 +163,7 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 897,jama1261,jaa,Madi,Jarawara,NA,ph,araw1282,language,definitely endangered,"-7,62223","-66,5662",BR,South America,South America,91,0,0,0,0,0,0,0,0
 1849,paum1247,pad,Paumari,Paumarí,NA,saphon,araw1282,language,definitely endangered,"-5,78403","-64,2803",BR,South America,South America,64,0,0,0,0,0,0,0,0
 1850,suru1263,swx,Suruahá,Suruahá,NA,saphon,araw1282,language,definitely endangered,"-6,82525","-66,3146",BR,South America,South America,90,0,0,0,0,0,0,0,0
-206,ahte1237,aht,Ahtena,AHTNA,NA,upsid,atha1245,language,critically endangered,"61,7068","-144,889",US,North America,North America,398,5,0,5,5,0,5,5,0
+206,ahte1237,aht,Ahtena,AHTNA,NA,upsid,atha1245,language,critically endangered,"61,7068","-144,889",US,North America,North America,398,5,0,5,5,0,5,4,0
 63,chip1261,chp,Chipewyan,Chipewyan,NA,spa,atha1245,language,definitely endangered,"58,3637","-110,832",CA,North America,North America,334,0,0,0,7,0,7,0,0
 325,eyak1241,eya,Eyak,EYAK,NA,upsid,atha1245,language,extinct,"60,4232","-144,762",US,North America,North America,3,4,0,4,6,0,6,4,0
 65,hupa1239,hup,Hupa,Hupa,NA,spa,atha1245,language,critically endangered,"41,0982","-123,68",US,North America,North America,159,3,0,3,8,0,8,3,0
@@ -183,7 +183,7 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 1524,aghe1239,agq,Aghem,Aghem,NA,gm,atla1278,language,safe,"6,38956","10,0807",CM,Africa,Africa,1145,0,0,0,0,0,0,0,0
 1400,ahan1243,aha,Ahanta,Ahanta,NA,gm,atla1278,language,safe,"4,85147","-1,94657",GH,Africa,Africa,77,0,0,0,0,0,0,0,0
 1544,ahan1244,ahn,Àhàn,Ahaan,NA,gm,atla1278,language,definitely endangered,"7,44139","6,00896",NG,Africa,Africa,304,0,0,0,0,0,0,0,0
-651,ajab1235,ajg,Aja (Benin),adja,adja (Bénin),aa,atla1278,language,safe,"7,06634","1,64992",BJ TG,Africa,Africa,152,2,0,2,0,0,0,2,0
+651,ajab1235,ajg,Aja (Benin),adja,adja (Bénin),aa,atla1278,language,safe,"7,06634","1,64992",BJ TG,Africa,Africa,152,2,0,2,0,0,0,1,0
 1245,akan1250,aka,Akan,Akan,NA,gm,atla1278,language,safe,"6,34756","-1,33254",GH TG,Africa,Africa,173,0,0,0,0,0,0,0,0
 1572,akas1242,aks,Akaselem,Akasilimi,NA,gm,atla1278,language,safe,"8,8858","1,37035",TG,Africa,Africa,308,0,0,0,0,0,0,0,0
 1554,akoo1248,bss,Akoose,Akoose,Nyasoso,gm,atla1278,language,safe,"4,9243","9,65522",CM,Africa,Africa,808,0,0,0,0,0,0,0,0
@@ -309,7 +309,7 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 880,gbar1246,gby,Gbari,Gbari,NA,ph,atla1278,language,safe,"8,46411","7,10757",NG,Africa,Africa,234,0,0,0,1,0,1,0,0
 939,gbay1281,gmm,Gbaya-Mbodomo,Mbodomo; Mbódɔ̀mɔ́,NA,ph,atla1278,language,safe,"4,800365","14,606865",CF CM,Africa,Africa,724,0,0,0,0,0,0,0,0
 148,gbay1287,gbp,Gbaya-Bossangoa,Gbeya,NA,spa,atla1278,language,safe,"6,61896","17,645",CF,Africa,Africa,480,0,0,0,0,0,0,0,0
-1282,gbes1238,gbs,Gbesi Gbe,gbesi,NA,gm,atla1278,language,safe,"6,55911","2,0269",BJ,Africa,Africa,70,4,NA,4,0,0,0,4,0
+1282,gbes1238,gbs,Gbesi Gbe,gbesi,NA,gm,atla1278,language,safe,"6,55911","2,0269",BJ,Africa,Africa,70,4,NA,4,0,0,0,2,0
 721,genn1243,gej,Gen,gɛn-mina,gɛn-mina (Benin),aa,atla1278,language,safe,"6,25971","1,67727",BJ TG,Africa,Africa,64,0,0,0,0,0,0,0,0
 1384,ghom1247,bbj,Ghomálá',Banjun,NA,gm,atla1278,language,safe,"5,39619","10,352",CM,Africa,Africa,1527,1,0,1,0,0,0,1,0
 1302,giky1238,acd,Gikyode,Gechode,NA,gm,atla1278,language,safe,"8,39478","0,56975",GH TG,Africa,Africa,285,0,0,0,0,0,0,0,0
@@ -370,7 +370,7 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 915,konn1242,kma,Konni,Konni,NA,ph,atla1278,language,vulnerable,"10,2368","-1,54376",GH,Africa,Africa,196,0,0,0,0,0,0,0,0
 747,koon1245,ozm,Koonzime,kɔɔzime,NA,aa,atla1278,language,safe,"3,25933","13,54152",CM,Africa,Africa,611,0,0,0,0,0,0,0,0
 1620,kosh1246,kid,Koshin,Koshin,NA,gm,atla1278,language,definitely endangered,"6,5817","10,299",CM,Africa,Africa,673,0,0,0,0,0,0,0,0
-1281,kota1272,kqk,Kotafon Gbe,kotafon,NA,gm,atla1278,language,safe,"6,64027","1,72346",BJ TG,Africa,Africa,65,4,0,4,0,0,0,4,0
+1281,kota1272,kqk,Kotafon Gbe,kotafon,NA,gm,atla1278,language,safe,"6,64027","1,72346",BJ TG,Africa,Africa,65,4,0,4,0,0,0,2,0
 424,kpan1246,kpk,Kpan,KPAN,NA,upsid,atla1278,language,vulnerable,"7,58343","10,1642",NG,Africa,Africa,152,0,0,0,0,0,0,0,0
 1306,krac1238,kye,Krache,Krache,NA,gm,atla1278,language,safe,"7,93475","0,01925",GH,Africa,Africa,159,0,0,0,0,0,0,0,0
 1307,krim1238,krm,Krim,Krim,NA,gm,atla1278,dialect,safe,"7,24116","-11,8393",SL,Africa,Africa,27,0,0,0,0,0,0,0,0
@@ -574,12 +574,12 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 840,weno1238,wob,Wobe-Wè Northern,wobé,NA,aa,atla1278,language,safe,"7,40391","-7,24617",CI,Africa,Africa,278,0,0,0,0,0,0,0,0
 766,west2450,lia,West-Central Limba,limba,NA,aa,atla1278,language,safe,"9,52392","-12,3138",SL,Africa,Africa,69,0,0,0,0,0,0,0,0
 715,west2454,fuh,Western Niger Fulfulde,fulfulde,fulfulde (Burkina Faso),aa,atla1278,language,safe,"14,2471","-0,52004",BF BJ ML NE NG,Africa,Africa,282,0,0,0,0,0,0,0,0
-1280,west2456,xwl,Western Xwla Gbe,western xwla,NA,gm,atla1278,language,safe,"6,33455","2,03904",BJ TG,Africa,Africa,64,4,0,4,0,0,0,4,0
+1280,west2456,xwl,Western Xwla Gbe,western xwla,NA,gm,atla1278,language,safe,"6,33455","2,03904",BJ TG,Africa,Africa,64,4,0,4,0,0,0,2,0
 1308,west2458,bbp,West Central Banda,"Banda, West Central",Tangbago,gm,atla1278,language,safe,"6,81435","24,1012",CF SD,Africa,Africa,609,0,0,0,0,0,0,0,0
 743,west2466,kza,Western Karaboro,karaboro,NA,aa,atla1278,language,safe,"10,6298","-4,76482",BF,Africa,Africa,297,0,0,0,0,0,0,0,0
 1340,wong1247,won,Wongo,Wongo,Isiinkere,gm,atla1278,language,safe,"-5,73837","20,5054",CD,Africa,Africa,590,0,0,0,0,0,0,0,0
 1319,xhos1239,xho,Xhosa,Xhosa,NA,gm,atla1278,language,safe,"-31,0389","28,0769",BW LS ZA,Africa,Africa,1932,0,0,0,18,0,18,0,0
-1279,xwel1235,xwe,Xwela Gbe,xwela,NA,gm,atla1278,language,safe,"6,41342","2,02985",BJ,Africa,Africa,66,4,0,4,0,0,0,4,0
+1279,xwel1235,xwe,Xwela Gbe,xwela,NA,gm,atla1278,language,safe,"6,41342","2,02985",BJ,Africa,Africa,66,4,0,4,0,0,0,2,0
 1288,yala1263,yba,Yala,yala,ikom,gm,atla1278,language,safe,"6,73852","8,60748",NG,Africa,Africa,122,0,0,0,0,0,0,0,0
 842,yamb1251,yam,Yamba,yamba,NA,aa,atla1278,language,safe,"6,535505","11,07711",CM NG,Africa,Africa,1243,0,0,0,0,0,0,0,0
 843,yamb1252,yat,Yambeta,yambɛta,NA,aa,atla1278,language,vulnerable,"4,83615","10,9369",CM,Africa,Africa,616,0,0,0,0,0,0,0,0
@@ -644,7 +644,7 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 1185,bari1286,bch,Bariai,Bariai,NA,ph,aust1307,language,safe,"-5,5087","148,666",PG,Papunesia,Oceania,477,0,0,0,0,0,0,0,0
 1099,bata1289,bbc,Batak Toba,Toba-Batak,NA,ph,aust1307,language,vulnerable,"2,35498","99,1761",ID,Papunesia,South & Southeast Asia,1079,0,0,0,0,0,0,0,0
 1665,bata1293,btx,Batak Karo,Karo Batak,NA,gm,aust1307,language,vulnerable,"2,12787","98,2517",ID,Papunesia,South & Southeast Asia,12,0,0,0,0,0,0,0,0
-1669,bela1260,beg,Lemeting,Belait,Metting,gm,aust1307,language,severely endangered,"4,96207","114,933",BN MY,Papunesia,South & Southeast Asia,1,1,0,1,0,0,0,1,0
+1669,bela1260,beg,Lemeting,Belait,Metting,gm,aust1307,language,severely endangered,"4,96207","114,933",BN MY,Papunesia,South & Southeast Asia,1,1,0,1,0,0,0,0,0
 1191,biak1248,bhw,Biak,Biak,NA,ph,aust1307,language,severely endangered,"-0,9523","135,879",ID,Papunesia,Oceania,62,0,0,0,0,0,0,0,0
 1694,bugi1244,bug,Buginese,Bugis,NA,gm,aust1307,language,safe,"-4,47","119,977",ID,Papunesia,South & Southeast Asia,93,0,0,0,0,0,0,0,0
 1676,buol1237,blf,Buol,Buol,NA,gm,aust1307,language,vulnerable,"0,97727","121,519",ID,Papunesia,South & Southeast Asia,131,0,0,0,0,0,0,0,0
@@ -652,7 +652,7 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 1695,cent2087,bcl,Coastal-Naga Bikol,Bikol (Bicolano),Central,gm,aust1307,language,safe,"13,7574","123,403",PH,Papunesia,South & Southeast Asia,162,0,0,0,0,0,0,0,0
 2208,cent2092,sml,Central Sama,Central Sama,Central Sama (Siasi),uz,aust1307,language,safe,"7,004574","118,455978",PH,Papunesia,South & Southeast Asia,66,0,0,0,0,0,0,0,0
 38,cham1312,cha,Chamorro,Chamorro,NA,spa,aust1307,language,vulnerable,"13,438011","144,74474",GU MP,Papunesia,Oceania,103,0,0,0,0,0,0,0,0
-2222,coco1260,coa,Cocos Islands Malay,Cocos Malay,"Spoken in Kampung Cocos in the Lahad Datu district of Sabah, Malaysia",uz,aust1307,language,definitely endangered,"-12,193342","96,833679",MY,Papunesia,South & Southeast Asia,NA,1,0,1,0,0,0,1,0
+2222,coco1260,coa,Cocos Islands Malay,Cocos Malay,"Spoken in Kampung Cocos in the Lahad Datu district of Sabah, Malaysia",uz,aust1307,language,definitely endangered,"-12,193342","96,833679",MY,Papunesia,South & Southeast Asia,NA,1,0,1,0,0,0,0,0
 981,dobu1241,dob,Dobu,Dobu,NA,ph,aust1307,language,safe,"-9,63239","150,825",PG,Papunesia,Oceania,11,0,0,0,0,0,0,0,0
 1085,dupa1235,duo,Dupaninan Agta,Dupaningan Agta; Eastern Cagayan Agta; Dupaninan Agta,NA,ph,aust1307,language,definitely endangered,"17,3748","122,188",PH,Papunesia,South & Southeast Asia,713,0,0,0,0,0,0,0,0
 1037,east2440,mky,East Makian,East Makian,NA,ph,aust1307,language,definitely endangered,"0,07337","127,423",ID,Papunesia,South & Southeast Asia,75,0,0,0,0,0,0,0,0
@@ -699,7 +699,7 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 1672,mokl1243,mkm,Moklen,Moklen,NA,gm,aust1307,language,definitely endangered,"8,16761","98,3176",TH,Eurasia,South & Southeast Asia,9,0,0,0,0,0,0,0,0
 1678,mori1268,xmz,Mori Bawah,Mori Bawah,Tinompo,gm,aust1307,language,vulnerable,"-2,56016","121,37",ID,Papunesia,South & Southeast Asia,496,0,0,0,0,0,0,0,0
 948,motl1237,mlv,Mwotlap,Mwotlap,NA,ph,aust1307,language,vulnerable,"-13,655015","167,706277",VU,Papunesia,Oceania,80,0,0,0,0,0,0,0,0
-1214,muna1247,mnb,Muna,Muna,NA,ph,aust1307,language,vulnerable,"-5,40419","122,541",ID,Papunesia,South & Southeast Asia,62,1,0,1,0,0,0,1,0
+1214,muna1247,mnb,Muna,Muna,NA,ph,aust1307,language,vulnerable,"-5,40419","122,541",ID,Papunesia,South & Southeast Asia,62,1,0,1,0,0,0,0,0
 557,natu1246,ntu,Natügu,NAMBAKAENGO,NA,upsid,aust1307,language,safe,"-10,6771","165,835",SB,Papunesia,Oceania,1,0,0,0,0,0,0,0,0
 1213,ngad1261,nxg,Ngad'a,Ngad''a; Ngadha',NA,ph,aust1307,language,safe,"-8,79508","120,976",ID,Papunesia,South & Southeast Asia,1154,0,0,0,0,0,0,0,0
 1674,nias1242,nia,Nias,Nias,Selatan,gm,aust1307,language,safe,"0,90691","97,4961",ID,Papunesia,South & Southeast Asia,5,0,0,0,0,0,0,0,0
@@ -848,7 +848,7 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 1708,bada1257,bfq,Badaga,Badaga,NA,ra,drav1251,language,definitely endangered,"11,3094","76,5974",IN,Eurasia,South & Southeast Asia,2025,0,0,0,0,0,0,0,0
 1190,bett1235,xub,Betta Kurumba,Betta Kurumba,NA,ph,drav1251,language,definitely endangered,"11,6385","76,6064",IN,Eurasia,South & Southeast Asia,947,0,0,0,0,0,0,0,0
 2290,brah1256,brh,Brahui,Brahui,Brahui (Jahlawān),ea,drav1251,language,vulnerable,"28,5347","64,2991",AF IR PK,Eurasia,South & Southeast Asia,2054,0,0,0,0,0,0,0,0
-2474,chen1255,cde,Chenchu,Nyinpa Cone,NA,ea,drav1251,language,safe,"15,8787","79,2534",IN,Eurasia,South & Southeast Asia,159,1,0,1,0,0,0,1,0
+2474,chen1255,cde,Chenchu,Nyinpa Cone,NA,ea,drav1251,language,safe,"15,8787","79,2534",IN,Eurasia,South & Southeast Asia,159,1,0,1,0,0,0,0,0
 1777,duru1236,pci,Duruwa,Parji,NA,ra,drav1251,language,vulnerable,"19,0534","82,4881",IN,Eurasia,South & Southeast Asia,608,0,0,0,0,0,0,0,0
 1730,irul1243,iru,Irula of the Nilgiri,Irula,NA,ra,drav1251,language,definitely endangered,"12,70645","79,95209",IN,Eurasia,South & Southeast Asia,35,0,0,0,0,0,0,0,0
 1739,jenn1240,xuj,Jennu Kurumba,Kattunaika,NA,ra,drav1251,language,safe,"11,5041","76,5767",IN,Eurasia,South & Southeast Asia,1812,0,0,0,0,0,0,0,0
@@ -880,11 +880,11 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 2632,madn1237,zml,Madngele,Matngele,NA,er,east2374,language,critically endangered,"-13,9479","130,6",AU,Australia,Australia,137,0,0,0,0,0,0,0,0
 1616,gaam1241,tbi,Gaam,Gaahmg,NA,gm,east2386,language,safe,"11,4674","33,9797",SD,Africa,Africa,1051,0,0,0,0,0,0,0,0
 982,samo1303,smq,Samo,Samo,NA,ph,east2433,language,safe,"-6,15496","142,195",PG,Papunesia,New Guinea,210,0,0,0,0,0,0,0,0
-61,aleu1260,ale,Aleut,Aleut,NA,spa,eski1264,language,definitely endangered,"52,1228","-174,29",RU US,North America,NA,78,3,0,3,0,0,0,3,0
-319,cent2128,ess,Central Siberian Yupik,YUPIK,NA,upsid,eski1264,language,definitely endangered,"63,4308","-170,272",RU US,Eurasia,Northern Eurasia,12,6,0,6,0,0,0,6,0
-62,kala1399,kal,Kalaallisut,Inuit,NA,spa,eski1264,language,vulnerable,"69,3761","-52,864",GL,North America,NA,336,6,0,6,0,0,0,6,0
-2291,nauk1242,ynk,Naukan Yupik,Naukan Yupik,NA,ea,eski1264,language,definitely endangered,"65,5184","-171,755",RU,Eurasia,Northern Eurasia,7,3,0,3,0,0,0,3,0
-1077,nort2943,esi,North Alaskan Inupiatun,Iñupiaq; Iñupiat; Inupiat; Inupiaq,NA,ph,eski1264,language,severely endangered,"69,582","-143,77",CA US,North America,North America,355,3,0,3,0,0,0,3,0
+61,aleu1260,ale,Aleut,Aleut,NA,spa,eski1264,language,definitely endangered,"52,1228","-174,29",RU US,North America,NA,78,3,0,3,0,0,0,2,0
+319,cent2128,ess,Central Siberian Yupik,YUPIK,NA,upsid,eski1264,language,definitely endangered,"63,4308","-170,272",RU US,Eurasia,Northern Eurasia,12,6,0,6,0,0,0,4,0
+62,kala1399,kal,Kalaallisut,Inuit,NA,spa,eski1264,language,vulnerable,"69,3761","-52,864",GL,North America,NA,336,6,0,6,0,0,0,5,0
+2291,nauk1242,ynk,Naukan Yupik,Naukan Yupik,NA,ea,eski1264,language,definitely endangered,"65,5184","-171,755",RU,Eurasia,Northern Eurasia,7,3,0,3,0,0,0,2,0
+1077,nort2943,esi,North Alaskan Inupiatun,Iñupiaq; Iñupiat; Inupiat; Inupiaq,NA,ph,eski1264,language,severely endangered,"69,582","-143,77",CA US,North America,North America,355,3,0,3,0,0,0,2,0
 333,furr1244,fvr,Fur,FUR,NA,upsid,fura1235,language,safe,"12,0455","23,6401",CF SD TD,Africa,Africa,867,0,0,0,0,0,0,0,0
 2645,gara1269,wrk,Garrwa,Garrwa,NA,er,garr1260,language,severely endangered,"-17,4504","137,72014",AU,Australia,Australia,204,0,0,0,0,0,0,0,0
 2646,wany1247,wny,Wanyi,Waanyi,NA,er,garr1260,language,critically endangered,"-18,6529","137,608",AU,Australia,Australia,391,0,0,0,0,0,0,0,0
@@ -907,9 +907,9 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 1911,guah1255,guh,Guahibo,Guahibo,NA,saphon,guah1252,language,vulnerable,"5,81736","-68,9839",CO VE,South America,South America,74,0,0,0,0,0,0,0,0
 1912,guay1257,guo,Guayabero,Guayabero,NA,saphon,guah1252,language,definitely endangered,"2,8969","-71,844",CO,South America,South America,274,0,0,0,0,0,0,0,0
 1913,maca1259,mbn,Macaguán,Macaguán,NA,saphon,guah1252,language,definitely endangered,"6,34582","-71,2671",CO,South America,South America,145,0,0,0,0,0,0,0,0
-1914,abip1241,axb,Abipon,Abipon,NA,saphon,guai1249,language,extinct,-29,-61,AR,South America,South America,53,2,0,2,0,0,0,2,0
-1118,kadi1248,kbc,Kadiwéu,Kadiweu,NA,ph,guai1249,language,definitely endangered,"-19,7222","-57,582",BR,South America,South America,90,2,0,2,0,0,0,2,0
-1127,moco1246,moc,Mocoví,Mocovi,NA,ph,guai1249,language,definitely endangered,"-28,097","-60,4145",AR,South America,South America,53,2,0,2,0,0,0,2,0
+1914,abip1241,axb,Abipon,Abipon,NA,saphon,guai1249,language,extinct,-29,-61,AR,South America,South America,53,2,0,2,0,0,0,1,0
+1118,kadi1248,kbc,Kadiwéu,Kadiweu,NA,ph,guai1249,language,definitely endangered,"-19,7222","-57,582",BR,South America,South America,90,2,0,2,0,0,0,1,0
+1127,moco1246,moc,Mocoví,Mocovi,NA,ph,guai1249,language,definitely endangered,"-28,097","-60,4145",AR,South America,South America,53,2,0,2,0,0,0,1,0
 1073,pila1245,plg,Pilagá,Pilaga; Pilagá,NA,ph,guai1249,language,definitely endangered,"-25,0058","-60,1537",AR PY,South America,South America,100,1,0,1,0,0,0,1,0
 1045,toba1269,tob,Toba,Toba (Argentina),NA,ph,guai1249,language,vulnerable,"-24,40253","-60,4472866667",AR BO PY,South America,South America,167,1,0,1,0,0,0,1,0
 1475,gumu1244,guk,Northern Gumuz,Gumuz,Sese,gm,gumu1250,language,safe,"11,05","35,93",ET SD,Africa,Africa,886,0,0,0,6,1,5,0,0
@@ -960,15 +960,15 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 2357,bhoj1244,bho,Bhojpuri,Bhojpuri,NA,ea,indo1319,language,safe,"26,458455","84,817115",IN NP,Eurasia,South & Southeast Asia,64,0,0,0,0,0,0,0,0
 2584,bret1244,bre,Breton,Breton,Breton (Bothoa),ea,indo1319,language,safe,"48,2452","-3,78934",FR,Eurasia,Europe,139,0,0,0,0,0,0,0,0
 1198,brok1247,bkk,Brokskat,Brokskat,NA,ph,indo1319,language,definitely endangered,"34,5308","76,6026",IN,Eurasia,Northern Eurasia,3481,1,0,1,0,0,0,1,0
-2219,bukh1238,bhh,Bukharic,Bukharan Tajik,Bukharan,uz,indo1319,language,safe,41,64,UZ,Eurasia,Northern Eurasia,225,2,0,2,0,0,0,2,0
+2219,bukh1238,bhh,Bukharic,Bukharan Tajik,Bukharan,uz,indo1319,language,safe,41,64,UZ,Eurasia,Northern Eurasia,225,2,0,2,0,0,0,1,0
 2163,bulg1262,bul,Bulgarian,Bulgarian,Standard Bulgarian,uz,indo1319,language,definitely endangered,"43,3646","25,047",BG GR MD MK RO RS TR UA,Eurasia,Europe,96,0,0,0,0,0,0,0,0
 1716,bund1253,bns,Bundeli,Bundeli,NA,ra,indo1319,language,safe,"24,8982","78,9542",IN,Eurasia,South & Southeast Asia,289,0,0,0,0,0,0,0,0
-2546,camp1261,sro,Campidanese Sardinian,Campidanese Sardinian,Campidanese Sardinian (Sestu),ea,indo1319,language,vulnerable,"39,0566","9,03935",IT,Eurasia,Europe,53,1,0,1,0,0,0,1,0
+2546,camp1261,sro,Campidanese Sardinian,Campidanese Sardinian,Campidanese Sardinian (Sestu),ea,indo1319,language,vulnerable,"39,0566","9,03935",IT,Eurasia,Europe,53,1,0,1,0,0,0,0,0
 2250,cent1972,ckb,Central Kurdish,Kurdish,Kurdish (Sorani),ea,indo1319,language,safe,"35,6539","45,8077",IQ IR,Eurasia,Western Asia,1282,1,0,1,0,0,0,1,0
 2322,cent1973,pst,Central Pashto,Wazirwola,Wazirwola (North Wazīrī),ea,indo1319,language,safe,"31,9153","69,4529",AF PK,Eurasia,South & Southeast Asia,1069,0,0,0,0,0,0,0,0
 1139,croa1245,hrv,Croatian,Croatian,NA,ph,indo1319,dialect,definitely endangered,"45,2006","16,826",AT BA HR HU IT ME RS SI,Eurasia,Europe,132,0,0,0,0,0,0,0,0
 1140,czec1258,ces,Czech,Czech,Prague,ph,indo1319,language,safe,"49,873398","15,10437",AT CZ PL SK,Eurasia,Europe,447,0,0,0,0,0,0,0,0
-2167,dani1285,dan,Danish,Danish,NA,uz,indo1319,language,safe,"54,8655","9,36284",DE DK,Eurasia,Europe,38,1,0,1,0,0,0,1,0
+2167,dani1285,dan,Danish,Danish,NA,uz,indo1319,language,safe,"54,8655","9,36284",DE DK,Eurasia,Europe,38,1,0,1,0,0,0,0,0
 2315,dhiv1236,div,Dhivehi,Dhivehi,Dhivehi (Malé),ea,indo1319,language,safe,"1,928498","73,54433",IN MV,Eurasia,South & Southeast Asia,1,0,0,0,0,0,0,0,0
 1109,diml1238,diq,Dimli,Dimili,NA,ph,indo1319,language,vulnerable,"38,6147","39,6388",TR,Eurasia,Western Asia,1634,1,0,1,0,0,0,1,0
 2530,doma1258,rmt,Domari,Domari,Domari (Palestinian),ea,indo1319,language,severely endangered,32,35,EG IL JO PS SY,Eurasia,Western Asia,265,2,0,2,0,0,0,2,0
@@ -979,7 +979,7 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 2498,east2304,bgp,Eastern Balochi,Eastern Hill Balochi,NA,ea,indo1319,language,safe,28,62,PK,Eurasia,South & Southeast Asia,1391,0,0,0,0,0,0,0,0
 2473,elfd1234,ovd,Elfdalian,Elfdalian,NA,ea,indo1319,dialect,definitely endangered,NA,NA,SE,Eurasia,Europe,NA,0,0,0,0,0,0,0,0
 2378,faro1244,fao,Faroese,Faroese,NA,ea,indo1319,language,vulnerable,"62,0732","-6,88497",DK US,Eurasia,Europe,83,0,0,0,0,0,0,0,0
-1438,fern1234,fpe,Pichi,Pichi,NA,gm,indo1319,language,safe,"3,74","8,78",GQ,Africa,Africa,118,1,0,1,0,0,0,1,0
+1438,fern1234,fpe,Pichi,Pichi,NA,gm,indo1319,language,safe,"3,74","8,78",GQ,Africa,Africa,118,1,0,1,0,0,0,0,0
 1231,friu1240,fur,Friulian,Friulian,Udine,ph,indo1319,language,vulnerable,"46,1473","13,0493",AT IT,Eurasia,Europe,195,0,0,0,0,0,0,0,0
 1721,gade1236,gda,Gade Lohar,Gade-Lohar,NA,ra,indo1319,language,safe,"25,8583","78,2187",IN,Eurasia,South & Southeast Asia,215,0,0,0,0,0,0,0,0
 1141,gali1258,glg,Galician,Galician,NA,ph,indo1319,language,safe,"42,2446","-7,5343",ES PT,Eurasia,Europe,1060,0,0,0,0,0,0,0,0
@@ -1000,17 +1000,17 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 1733,kang1280,xnr,Kangri,Kangri,NA,ra,indo1319,language,definitely endangered,"31,915","76,366",IN,Eurasia,Northern Eurasia,722,0,0,0,0,0,0,0,0
 907,kari1301,kmv,Karipúna Creole French,Karipuna Creole,NA,ph,indo1319,language,vulnerable,"3,42825","-51,6888",BR,South America,South America,159,0,0,0,0,0,0,0,0
 174,kash1277,kas,Kashmiri,Kashimiri,NA,spa,indo1319,language,safe,"34,166825","74,330455",IN PK,Eurasia,Northern Eurasia,1567,0,0,0,0,0,0,0,0
-2537,khal1271,tks,Khalkhal,Khalkhal,NA,ea,indo1319,dialect,safe,NA,NA,NA,Eurasia,Western Asia,NA,2,0,2,0,0,0,2,0
+2537,khal1271,tks,Khalkhal,Khalkhal,NA,ea,indo1319,dialect,safe,NA,NA,NA,Eurasia,Western Asia,NA,2,0,2,0,0,0,1,0
 1747,konk1267,knn,Maharashtrian Konkani,Konkani,NA,ra,indo1319,language,safe,"19,2414","73,9166",IN,Eurasia,South & Southeast Asia,713,0,0,0,0,0,0,0,0
-1570,krio1253,kri,Krio,Krio,NA,gm,indo1319,language,safe,"10,8811","-14,3204",GM GN SL SN US,Africa,Africa,45,1,0,1,0,0,0,1,0
+1570,krio1253,kri,Krio,Krio,NA,gm,indo1319,language,safe,"10,8811","-14,3204",GM GN SL SN US,Africa,Africa,45,1,0,1,0,0,0,0,0
 1753,kuma1273,kfy,Kumaoni,Kumauni,NA,ra,indo1319,language,vulnerable,"29,5622","80,0171",IN NP,Eurasia,Northern Eurasia,1116,0,0,0,0,0,0,0,0
-2221,kumz1235,zum,Kumzari,Kumzari,"Kumzari spoken in Khasab, Oman",uz,indo1319,language,vulnerable,"26,1602","56,4202",OM,Eurasia,Western Asia,95,3,0,3,0,0,0,3,0
+2221,kumz1235,zum,Kumzari,Kumzari,"Kumzari spoken in Khasab, Oman",uz,indo1319,language,vulnerable,"26,1602","56,4202",OM,Eurasia,Western Asia,95,3,0,3,0,0,0,2,0
 2194,ladi1251,lad,Ladino,Judeo-Spanish,Istanbul Judeo-Spanish,uz,indo1319,language,safe,"41,205","28,6632",GR TR,Eurasia,Europe,117,0,0,0,0,0,0,0,0
 1710,lamb1269,lmn,Lambadi,Banjara,NA,ra,indo1319,language,safe,"16,5734","76,9717",IN,Eurasia,South & Southeast Asia,352,0,0,0,0,0,0,0,0
 2325,ligu1248,lij,Ligurian,Ligurian,Ligurian (Miogliola),ea,indo1319,language,definitely endangered,"44,0816","7,90522",FR IT MC,Eurasia,Europe,632,0,0,0,0,0,0,0,0
 2244,lith1251,lit,Lithuanian,Lithuanian,Lithuanian (West Aukštaitian),ea,indo1319,language,safe,"55,1429","23,9601",BY LT LV PL RU,Eurasia,Europe,66,0,0,0,0,0,0,0,0
 2602,lowe1385,dsb,Lower Sorbian,Lower Sorbian,NA,ea,indo1319,language,definitely endangered,"51,6621","13,9407",DE,Eurasia,Europe,116,0,0,0,0,0,0,0,0
-2200,luxe1241,ltz,Luxembourgish,Luxembourgish,Standard central Luxembourgish,uz,indo1319,language,vulnerable,"49,6839","6,14931",BE DE FR LU,Eurasia,Europe,232,3,0,3,0,0,0,2,0
+2200,luxe1241,ltz,Luxembourgish,Luxembourgish,Standard central Luxembourgish,uz,indo1319,language,vulnerable,"49,6839","6,14931",BE DE FR LU,Eurasia,Europe,232,3,0,3,0,0,0,1,0
 930,mace1250,mkd,Macedonian,Macedonian,NA,ph,indo1319,language,safe,"41,5957","21,7932",AL BG GR MK RS,Eurasia,Europe,832,0,0,0,0,0,0,0,0
 2454,maga1260,mag,Magahi,Magahi,NA,ea,indo1319,language,safe,"25,0915","85,3335",IN,Eurasia,South & Southeast Asia,63,0,0,0,0,0,0,0,0
 2302,mait1250,mai,Maithili,Maithili,Maithili (Madhubani),ea,indo1319,language,safe,"26,3817","86,2211",IN NP,Eurasia,South & Southeast Asia,58,0,0,0,0,0,0,0,0
@@ -1027,24 +1027,24 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 1134,nige1257,pcm,Nigerian Pidgin,Nigerian Pidgin,NA,ph,indo1319,language,safe,"9,65873","4,21068",NG,Africa,Africa,248,0,0,0,0,0,0,0,0
 1111,nort2626,frr,Northern Frisian,Frisian,Sölring North,ph,indo1319,language,definitely endangered,"54,6409","8,58489",DE DK,Eurasia,Europe,NA,0,0,0,0,0,0,0,0
 1131,nort2627,nds,Eastern Low German,Low German,Ukrainian,ph,indo1319,language,vulnerable,"50,771","6,092",DE,Eurasia,Europe,63,0,0,0,0,0,0,0,0
-2484,nort2641,kmr,Northern Kurdish,Northern Kurdish,Northern Kurdish (Kurmanji),ea,indo1319,language,safe,37,43,AM AZ IQ IR JO KW SY TM TR,Eurasia,Western Asia,683,3,0,3,0,0,0,3,0
+2484,nort2641,kmr,Northern Kurdish,Northern Kurdish,Northern Kurdish (Kurmanji),ea,indo1319,language,safe,37,43,AM AZ IQ IR JO KW SY TM TR,Eurasia,Western Asia,683,3,0,3,0,0,0,2,0
 2321,nort2646,pbu,Northern Pashto,Yousafzai Pashto,Yousafzai Pashto (Peshāwar),ea,indo1319,language,safe,34,"71,33",AF IN PK,Eurasia,South & Southeast Asia,551,0,0,0,0,0,0,0,0
 2441,norw1258,nor,Norwegian,Norwegian,Norwegian (Standard Østnorsk),ea,indo1319,language,safe,"59,92","10,71",FI NO RU SE,Eurasia,Europe,40,0,0,0,0,0,0,0,0
 159,norw1259,nob,Norwegian Bokmål,Norwegian,NA,spa,indo1319,dialect,safe,"61,112","8,886",NO,Eurasia,Europe,631,0,0,0,0,0,0,0,0
-171,nucl1235,hye,Eastern Armenian,Armenian,NA,spa,indo1319,language,definitely endangered,40,45,AM AZ GE IR SY TR,Eurasia,Western Asia,1872,2,0,2,5,0,5,2,0
+171,nucl1235,hye,Eastern Armenian,Armenian,NA,spa,indo1319,language,definitely endangered,40,45,AM AZ GE IR SY TR,Eurasia,Western Asia,1872,2,0,2,5,0,5,1,0
 2478,occi1239,oci,Occitan,Occitan,Occitan (Gascon),ea,indo1319,language,safe,"44,1415","6,82979",AD ES FR IT MC,Eurasia,Europe,1206,0,0,0,0,0,0,0,0
 2495,oriy1255,ory,Odia,Oriya,NA,ea,indo1319,language,safe,21,85,IN,Eurasia,South & Southeast Asia,136,0,0,0,0,0,0,0,0
-510,ormu1247,oru,Ormuri,ORMURI,NA,upsid,indo1319,language,definitely endangered,"32,6819","69,3444",AF PK,Eurasia,South & Southeast Asia,2253,2,0,2,0,0,0,2,0
-976,osse1243,oss,Ossetian,Ossetian,NA,ph,indo1319,language,vulnerable,"41,7882","43,2674",AZ GE RU TR,Eurasia,Europe,NA,3,0,3,5,0,5,3,0
+510,ormu1247,oru,Ormuri,ORMURI,NA,upsid,indo1319,language,definitely endangered,"32,6819","69,3444",AF PK,Eurasia,South & Southeast Asia,2253,2,0,2,0,0,0,1,0
+976,osse1243,oss,Ossetian,Ossetian,NA,ph,indo1319,language,vulnerable,"41,7882","43,2674",AZ GE RU TR,Eurasia,Europe,NA,3,0,3,5,0,5,2,0
 2479,panj1256,pan,Eastern Panjabi,Panjabi,Panjabi (Eastern),ea,indo1319,language,safe,"30,0368","75,6702",BD IN PK,Eurasia,South & Southeast Asia,219,0,0,0,0,0,0,0,0
 1036,phal1254,phl,Phalura,Palula (Phalura),NA,ph,indo1319,language,vulnerable,"35,5096","71,8421",PK,Eurasia,Northern Eurasia,2899,1,1,0,0,0,0,1,1
 2224,plau1238,pdt,Plautdietsch,Mennonite Plautdietsch,NA,uz,indo1319,language,definitely endangered,"49,578028","-109,353868",BZ MX PY,North America,North America,1104,0,0,0,0,0,0,0,0
 1046,poli1260,pol,Polish,Polish,NA,ph,indo1319,language,safe,"51,8439","18,6255",BY CZ DE LT PL RU SK UA,Eurasia,Europe,117,0,0,0,0,0,0,0,0
-2206,port1283_01,por,Portuguese,Portuguese (European),Lisbon,uz,indo1319,language,safe,"39,91","-8,1",AD AR BO BR CO ES FR GF GY PE PT PY SR UY VE,Eurasia,Europe,464,1,0,1,0,0,0,1,0
+2206,port1283_01,por,Portuguese,Portuguese (European),Lisbon,uz,indo1319,language,safe,"39,91","-8,1",AD AR BO BR CO ES FR GF GY PE PT PY SR UY VE,Eurasia,Europe,464,1,0,1,0,0,0,0,0
 2207,port1283_02,por,Portuguese,Portuguese (Brazilian),São Paulo,uz,indo1319,language,safe,"39,91","-8,1",AD AR BO BR CO ES FR GF GY PE PT PY SR UY VE,Eurasia,Europe,464,0,0,0,0,0,0,0,0
 1454,prin1242,pre,Principense,Principense,NA,gm,indo1319,language,severely endangered,"1,614","7,392",ST,Africa,Africa,291,0,0,0,0,0,0,0,0
 2247,rajb1243,rjs,Rajbanshi,Rājbanshi,NA,ea,indo1319,language,safe,"26,521945","88,038582",IN NP,Eurasia,Northern Eurasia,99,0,0,0,0,0,0,0,0
-1564,reun1238,rcf,Réunion Creole French,Reunionnais,NA,gm,indo1319,language,safe,"-21,1131","55,5321",RE,Africa,Africa,1868,1,0,1,0,0,0,1,0
+1564,reun1238,rcf,Réunion Creole French,Reunionnais,NA,gm,indo1319,language,safe,"-21,1131","55,5321",RE,Africa,Africa,1868,1,0,1,0,0,0,0,0
 2304,roma1326,roh,Romansh,Vallader Romansh,NA,ea,indo1319,language,vulnerable,"46,5538","9,92812",AT CH IT,Eurasia,Europe,2184,0,0,0,0,0,0,0,0
 2443,roma1327,ron,Romanian,Romanian,Romanian (Standard),ea,indo1319,language,safe,"46,3913","24,2256",BG HU MD RO RS UA,Eurasia,Europe,313,0,0,0,0,0,0,0,0
 2261,russ1263,rus,Russian,Russian,Russian (Standard),ea,indo1319,language,critically endangered,59,50,BY CN EE FI GE KG KP KZ LT LV MD MN NO PL RO RU TM UA UZ,Eurasia,Europe,201,0,0,0,0,0,0,0,0
@@ -1066,34 +1066,34 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 2227,sout2672,psi,Southeast Pashayi,Southeastern Pashayi,NA,uz,indo1319,language,vulnerable,"34,43099","70,30351",AF,Eurasia,Northern Eurasia,673,1,1,0,0,0,0,1,1
 2210,stan1288,spa,Spanish,Spanish,Castilian Spanish,uz,indo1319,language,safe,"40,4414","-1,11788",AD AR BO BR BZ CL CO CR CU DO EC ES FR GI GT GY HN HT MA MX NI PA PE PR PT PY SV US UY VE,Eurasia,Europe,1174,0,0,0,0,0,0,0,0
 1138,stan1289,cat,Catalan,Catalan,Barcelona,ph,indo1319,language,vulnerable,"41,453","1,569",AD ES FR IT,Eurasia,Europe,594,0,0,0,0,0,0,0,0
-2182,stan1290,fra,French,French,French (Parisian speaker),uz,indo1319,language,safe,48,2,AD BE CA CH FR GF IT LU MC PM US,Eurasia,Europe,129,1,0,1,0,0,0,1,0
+2182,stan1290,fra,French,French,French (Parisian speaker),uz,indo1319,language,safe,48,2,AD BE CA CH FR GF IT LU MC PM US,Eurasia,Europe,129,1,0,1,0,0,0,0,0
 2175,stan1293,eng,English,English (American),Western and Mid-Western US; Southern California,uz,indo1319,language,safe,53,-1,AU BM BR BZ CA CK CU DO FK GB GI GP GT GY HN IE KY LR MX NF PN SH SR US VE ZA,Eurasia,Europe,31,0,0,0,0,0,0,0,0
-2184,stan1295,deu,German,German,NA,uz,indo1319,language,safe,"48,649","12,4676",AT BE CH CZ DE DK FR HU IT LI LU NL PL RO SI SK,Eurasia,Europe,357,1,0,1,0,0,0,1,0
+2184,stan1295,deu,German,German,NA,uz,indo1319,language,safe,"48,649","12,4676",AT BE CH CZ DE DK FR HU IT LI LU NL PL RO SI SK,Eurasia,Europe,357,1,0,1,0,0,0,0,0
 2493,stan1325,lvs,Standard Latvian,Latvian,Latvian (Standard),ea,indo1319,dialect,safe,57,24,LV,Eurasia,Europe,5,0,0,0,0,0,0,0,0
 1150,swed1254,swe,Swedish,Swedish,Stockholm,ph,indo1319,language,safe,"59,800634","17,389526",DK FI NO SE,Eurasia,Europe,25,0,0,0,0,0,0,0,0
 2185,swis1247,gsw,Swiss German,Swiss German,Zurich,uz,indo1319,language,vulnerable,"47,0516","8,46419",AT CH DE FR IT LI,Eurasia,Europe,1042,0,0,0,0,0,0,0,0
-2266,taji1245,tgk,Tajik,Tajik,Tajik (Bukhara),ea,indo1319,language,safe,"38,8213","68,5549",AF CN KG TJ UZ,Eurasia,Northern Eurasia,3108,3,0,3,0,0,0,3,0
+2266,taji1245,tgk,Tajik,Tajik,Tajik (Bukhara),ea,indo1319,language,safe,"38,8213","68,5549",AF CN KG TJ UZ,Eurasia,Northern Eurasia,3108,3,0,3,0,0,0,2,0
 1219,torw1241,trw,Torwali,Torwali,NA,ph,indo1319,language,vulnerable,"35,3101","72,5316",PK,Eurasia,Northern Eurasia,4320,0,0,0,0,0,0,0,0
 2592,tosk1239,als,Northern Tosk Albanian,Tosk Albanian,Tosk Albanian (Korçë),ea,indo1319,language,safe,41,20,AL GR MK,Eurasia,Europe,80,0,0,0,0,0,0,0,0
 1035,ukra1253,ukr,Ukrainian,Ukrainian,NA,ph,indo1319,language,vulnerable,"48,175842","24,395786",BY HU MD PL RO RU SK UA,Eurasia,Europe,182,0,0,0,0,0,0,0,0
 2541,uppe1395,hsb,Upper Sorbian,Upper Sorbian,NA,ea,indo1319,language,vulnerable,"51,2403","14,4098",DE,Eurasia,Europe,179,0,0,0,0,0,0,0,0
-2232,uppe1400,sxu,Upper Saxon,Upper Saxon,Chemnitz dialect,uz,indo1319,language,safe,"51,152","12,692",DE,Eurasia,Europe,187,2,0,2,0,0,0,2,0
+2232,uppe1400,sxu,Upper Saxon,Upper Saxon,Chemnitz dialect,uz,indo1319,language,safe,"51,152","12,692",DE,Eurasia,Europe,187,2,0,2,0,0,0,1,0
 1553,uppe1455,pov,Upper Guinea Crioulo,Kriyol,NA,gm,indo1319,language,safe,"13,2335066667","-15,33254",GM GW SN US,Africa,Africa,48,0,0,0,0,0,0,0,0
 2466,urdu1245,urd,Urdu,Urdu,NA,ea,indo1319,language,safe,25,67,AF BD IN PK,Eurasia,South & Southeast Asia,32,1,0,1,0,0,0,1,0
 1798,vaag1238,vaa,Vaagri Booli,Vaagri Boli,NA,ra,indo1319,language,safe,"12,215","79,5335",IN,Eurasia,South & Southeast Asia,70,0,0,0,0,0,0,0,0
 2404,varl1238,vav,Varli,Varli,Varli (Dogri),ea,indo1319,language,safe,"20,5635","73,2975",IN,Eurasia,South & Southeast Asia,146,0,0,0,0,0,0,0,0
 2228,vlax1238,rmy,Vlax Romani,greek Thrace Xoraxane Romane,NA,uz,indo1319,language,safe,"46,8191","14,8451",BA DE IT SK,Eurasia,Europe,434,1,0,1,0,0,0,1,0
-2514,wakh1245,wbl,Wakhi,Wakhi,NA,ea,indo1319,language,vulnerable,"37,1768","73,9777",AF CN PK TJ,Eurasia,Northern Eurasia,4224,3,0,3,0,0,0,3,0
+2514,wakh1245,wbl,Wakhi,Wakhi,NA,ea,indo1319,language,vulnerable,"37,1768","73,9777",AF CN PK TJ,Eurasia,Northern Eurasia,4224,3,0,3,0,0,0,2,0
 2589,wane1241,wne,Waneci,Waneci,NA,ea,indo1319,language,safe,"30,0501","67,8327",PK,Eurasia,South & Southeast Asia,788,0,0,0,0,0,0,0,0
 2406,wels1247,cym,Welsh,Welsh,Welsh (Llanwrtyd),ea,indo1319,language,vulnerable,52,-4,GB,Eurasia,Europe,129,1,0,1,0,0,0,1,0
 2470,west2354,fry,Western Frisian,Frisian,Frisian (West),ea,indo1319,language,safe,"53,143","5,86091",NL,Eurasia,Europe,1,0,0,0,0,0,0,0,0
-2622,west2368_01,bgn,Western Balochi,Western Balochi,Western Balochi (Sarāwānī),ea,indo1319,language,safe,"37,83","62,17",AF IR PK TM,Eurasia,Northern Eurasia,208,2,0,2,0,0,0,2,0
+2622,west2368_01,bgn,Western Balochi,Western Balochi,Western Balochi (Sarāwānī),ea,indo1319,language,safe,"37,83","62,17",AF IR PK TM,Eurasia,Northern Eurasia,208,2,0,2,0,0,0,1,0
 2345,west2368_02,bgn,Western Balochi,Western Balochi,Western Balochi (Lāšārī),ea,indo1319,language,safe,"37,83","62,17",AF IR PK TM,Eurasia,Northern Eurasia,208,0,0,0,0,0,0,0,0
 2348,west2368_03,bgn,Western Balochi,Western Balochi,Western Balochi (Southern Raxšānī),ea,indo1319,language,safe,"37,83","62,17",AF IR PK TM,Eurasia,Northern Eurasia,208,0,0,0,0,0,0,0,0
 2618,west2368_04,bgn,Western Balochi,Western Balochi,Western Balochi (Afghani Raxšānī),ea,indo1319,language,safe,"37,83","62,17",AF IR PK TM,Eurasia,Northern Eurasia,208,0,0,0,0,0,0,0,0
 2205,west2369,pes,Western Farsi,Persian,NA,uz,indo1319,language,safe,"28,6593","55,1586",AF AZ IQ IR TM TR,Eurasia,Western Asia,1293,0,0,0,0,0,0,0,0
 2330,wymy1235,wym,Wymysorys,Wymysorys,NA,ea,indo1319,language,severely endangered,"49,91617","19,15195",PL,Eurasia,Europe,303,0,0,0,0,0,0,0,0
-2418,yagn1238,yai,Yagnobi,Yaghnobi,NA,ea,indo1319,language,vulnerable,"39,1486","69,2422",TJ,Eurasia,Northern Eurasia,2906,4,0,4,0,0,0,4,0
+2418,yagn1238,yai,Yagnobi,Yaghnobi,NA,ea,indo1319,language,vulnerable,"39,1486","69,2422",TJ,Eurasia,Northern Eurasia,2906,4,0,4,0,0,0,3,0
 280,cher1273,chr,Cherokee,CHEROKEE,NA,upsid,iroq1247,language,vulnerable,"35,4664","-83,163",US,North America,North America,1144,0,0,0,0,0,0,0,0
 885,huro1249,wya,Huron,Huron,NA,ph,iroq1247,dialect,safe,NA,NA,NA,North America,North America,NA,0,0,0,0,0,0,0,0
 77,onei1249,one,Oneida,Oneida,NA,spa,iroq1247,language,definitely endangered,"43,438742","-75,708106",CA US,North America,North America,387,0,0,0,0,0,0,0,0
@@ -1110,8 +1110,8 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 1928,iton1250,ito,Itonama,Itonama,NA,saphon,isolate_2,language,critically endangered,"-12,80431","-64,35748",BO,South America,South America,136,0,0,0,3,0,3,0,0
 944,mose1249,cas,Mosetén-Chimané,Moseten,NA,ph,isolate_20,language,vulnerable,"-14,64448","-67,83756",BO,South America,South America,505,1,0,1,0,0,0,1,0
 1147,seri1257,sei,Seri,Seri,NA,ph,isolate_21,language,definitely endangered,"28,9877","-112,384",MX,North America,Middle America,171,2,0,2,0,0,0,2,0
-2561,buru1296,bsk,Burushaski,Burushaski,Burushaski (Werchikwar),ea,isolate_22,language,definitely endangered,"36,2161","74,8236",IN PK,Eurasia,Northern Eurasia,3087,3,0,3,0,0,0,3,0
-2370,gily1242,niv,Nivkh,Nivkh,Nivkh (West Sakhalin),ea,isolate_23,language,severely endangered,"52,59","140,681",RU,Eurasia,Northern Eurasia,488,4,0,4,0,0,0,4,0
+2561,buru1296,bsk,Burushaski,Burushaski,Burushaski (Werchikwar),ea,isolate_22,language,definitely endangered,"36,2161","74,8236",IN PK,Eurasia,Northern Eurasia,3087,3,0,3,0,0,0,2,0
+2370,gily1242,niv,Nivkh,Nivkh,Nivkh (West Sakhalin),ea,isolate_23,language,severely endangered,"52,59","140,681",RU,Eurasia,Northern Eurasia,488,4,0,4,0,0,0,3,0
 919,kusu1250,kgg,Kusunda,Kusunda,NA,ph,isolate_24,language,critically endangered,"29,1766","80,6309",NP,Eurasia,Northern Eurasia,984,5,1,4,0,0,0,5,1
 2198,kuna1268,kun,Kunama,Kunama,Marda (similar to Barka),uz,isolate_25,language,safe,"14,5879","37,5292",ER ET SD,Africa,Africa,1024,0,0,0,0,0,0,0,0
 2203,nara1262,nrb,Nara,Nara,Higir,uz,isolate_26,language,safe,"15,3251","37,499",ER,Africa,Africa,988,0,0,0,0,0,0,0,0
@@ -1200,7 +1200,7 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 1088,lazz1240,lzz,Laz,Laz,NA,ph,kart1248,language,vulnerable,"41,5004","41,9096",GE TR,Eurasia,Europe,1201,0,0,0,5,0,5,0,0
 941,ming1252,xmf,Mingrelian,Mingrelian,Senak,ph,kart1248,language,definitely endangered,"42,5129","41,8719",GE,Eurasia,Europe,127,1,0,1,6,0,6,1,0
 2183,nucl1302,kat,Georgian,georgian,Standard (or literary) georgian (Kartluri dialect),uz,kart1248,language,safe,"41,850397","43,78613",AM AZ GE IR RU TR,Eurasia,Europe,1439,1,0,1,6,0,6,1,0
-2392,svan1243,sva,Svan,Svan,Svan (Upper Bal),ea,kart1248,language,vulnerable,"42,9134","42,5915",GE RU,Eurasia,Europe,3282,4,0,4,6,0,6,4,0
+2392,svan1243,sva,Svan,Svan,Svan (Upper Bal),ea,kart1248,language,vulnerable,"42,9134","42,5915",GE RU,Eurasia,Europe,3282,4,0,4,6,0,6,3,0
 1801,qawa1238,alc,Qawasqar,Kawesqar,Kawesqar,saphon,kawe1237,language,critically endangered,"-49,703","-75,3756",CL,South America,South America,544,1,0,1,4,0,4,1,0
 413,west2632,kjq,Western Keres,ACOMA,NA,upsid,kere1287,language,definitely endangered,"34,9733","-107,517",US,North America,North America,1867,0,0,0,10,0,10,0,0
 1360,haio1238,hgm,Hai//om,San,NA,gm,khoe1240,language,extinct,"-19,7637","17,0299",BW NA ZA,Africa,Africa,1410,0,0,0,0,0,0,0,0
@@ -1317,11 +1317,11 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 2588,bona1250,peh,Bonan,Baoan,Baoan (Ñantoq),ea,mong1329,language,definitely endangered,"35,6972","102,995",CN,Eurasia,Northern Eurasia,2149,2,0,2,0,0,0,2,0
 2256,dark1243,drh,Darkhat,Darkhat,NA,ea,mong1329,language,vulnerable,"50,623","99,4449",MN RU,Eurasia,Northern Eurasia,2146,0,0,0,0,0,0,0,0
 2312,daur1238,dta,Dagur,Daur,NA,ea,mong1329,language,definitely endangered,48,124,CN KZ MN,Eurasia,Northern Eurasia,153,0,0,0,0,0,0,0,0
-2477,dong1285,sce,Dongxiang,Dongxiang,NA,ea,mong1329,language,vulnerable,"35,5808","103,558",CN,Eurasia,Northern Eurasia,2086,3,0,3,0,0,0,3,0
-2242,east2337,yuy,East Yugur,Eastern Yugur,NA,ea,mong1329,language,vulnerable,"37,9882","101,762",CN,Eurasia,Northern Eurasia,2735,4,0,4,0,0,0,4,0
+2477,dong1285,sce,Dongxiang,Dongxiang,NA,ea,mong1329,language,vulnerable,"35,5808","103,558",CN,Eurasia,Northern Eurasia,2086,3,0,3,0,0,0,2,0
+2242,east2337,yuy,East Yugur,Eastern Yugur,NA,ea,mong1329,language,vulnerable,"37,9882","101,762",CN,Eurasia,Northern Eurasia,2735,4,0,4,0,0,0,3,0
 191,halh1238,khk,Halh Mongolian,Khalkha,NA,spa,mong1329,language,definitely endangered,"48,324","106,289",MN RU,Eurasia,Northern Eurasia,1239,0,0,0,0,0,0,0,0
 2599,kalm1243,xal,Oirad-Kalmyk,Kalmyk,Kalmyk (Standard),ea,mong1329,language,definitely endangered,"46,566667","45,316667",CN KZ MN RU,Eurasia,Europe,-3,0,0,0,0,0,0,0,0
-2301,kang1281,kxs,Kangjia,Kangjia,NA,ea,mong1329,language,severely endangered,"35,043","101,254",CN,Eurasia,Northern Eurasia,3855,4,0,4,0,0,0,4,0
+2301,kang1281,kxs,Kangjia,Kangjia,NA,ea,mong1329,language,severely endangered,"35,043","101,254",CN,Eurasia,Northern Eurasia,3855,4,0,4,0,0,0,3,0
 459,mogh1245,mhj,Mogholi,MOGHOL,NA,upsid,mong1329,language,extinct,"34,2504","62,2802",AF,Eurasia,Northern Eurasia,946,2,0,2,0,0,0,1,0
 2464,mong1331,mon,Mongolian,Mongolian,Mongolian (Khalkha),ea,mong1329,family,safe,NA,NA,MN,Eurasia,Northern Eurasia,NA,3,0,3,0,0,0,3,0
 2317,russ1264,bxr,Russia Buriat,Buriat,Buriat (Standard),ea,mong1329,language,definitely endangered,"50,8533","105,564",MN RU,Eurasia,Northern Eurasia,1305,3,0,3,0,0,0,3,0
@@ -1336,19 +1336,19 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 1020,hupd1244,jup,Hupdë,Hup,NA,ph,nada1235,language,definitely endangered,"0,58622","-69,8359",BR CO,South America,South America,141,0,0,0,0,0,0,0,0
 1992,nade1244,mbj,Nadëb,Nadëb,NA,saphon,nada1235,language,definitely endangered,"-1,24449","-66,3068",BR,South America,South America,82,0,0,0,0,0,0,0,0
 1993,yuhu1238,yab,Yuhup,Yuhup,NA,saphon,nada1235,language,vulnerable,"0,2485","-69,8079",BR CO,South America,South America,106,0,0,0,0,0,0,0,0
-2465,andi1255,ani,Andi,Andi,NA,ea,nakh1245,language,vulnerable,"42,8078","46,2919",RU,Eurasia,Europe,1923,12,0,12,12,0,12,12,0
-228,arch1244,aqc,Archi,ARCHI,NA,upsid,nakh1245,language,definitely endangered,"42,3239","46,8267",RU,Eurasia,Europe,1797,22,0,22,17,3,14,22,0
-2467,avar1256,ava,Avar,Avar,Avar (Chadakolob),ea,nakh1245,language,vulnerable,"41,7047","46,558",AZ GE RU TR,Eurasia,Europe,734,8,0,8,13,0,13,8,0
-2390,bats1242,bbl,Bats,Bats,NA,ea,nakh1245,language,severely endangered,"42,1806","45,344",GE,Eurasia,Europe,1009,4,0,4,6,0,6,4,0
+2465,andi1255,ani,Andi,Andi,NA,ea,nakh1245,language,vulnerable,"42,8078","46,2919",RU,Eurasia,Europe,1923,12,0,12,12,0,12,10,0
+228,arch1244,aqc,Archi,ARCHI,NA,upsid,nakh1245,language,definitely endangered,"42,3239","46,8267",RU,Eurasia,Europe,1797,22,0,22,17,3,14,18,0
+2467,avar1256,ava,Avar,Avar,Avar (Chadakolob),ea,nakh1245,language,vulnerable,"41,7047","46,558",AZ GE RU TR,Eurasia,Europe,734,8,0,8,13,0,13,6,0
+2390,bats1242,bbl,Bats,Bats,NA,ea,nakh1245,language,severely endangered,"42,1806","45,344",GE,Eurasia,Europe,1009,4,0,4,6,0,6,3,0
 856,chec1245,che,Chechen,Chechen,NA,ph,nakh1245,language,vulnerable,"43,5","45,5",GE KZ RU,Eurasia,Europe,201,3,0,3,2,0,2,3,0
-2329,dido1241,ddo,Tsez,Tsez,Tsez (Asax),ea,nakh1245,language,definitely endangered,"42,2646","45,8096",GE RU,Eurasia,Europe,1937,7,0,7,8,0,8,7,0
-2565,ghod1238,gdo,Godoberi,Godoberi,NA,ea,nakh1245,language,definitely endangered,"42,7428","46,2252",RU,Eurasia,Europe,2138,8,0,8,9,0,9,8,0
-2237,hunz1247,huz,Hunzib,Hunzib,NA,uz,nakh1245,language,definitely endangered,"42,0808","46,1369",GE RU,Eurasia,Europe,2215,4,0,4,9,0,9,4,0
+2329,dido1241,ddo,Tsez,Tsez,Tsez (Asax),ea,nakh1245,language,definitely endangered,"42,2646","45,8096",GE RU,Eurasia,Europe,1937,7,0,7,8,0,8,5,0
+2565,ghod1238,gdo,Godoberi,Godoberi,NA,ea,nakh1245,language,definitely endangered,"42,7428","46,2252",RU,Eurasia,Europe,2138,8,0,8,9,0,9,6,0
+2237,hunz1247,huz,Hunzib,Hunzib,NA,uz,nakh1245,language,definitely endangered,"42,0808","46,1369",GE RU,Eurasia,Europe,2215,4,0,4,9,0,9,3,0
 893,ingu1240,inh,Ingush,Ingush,NA,ph,nakh1245,language,vulnerable,"43,11","45,03",GE RU,Eurasia,Europe,864,3,0,3,6,1,5,3,0
 2440,kara1474,kpt,Karata,Tukita,NA,ea,nakh1245,language,definitely endangered,"42,6501","46,3151",RU,Eurasia,Europe,1451,2,0,2,9,0,9,2,0
-2335,lakk1252,lbe,Lak,Lak,Lak (Kumux),ea,nakh1245,language,vulnerable,"42,1328","47,0809",AZ GE KZ RU UA,Eurasia,Europe,1957,11,0,11,9,0,9,11,0
+2335,lakk1252,lbe,Lak,Lak,Lak (Kumux),ea,nakh1245,language,vulnerable,"42,1328","47,0809",AZ GE KZ RU UA,Eurasia,Europe,1957,11,0,11,9,0,9,10,0
 2311,lezg1247,lez,Lezgian,Lezgian,Lezgian (İsmayıllı),ea,nakh1245,language,vulnerable,"41,5157","47,8951",AZ GE KZ RU UA,Eurasia,Europe,1491,4,0,4,6,0,6,4,0
-531,rutu1240,rut,Rutul,RUTUL,NA,upsid,nakh1245,language,vulnerable,"41,6187","47,3244",AZ RU,Eurasia,Europe,1962,20,0,20,12,2,10,20,0
+531,rutu1240,rut,Rutul,RUTUL,NA,upsid,nakh1245,language,vulnerable,"41,6187","47,3244",AZ RU,Eurasia,Europe,1962,20,0,20,12,2,10,16,0
 1994,khit1238,nab,Khithaulhu,Kithaulhu,Kithaulhu,saphon,namb1299,dialect,safe,NA,NA,NA,South America,South America,NA,0,0,0,0,0,0,0,0
 1995,latu1238,ltn,Latundê,Latunde,NA,saphon,namb1299,language,vulnerable,"-12,608792","-60,422423",BR,South America,South America,500,0,0,0,0,0,0,0,0
 1996,mama1278,wmd,Mamaindé,Mamaindé,NA,saphon,namb1299,language,definitely endangered,"-12,986439","-60,101072",BR,South America,South America,564,0,0,0,0,0,0,0,0
@@ -1480,7 +1480,7 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 1108,soch1239,cso,Sochiapam Chinantec,Sochiapan Chinantec,NA,ph,otom1299,language,definitely endangered,"17,7985","-96,6079",MX,North America,Middle America,624,0,0,0,0,0,0,0,0
 1056,tilq1235,zts,Tilquiapan Zapotec,Tilquiapan Zapotec,NA,ph,otom1299,language,safe,"16,8529","-96,6321",MX,North America,Middle America,1786,0,0,0,0,0,0,0,0
 294,west2644,ctp,Western Highland Chatino,CHATINO,NA,upsid,otom1299,language,vulnerable,"16,2495","-97,3244",MX,North America,Middle America,1313,0,0,0,0,0,0,0,0
-1059,zoog1238,zpq,Zoogocho Zapotec,San Bartolomé Zoogocho Zapotec,zxon,ph,otom1299,language,safe,"17,2016","-96,3433",MX US,North America,Middle America,2350,1,0,1,0,0,0,1,0
+1059,zoog1238,zpq,Zoogocho Zapotec,San Bartolomé Zoogocho Zapotec,zxon,ph,otom1299,language,safe,"17,2016","-96,3433",MX US,North America,Middle America,2350,1,0,1,0,0,0,0,0
 199,achu1247,acv,Achumawi,ACHUMAWI,NA,upsid,pala1350,language,critically endangered,"41,0979","-121,191",US,North America,North America,1250,2,0,2,0,0,0,2,0
 2931,adny1235,adt,Adnyamathanha,Adnyamathanha,NA,er,pama1250,language,definitely endangered,"-30,1451","138,671",AU,Australia,Australia,277,0,0,0,0,0,0,0,0
 2880,aghu1254,ggr,Aghu Tharnggalu,Aghu Tharnggala,NA,er,pama1250,language,extinct,"-13,735","142,426",AU,Australia,Australia,76,0,0,0,0,0,0,0,0
@@ -1781,7 +1781,7 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 1115,halk1245,hur,Halkomelem,Chilliwak Halkomelem,NA,ph,sali1255,language,definitely endangered,"48,0751","-122,029",CA US,North America,North America,105,6,0,6,9,1,8,6,0
 449,lush1252,lut,Northern Lushootseed,LUSHOOTSEED,NA,upsid,sali1255,language,critically endangered,"48,42","-122,529",US,North America,North America,85,6,0,6,9,0,9,6,0
 996,saan1246,str,Saanich,Saanich,NA,ph,sali1255,dialect,safe,NA,NA,NA,North America,North America,NA,6,0,6,0,0,0,6,0
-543,shus1248,shs,Shuswap,SHUSWAP,NA,upsid,sali1255,language,definitely endangered,"50,8734","-119,667",CA,North America,North America,697,9,0,9,0,0,0,9,0
+543,shus1248,shs,Shuswap,SHUSWAP,NA,upsid,sali1255,language,definitely endangered,"50,8734","-119,667",CA,North America,North America,697,9,0,9,0,0,0,6,0
 1016,spok1245,spo,Spokane,Spokan,NA,ph,sali1255,language,severely endangered,"47,9087","-118,062",US,North America,North America,732,6,0,6,0,0,0,6,0
 68,squa1248,squ,Squamish,Squamish,NA,spa,sali1255,language,critically endangered,"49,3231","-123,014",CA,North America,North America,60,6,0,6,9,0,9,6,0
 283,uppe1439,cjh,Upper Chehalis,UPPER CHEHALIS,NA,upsid,sali1255,language,extinct,"46,7981","-123,169",US,North America,North America,46,6,0,6,9,1,8,6,0
@@ -1797,7 +1797,7 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 544,shas1239,sht,Shasta,SHASTA,NA,upsid,shas1238,language,extinct,"41,7587","-122,738",US,North America,North America,973,0,0,0,4,0,4,0,0
 2548,acha1249,acn,Longchuan Achang,Achang,Achang (Lianghe),ea,sino1245,language,definitely endangered,"24,3479","97,7438",CN MM,Eurasia,Northern Eurasia,1649,0,0,0,0,0,0,0,0
 1162,akha1245,ahk,Akha,Akha,NA,ph,sino1245,language,safe,"21,2309","100,964",CN LA MM TH VN,Eurasia,South & Southeast Asia,1202,0,0,0,0,0,0,0,0
-2614,amdo1237,adx,Amdo Tibetan,Themchen Tibetan,NA,ea,sino1245,language,safe,"34,5177","100,485",CN,Eurasia,Northern Eurasia,4257,2,0,2,0,0,0,2,0
+2614,amdo1237,adx,Amdo Tibetan,Themchen Tibetan,NA,ea,sino1245,language,safe,"34,5177","100,485",CN,Eurasia,Northern Eurasia,4257,2,0,2,0,0,0,1,0
 1703,anga1288,njm,Angami Naga,Angami,NA,ra,sino1245,language,vulnerable,"25,6841","93,8668",IN,Eurasia,South & Southeast Asia,421,0,0,0,0,0,0,0,0
 1704,aona1235,njo,Ao Naga,Ao-Naga,NA,ra,sino1245,language,vulnerable,"26,3241","94,3824",IN,Eurasia,South & Southeast Asia,613,0,0,0,0,0,0,0,0
 1705,apat1240,apt,Apatani,Apatani,NA,ra,sino1245,language,vulnerable,"27,1933","93,7284",IN,Eurasia,Northern Eurasia,797,0,0,0,0,0,0,0,0
@@ -1827,7 +1827,7 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 2165,hakk1236,hak,Hakka Chinese,Hakka Chinese,"Kejia (Hakka Chinese, Meijiang, Meixian Hakka)",uz,sino1245,language,safe,25,116,CN TW,Eurasia,Northern Eurasia,393,0,0,0,0,0,0,0,0
 2391,hela1238,scp,Lamjung-Melamchi Yolmo,Yolmo,NA,ea,sino1245,language,definitely endangered,"27,9212","85,6289",NP,Eurasia,South & Southeast Asia,1473,0,0,0,0,0,0,0,0
 2313,huml1238,hut,Humla,Humla Bhotia,NA,ea,sino1245,language,definitely endangered,"30,1451","81,5659",CN NP,Eurasia,Northern Eurasia,5034,0,0,0,0,0,0,0,0
-1208,jiar1240,jya,Northern Gyalrong,Jiarong,Chabao; Japhug,ph,sino1245,family,safe,"31,60295","102,22875",CN,Eurasia,Northern Eurasia,NA,5,0,5,0,0,0,5,0
+1208,jiar1240,jya,Northern Gyalrong,Jiarong,Chabao; Japhug,ph,sino1245,family,safe,"31,60295","102,22875",CN,Eurasia,Northern Eurasia,NA,5,0,5,0,0,0,4,0
 387,kach1280,kac,Southern Jinghpaw,JINGPHO,NA,upsid,sino1245,language,safe,"25,4634","97,3278",CN MM,Eurasia,South & Southeast Asia,225,0,0,0,0,0,0,0,0
 1736,karb1241,mjw,Hills Karbi,Karbi (Mikir),NA,ra,sino1245,language,safe,"25,7317","93,0462",IN,Eurasia,South & Southeast Asia,119,0,0,0,0,0,0,0,0
 2489,kham1282,khg,Khams Tibetan,Nangchenpa Tibetan,NA,ea,sino1245,language,safe,"31,9313","91,7062",CN IN MM,Eurasia,Northern Eurasia,4610,0,0,0,9,0,9,0,0
@@ -1857,7 +1857,7 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 2617,narp1239,npa,Nar Phu,Nar-Phu,Nar-Phu (Nar),ea,sino1245,language,definitely endangered,"28,76714","84,22852",NP,Eurasia,Northern Eurasia,4595,0,0,0,0,0,0,0,0
 485,naxi1245,nxq,Naxi,NAXI,NA,upsid,sino1245,language,safe,"27,5",100,CN,Eurasia,Northern Eurasia,3640,1,0,1,0,0,0,1,0
 489,newa1246,new,Kathmandu Valley Newari,NEWARI,NA,upsid,sino1245,language,definitely endangered,"27,2614","84,9577",IN NP,Eurasia,Northern Eurasia,285,0,0,0,0,0,0,0,0
-2429,nort2722,cng,Northern Qiang,Northern Qiang,Northern Qiang (Yadu),ea,sino1245,language,definitely endangered,"32,2766","103,192",CN,Eurasia,Northern Eurasia,3426,4,0,4,0,0,0,4,0
+2429,nort2722,cng,Northern Qiang,Northern Qiang,Northern Qiang (Yadu),ea,sino1245,language,definitely endangered,"32,2766","103,192",CN,Eurasia,Northern Eurasia,3426,4,0,4,0,0,0,3,0
 2164,nucl1310,mya,Burmese,Burmese,Rangoon,uz,sino1245,language,definitely endangered,"20,7926","93,9665",BD MM TH,Eurasia,South & Southeast Asia,699,0,0,0,0,0,0,0,0
 2544,nucl1729,NA,Nuclear Tamang,Tamang,Tamang (Dhankuta),ea,sino1245,family,safe,NA,NA,NA,Eurasia,Northern Eurasia,NA,0,0,0,0,0,0,0,0
 21,nyis1236,njz,Nyishi-Hill Miri,Dafla,NA,spa,sino1245,language,definitely endangered,"27,278263","93,675529",IN,Eurasia,Northern Eurasia,1134,0,0,0,0,0,0,0,0
@@ -1865,12 +1865,12 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 1043,paok1235,blk,Pa'o Karen,"Pa-O, Taungthu",Huay Salop,ph,sino1245,language,safe,"20,211","97,5969",MM TH,Eurasia,South & Southeast Asia,1084,0,0,0,0,0,0,0,0
 1778,patt1248,lae,Pattani,Pat̩t̩an̩i,NA,ra,sino1245,language,vulnerable,"32,6963","76,5966",IN,Eurasia,Northern Eurasia,4587,0,0,0,0,0,0,0,0
 2456,puri1258,prx,Purik-Sham-Nubra,Purki,NA,ea,sino1245,language,safe,"34,3386","76,0127",IN PK,Eurasia,Northern Eurasia,4808,3,0,3,0,0,0,3,0
-2298,puxi1242,jih,Puxi,Puxi,NA,ea,sino1245,dialect,safe,NA,NA,NA,Eurasia,Northern Eurasia,NA,4,0,4,0,0,0,4,0
+2298,puxi1242,jih,Puxi,Puxi,NA,ea,sino1245,dialect,safe,NA,NA,NA,Eurasia,Northern Eurasia,NA,4,0,4,0,0,0,3,0
 1224,pwon1235,pww,Pwo Northern Karen,Pwo Karen,NA,ph,sino1245,language,safe,"18,016","98,2709",MM TH,Eurasia,South & Southeast Asia,1004,0,0,0,0,0,0,0,0
 2360,rawa1265,raw,Rawang,Rawang,Rawang (Mutwang),ea,sino1245,language,safe,"27,1027","97,0738",CN IN MM,Eurasia,Northern Eurasia,2305,0,0,0,0,0,0,0,0
 25,sgaw1245,ksw,S'gaw Karen,Karen,NA,spa,sino1245,language,safe,"17,9872","97,7126",MM TH,Eurasia,South & Southeast Asia,224,0,0,0,0,0,0,0,0
 2307,sher1255,xsr,Solu-Khumbu Sherpa,Solu Sherpa,Solu Sherpa (Hile),ea,sino1245,language,definitely endangered,"27,674","86,9994",CN IN NP,Eurasia,Northern Eurasia,4427,0,0,0,0,0,0,0,0
-2230,shix1238,sxg,Shixing,Xumi,Lower Xumi,uz,sino1245,language,definitely endangered,"28,3895","100,4",CN,Eurasia,Northern Eurasia,4811,4,1,3,0,0,0,4,1
+2230,shix1238,sxg,Shixing,Xumi,Lower Xumi,uz,sino1245,language,definitely endangered,"28,3895","100,4",CN,Eurasia,Northern Eurasia,4811,4,1,3,0,0,0,3,1
 2502,shum1243,scu,Shumcho,Labrang Tibetan,NA,ea,sino1245,language,definitely endangered,"31,6862","78,3865",IN,Eurasia,Northern Eurasia,4227,0,0,0,0,0,0,0,0
 2483,sich1238,iii,Sichuan Yi,Nuosu,Nuosu (Black Yi),ea,sino1245,language,safe,"28,1947","102,121",CN,Eurasia,Northern Eurasia,1630,0,0,0,0,0,0,0,0
 2415,sikk1242,sip,Sikkimese,Denjongka,NA,ea,sino1245,language,safe,"27,85795","88,59153",IN,Eurasia,Northern Eurasia,4601,0,0,0,0,0,0,0,0
@@ -1892,7 +1892,7 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 2267,yong1270,nru,Yongning Na,Yongning Na,Yongning Na (Mosuo),ea,sino1245,language,safe,"27,8","100,9",CN,Eurasia,Northern Eurasia,3319,3,0,3,0,0,0,3,0
 2166,yuec1235,yue,Yue Chinese,Chinese,Hong Kong Cantonese,uz,sino1245,language,safe,23,113,CN VN,Eurasia,Northern Eurasia,21,0,0,0,0,0,0,0,0
 1229,zaiw1241,atb,Zaiwa,Zaiwa,NA,ph,sino1245,language,safe,"24,1726","98,3643",CN MM,Eurasia,Northern Eurasia,2113,0,0,0,0,0,0,0,0
-2420,zhon1235,NA,Zhongu,Zhongu Tibetan,NA,ea,sino1245,language,safe,"32,43582","103,44179",CN,Eurasia,Northern Eurasia,2888,4,0,4,0,0,0,4,0
+2420,zhon1235,NA,Zhongu,Zhongu Tibetan,NA,ea,sino1245,language,safe,"32,43582","103,44179",CN,Eurasia,Northern Eurasia,2888,4,0,4,0,0,0,3,0
 1104,bilo1248,bll,Biloxi,Biloxi,NA,ph,siou1252,language,extinct,"31,32","-89,1951",US,North America,North America,61,0,0,0,0,0,0,0,0
 1238,crow1244,cro,Crow,Crow,NA,ph,siou1252,language,definitely endangered,"45,368","-107,874",US,North America,North America,1029,0,0,0,0,0,0,0,0
 75,lako1247,lkt,Lakota,Dakota,NA,spa,siou1252,language,definitely endangered,"46,3699","-103,95",CA US,North America,North America,901,0,0,0,7,0,7,0,0
@@ -1907,7 +1907,7 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 2634,murr1259,mwf,Murrinhpatha,Murrinh-patha,NA,er,sout2772,dialect,safe,NA,NA,NA,Australia,Australia,NA,0,0,0,0,0,0,0,0
 961,nang1259,nam,Nangikurrunggurr,Nganikurungkurr,"Daly River Area, Northern Territory",ph,sout2772,language,definitely endangered,"-14,268","131,237",AU,Australia,Australia,163,0,0,0,0,0,0,0,0
 1483,aari1239,aiw,Aari,Aari,NA,gm,sout2845,language,safe,"5,95034","36,5721",ET,Africa,Africa,1508,1,0,1,2,0,2,1,0
-1440,dime1235,dim,Dime,Dime,NA,gm,sout2845,language,definitely endangered,"6,20951","36,3329",ET,Africa,Africa,1826,2,0,2,8,0,8,2,0
+1440,dime1235,dim,Dime,Dime,NA,gm,sout2845,language,definitely endangered,"6,20951","36,3329",ET,Africa,Africa,1826,2,0,2,8,0,8,1,0
 218,hame1242,amf,Hamer-Banna,HAMER,NA,upsid,sout2845,language,vulnerable,"5,06515","36,5176",ET KE,Africa,Africa,1056,1,0,1,1,0,1,1,0
 60,naas1242,nas,Naasioi,Nasioi,NA,spa,sout2948,language,safe,"-6,46022","155,632",PG,Papunesia,Oceania,1642,0,0,0,0,0,0,0,0
 1431,didi1258,did,Didinga,Didinga,NA,gm,surm1244,language,safe,"4,21489","33,6869",SD UG,Africa,Africa,1818,0,0,0,0,0,0,0,0
@@ -1929,7 +1929,7 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 2361,saek1240,skb,Saek,Saek,NA,ea,taik1256,language,definitely endangered,"17,4558","104,787",LA TH,Eurasia,South & Southeast Asia,145,0,0,0,0,0,0,0,0
 2367,shan1277,shn,Shan,Shan,Shan (Luxi),ea,taik1256,language,safe,"21,5995","98,0342",CN MM TH,Eurasia,South & Southeast Asia,1082,0,0,0,0,0,0,0,0
 2333,sout2746,sou,Southern Thai,Soutern Tai,Soutern Tai (Ko Samui),ea,taik1256,language,safe,"6,85668","99,7031",MM MY TH,Eurasia,South & Southeast Asia,1,0,0,0,0,0,0,0,0
-2605,suii1243,swi,Sui,Sui,NA,ea,taik1256,language,safe,"24,0488","106,563",CN VN,Eurasia,Northern Eurasia,300,4,0,4,10,0,10,4,0
+2605,suii1243,swi,Sui,Sui,NA,ea,taik1256,language,safe,"24,0488","106,563",CN VN,Eurasia,Northern Eurasia,300,4,0,4,10,0,10,3,0
 2582,taid1248,tyj,Tai Do-Mene-Yo,Tay Yo,NA,ea,taik1256,language,safe,"19,1801","104,938",LA VN,Eurasia,South & Southeast Asia,557,0,0,0,0,0,0,0,0
 2471,taid1249,tyr,Tai Daeng,Tay Daeng,NA,ea,taik1256,language,definitely endangered,"20,4559","104,625",LA VN,Eurasia,Northern Eurasia,1093,0,0,0,0,0,0,0,0
 2572,tain1252,tdd,Tai Nüa,Tai Nuea,NA,ea,taik1256,language,definitely endangered,"21,7837","99,722",CN LA MM TH VN,Eurasia,South & Southeast Asia,956,0,0,0,0,0,0,0,0
@@ -1979,7 +1979,7 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 2070,amun1246,adw,Amundava,Amundava,NA,saphon,tupi1275,language,vulnerable,"-9,04023","-62,3064",BR,South America,South America,100,0,0,0,0,0,0,0,0
 2071,apia1248,api,Apiaká,Apiaká,NA,saphon,tupi1275,language,extinct,"-7,84711","-57,91",BR,South America,South America,130,0,0,0,0,0,0,0,0
 2072,araw1273,awt,Araweté,Araweté,NA,saphon,tupi1275,language,definitely endangered,"-4,90246","-52,5001",BR,South America,South America,174,0,0,0,0,0,0,0,0
-2075,avac1239,avv,Avá-Canoeiro,Avá-Canoeiro,NA,saphon,tupi1275,language,severely endangered,"-13,6081","-48,1336",BR,South America,South America,347,1,0,1,0,0,0,1,0
+2075,avac1239,avv,Avá-Canoeiro,Avá-Canoeiro,NA,saphon,tupi1275,language,severely endangered,"-13,6081","-48,1336",BR,South America,South America,347,1,0,1,0,0,0,0,0
 2076,awet1244,awe,Awetí,Awetí,NA,saphon,tupi1275,language,definitely endangered,"-12,381944","-53,391944",BR,South America,South America,251,0,0,0,0,0,0,0,0
 2142,chir1286,nhd,Chiripá,Nhandeva,NA,saphon,tupi1275,language,definitely endangered,"-25,6521","-55,051",AR BR PY,South America,South America,218,0,0,0,0,0,0,0,0
 1909,coca1259,cod,Cocama-Cocamilla,Kokama-Kokamilla,NA,saphon,tupi1275,language,critically endangered,"-4,5",-74,BR CO PE,South America,South America,116,0,0,0,0,0,0,0,0
@@ -2024,27 +2024,27 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 2114,xipa1240,xiy,Xipaya,Xipaya,NA,saphon,tupi1275,language,extinct,"-4,133","-49,948",BR,South America,South America,100,0,0,0,0,0,0,0,0
 2117,yuqu1240,yuq,Yuqui,Yuqui,NA,saphon,tupi1275,language,definitely endangered,"-16,7875","-64,9438",BO,South America,South America,198,0,0,0,0,0,0,0,0
 2115,zoee1240,pto,Zo'é,Zo'é,NA,saphon,tupi1275,language,definitely endangered,"-1,77208","-55,50746",BR,South America,South America,106,0,0,0,0,0,0,0,0
-2500,bash1264,bak,Bashkir,Bashkir,Bashkir (Standard),ea,turk1311,language,vulnerable,"53,5967","56,5594",KZ RU UA,Eurasia,Europe,163,2,0,2,0,0,0,2,0
+2500,bash1264,bak,Bashkir,Bashkir,Bashkir (Standard),ea,turk1311,language,vulnerable,"53,5967","56,5594",KZ RU UA,Eurasia,Europe,163,2,0,2,0,0,0,1,0
 189,chuv1255,chv,Chuvash,Chuvash,NA,spa,turk1311,language,vulnerable,"55,487","47,163",EE KZ RU,Eurasia,Europe,107,0,0,0,0,0,0,0,0
 2255,dolg1241,dlg,Dolgan,Dolgan,NA,ea,turk1311,language,definitely endangered,"71,1083","94,2936",RU,Eurasia,Northern Eurasia,43,2,0,2,0,0,0,2,0
 2331,gaga1249,gag,Gagauz,Gagauz,Gagauz (Standard),ea,turk1311,language,vulnerable,"44,5988","28,0277",BG MD RO UA,Eurasia,Europe,1,0,0,0,0,0,0,0,0
 2540,kara1462,kim,Taiga Sayan Turkic,Tofa,NA,ea,turk1311,language,critically endangered,"53,7145","98,3792",RU,Eurasia,Northern Eurasia,1454,3,0,3,0,0,0,2,0
 2403,kara1464,kdr,Karaim,Karaim,Karaim (Northwestern),ea,turk1311,language,critically endangered,"54,5534","25,1054",LT,Eurasia,Europe,145,0,0,0,0,0,0,0,0
-2318,kara1467,kaa,Kara-Kalpak,Karakalpak,NA,ea,turk1311,language,safe,"39,98","63,3223",AF KG KZ TM UZ,Eurasia,Northern Eurasia,192,3,0,3,0,0,0,3,0
-2433,khak1248,kjh,Khakas,Khakas,Khakas (Standard),ea,turk1311,language,definitely endangered,"50,7393","107,169",CN RU,Eurasia,Northern Eurasia,809,2,0,2,0,0,0,2,0
+2318,kara1467,kaa,Kara-Kalpak,Karakalpak,NA,ea,turk1311,language,safe,"39,98","63,3223",AF KG KZ TM UZ,Eurasia,Northern Eurasia,192,3,0,3,0,0,0,2,0
+2433,khak1248,kjh,Khakas,Khakas,Khakas (Standard),ea,turk1311,language,definitely endangered,"50,7393","107,169",CN RU,Eurasia,Northern Eurasia,809,2,0,2,0,0,0,1,0
 2382,kirg1245,kir,Kirghiz,Kyrgyz,Kyrgyz (Standard),ea,turk1311,language,safe,42,74,AF CN KG KZ TJ UZ,Eurasia,Northern Eurasia,3648,4,0,4,0,0,0,4,0
-2355,kumy1244,kum,Kumyk,Kumyk,NA,ea,turk1311,language,vulnerable,43,47,KZ RU,Eurasia,Europe,504,2,0,2,0,0,0,2,0
+2355,kumy1244,kum,Kumyk,Kumyk,NA,ea,turk1311,language,vulnerable,43,47,KZ RU,Eurasia,Europe,504,2,0,2,0,0,0,1,0
 2372,nort2686,atv,Northern Altai,Northern Altai,Northern Altai (Kumandy),ea,turk1311,language,definitely endangered,"50,8998","88,0672",RU,Eurasia,Northern Eurasia,1846,2,0,2,0,0,0,2,0
-603,nort2690,uzn,Northern Uzbek,UZBEK,NA,upsid,turk1311,language,safe,"43,7489","59,231",AF CN KG KZ TJ TM UZ,Eurasia,Northern Eurasia,366,3,0,3,0,0,0,3,0
-2296,nort2697,azj,North Azerbaijani,North Azerbaijani,North Azerbaijani (Shirvan),ea,turk1311,language,safe,"40,9777","46,4737",AM AZ GE IR RU TR,Eurasia,Western Asia,266,2,0,2,0,0,0,2,0
+603,nort2690,uzn,Northern Uzbek,UZBEK,NA,upsid,turk1311,language,safe,"43,7489","59,231",AF CN KG KZ TJ TM UZ,Eurasia,Northern Eurasia,366,3,0,3,0,0,0,2,0
+2296,nort2697,azj,North Azerbaijani,North Azerbaijani,North Azerbaijani (Shirvan),ea,turk1311,language,safe,"40,9777","46,4737",AM AZ GE IR RU TR,Eurasia,Western Asia,266,2,0,2,0,0,0,1,0
 2217,nucl1301,tur,Turkish,Turkish,Standard Turkish (Istanbul),uz,turk1311,language,safe,"39,8667","32,8667",AL AM AZ BG CY GE GR IQ IR MK SY TR,Eurasia,Western Asia,1068,0,0,0,0,0,0,0,0
 2523,sala1264,slr,Salar,Salar,NA,ea,turk1311,language,definitely endangered,"35,5457","102,819",CN,Eurasia,Northern Eurasia,2943,3,0,3,0,0,0,3,0
 2259,sout2697,azb,South Azerbaijani,South Azerbaijani,South Azerbaijani (Tabriz),ea,turk1311,language,safe,"36,5137","48,4302",AF AZ IQ IR TR,Eurasia,Western Asia,2276,0,0,0,0,0,0,0,0
-2609,tata1255,tat,Tatar,Tatar,Tatar (Standard),ea,turk1311,language,critically endangered,55,50,AZ BY CN EE FI GE KZ LT LV RU UA,Eurasia,Europe,165,3,0,3,0,0,0,3,0
+2609,tata1255,tat,Tatar,Tatar,Tatar (Standard),ea,turk1311,language,critically endangered,55,50,AZ BY CN EE FI GE KZ LT LV RU UA,Eurasia,Europe,165,3,0,3,0,0,0,2,0
 2595,turk1304,tuk,Turkmen,Turkmen,Turkmen (Teke),ea,turk1311,language,definitely endangered,"37,0872","59,1757",AF IQ IR PK TJ TM TR UZ,Eurasia,Northern Eurasia,2261,0,0,0,0,0,0,0,0
 1225,tuvi1240,tyv,Tuvinian,Tuva; Tuvan,NA,ph,turk1311,language,safe,"48,436","92,6693",CN MN RU,Eurasia,Northern Eurasia,614,0,0,0,0,0,0,0,0
-2612,uigh1240,uig,Uighur,Uyghur,Uyghur (Xinjiang),ea,turk1311,language,critically endangered,"43,67","79,75",CN IN KG KZ MN PK UZ,Eurasia,Northern Eurasia,722,2,0,2,0,0,0,2,0
-2444,yaku1245,sah,Sakha,Sakha,Sakha (Standard),ea,turk1311,language,vulnerable,"61,6974","133,98",RU,Eurasia,Northern Eurasia,170,2,0,2,0,0,0,2,0
+2612,uigh1240,uig,Uighur,Uyghur,Uyghur (Xinjiang),ea,turk1311,language,critically endangered,"43,67","79,75",CN IN KG KZ MN PK UZ,Eurasia,Northern Eurasia,722,2,0,2,0,0,0,1,0
+2444,yaku1245,sah,Sakha,Sakha,Sakha (Standard),ea,turk1311,language,vulnerable,"61,6974","133,98",RU,Eurasia,Northern Eurasia,170,2,0,2,0,0,0,1,0
 1379,huaa1248,nmn,East Taa,!Xóõ,NA,gm,tuuu1241,language,definitely endangered,"-24,20022","20,79583",BW,Africa,Africa,1124,23,0,23,26,0,26,23,0
 2122,kari1255,kzw,Karirí-Xocó,Karirí-Xocó,Dzubukuá dialect,saphon,uncl1493,language,extinct,"-9,84999","-36,3333",BR,South America,South America,183,0,0,0,0,0,0,0,0
 2268,bese1243,udm,Besermyan,Beserman,Beserman (Šamardan),ea,ural1272,dialect,safe,NA,NA,NA,Eurasia,Europe,NA,0,0,0,0,0,0,0,0
@@ -2074,7 +2074,7 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 549,sout2674,sma,South Saami,SAAMI,NA,upsid,ural1272,language,definitely endangered,"62,8801","13,7006",NO SE,Eurasia,Europe,733,0,0,0,0,0,0,0,0
 2442,sout2679,vro,South Estonian,Võro,NA,ea,ural1272,language,vulnerable,"57,85",27,NA,Eurasia,Europe,72,0,0,0,0,0,0,0,0
 2494,ters1235,sjt,Ter Saami,Ter Saami,NA,ea,ural1272,language,severely endangered,"67,2458","38,5061",RU,Eurasia,Europe,181,0,0,0,0,0,0,0,0
-2434,vach1239,NA,Vach Khanty,Eastern Khanty,Eastern Khanty (Vakh),ea,ural1272,dialect,safe,NA,NA,NA,Eurasia,Northern Eurasia,NA,2,0,2,0,0,0,2,0
+2434,vach1239,NA,Vach Khanty,Eastern Khanty,Eastern Khanty (Vakh),ea,ural1272,dialect,safe,NA,NA,NA,Eurasia,Northern Eurasia,NA,2,0,2,0,0,0,1,0
 2490,veps1250,vep,Veps,Veps,Veps (Šimozero),ea,ural1272,language,severely endangered,"60,3353","34,7865",RU,Eurasia,Europe,223,0,0,0,0,0,0,0,0
 2326,voti1245,vot,Votic,Votic,Votic (Jõgõperä),ea,ural1272,language,critically endangered,"59,3802","28,6235",RU,Eurasia,Europe,30,0,0,0,0,0,0,0,0
 2273,west2392,mrj,Western Mari,Hill Mari,Hill Mari (Kozmodemjansk),ea,ural1272,language,vulnerable,"56,22","46,569",RU,Eurasia,Europe,164,0,0,0,0,0,0,0,0
@@ -2093,7 +2093,7 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 1133,pana1305,par,Panamint,Panamint,NA,ph,utoa1244,language,critically endangered,"36,0007","-117,901",US,North America,North America,1017,0,0,0,0,0,0,0,0
 1004,serr1255,ser,Serrano,Serrano,NA,ph,utoa1244,language,extinct,"33,9479","-116,772",US,North America,North America,818,4,0,4,0,0,0,4,0
 96,toho1245,ood,Tohono O'odham,Pima,NA,spa,utoa1244,language,vulnerable,"31,7973","-111,995",MX US,North America,North America,630,0,0,0,0,0,0,0,0
-1084,utes1238,ute,Ute-Southern Paiute,Southern Ute; Ute; Ute-Southern Paiute,NA,ph,utoa1244,language,definitely endangered,"40,0965","-110,305",US,North America,North America,1829,3,0,3,0,0,0,3,0
+1084,utes1238,ute,Ute-Southern Paiute,Southern Ute; Ute; Ute-Southern Paiute,NA,ph,utoa1244,language,definitely endangered,"40,0965","-110,305",US,North America,North America,1829,3,0,3,0,0,0,2,0
 629,yaqu1251,yaq,Yaqui,YAQUI,NA,upsid,utoa1244,language,vulnerable,"29,9446","-110,681",MX US,North America,Middle America,849,0,0,0,0,0,0,0,0
 71,kwak1269,kwk,Kwak'wala,Kwakiutl,NA,spa,waka1280,language,definitely endangered,"50,9269","-127,308",CA US,North America,North America,79,8,0,8,8,0,8,8,0
 964,nuuc1236,nuk,Nuu-chah-nulth,Nootka,Nuuchahnulth,ph,waka1280,language,critically endangered,"49,67","-126,67",US,North America,North America,401,6,0,6,9,0,9,6,0
@@ -2121,8 +2121,8 @@ InventoryID,Glottocode,ISO6393,GlottologName,PhoibleName,SpecificDialect,Source,
 637,yare1248,yrb,Yareba,YAREBA,NA,upsid,yare1250,language,safe,"-9,50651","148,605",PG,Papunesia,New Guinea,340,0,0,0,0,0,0,0,0
 644,nucl1454,yva,Yawa,YAWA,NA,upsid,yawa1259,language,safe,"-1,77196","136,263",ID,Papunesia,New Guinea,946,0,0,0,0,0,0,0,0
 2395,kett1243,ket,Ket,Ket,Ket (Kellog),ea,yeni1252,language,definitely endangered,"63,7551","87,5466",RU,Eurasia,Northern Eurasia,28,1,0,1,0,0,0,1,0
-2286,nort2745,ykg,Northern Yukaghir,Tundra Yukaghir,NA,ea,yuka1259,language,critically endangered,"65,3874","151,318",RU,Eurasia,Northern Eurasia,12,2,0,2,0,0,0,2,0
-1027,sout2750,yux,Southern Yukaghir,Yukaghir (Kolyma),Southern,ph,yuka1259,language,critically endangered,"64,218","154,375",RU,Eurasia,Northern Eurasia,366,2,0,2,0,0,0,2,0
+2286,nort2745,ykg,Northern Yukaghir,Tundra Yukaghir,NA,ea,yuka1259,language,critically endangered,"65,3874","151,318",RU,Eurasia,Northern Eurasia,12,2,0,2,0,0,0,1,0
+1027,sout2750,yux,Southern Yukaghir,Yukaghir (Kolyma),Southern,ph,yuka1259,language,critically endangered,"64,218","154,375",RU,Eurasia,Northern Eurasia,366,2,0,2,0,0,0,1,0
 607,wapp1239,wao,Wappo,WAPPO,NA,upsid,yuki1242,language,extinct,"38,25","-122,5",US,North America,North America,47,0,0,0,6,0,6,0,0
 1023,yuki1243,yuk,Yuki,Yuki,NA,ph,yuki1242,language,extinct,"39,8389","-123,296",US,North America,North America,610,0,0,0,1,0,1,0,0
 2137,ayor1240,ayo,Ayoreo,Ayoreo,NA,saphon,zamu1243,language,definitely endangered,"-19,220055","-60,217495",BO PY,South America,South America,266,0,0,0,0,0,0,0,0
