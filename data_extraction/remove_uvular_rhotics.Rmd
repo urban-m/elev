@@ -16,7 +16,7 @@ library(testthat)
 
 An anonymous reviewer notes that our decision to include uvular rhotics requires explicit justification. They would like to see if there is any impact on removing rhotics from the uvular counts on our results.
 
-An important question in response is, what does the reviewer mean explicitly by rhotic? Rhotics are cross-linguistically hard to define; see for example the in-depth description of rhotics in [@LadefogedMaddieson1996]. In particular, what phonetic properties should be considered for the "gluttal R" phenomenon?
+An important question in response is, what does the reviewer mean explicitly by rhotic? Rhotics are cross-linguistically hard to define; see for example the in-depth description of rhotics in @LadefogedMaddieson1996. In particular, what phonetic properties should be considered for the "guttural R" phenomenon?
 
 * https://en.wikipedia.org/wiki/Guttural_R
 
@@ -29,9 +29,6 @@ As they point out, from an expert phonetician's point of view, it:
 Additionally, they note that similarity may be either acoustic or auditory.
 
 We show in our [extraction code](get_uvulars_ejectives.md) how many general rhotics, i.e. according the [IPA chart](https://www.internationalphoneticassociation.org/content/full-ipa-chart) are present in the data we extracted.
-
-"having thought a bit more, I'd include ʁ and ʀ but exclude χ and 
-cite Maddieson & Ladefoged in support."
 
 Let's drop the rhotics, including [ʁ] and [ʀ], but excluding [χ] [@LadefogedMaddieson1996] and re-generate the counts. First load the uvular data.
 

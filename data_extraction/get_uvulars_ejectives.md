@@ -1,7 +1,7 @@
 PHOIBLE uvular and ejective consonants
 ================
 Steven Moran
-(12 November, 2020)
+(17 November, 2020)
 
 # Overview
 
@@ -44,9 +44,12 @@ Get the PHOIBLE data and merge in the metadata from
     Science of Human History. Online:
     <a href="https://doi.org/10.5281/zenodo.3754591" class="uri">https://doi.org/10.5281/zenodo.3754591</a>
 
-Get latest PHOIBLE data.
+PHOIBLE data is released periodically be version because the editors add
+new data, make reported corrections, etc. Here we use the PHOIBLE dev
+version from [May
+2020](https://github.com/phoible/dev/tree/646f5e4f64bfefb7868bf4a3b65bcd1da243976a).
 
-    phoible <- read_csv(url("https://github.com/phoible/dev/blob/master/data/phoible.csv?raw=true"), 
+    phoible <- read_csv(url("https://github.com/phoible/dev/blob/646f5e4f64bfefb7868bf4a3b65bcd1da243976a/data/phoible.csv?raw=true"), 
                         col_types = c(InventoryID = "i", Marginal = "l", .default = "c"))
 
 Merge in [Glottolog 4.1](https://glottolog.org/meta/downloads) data.
@@ -250,7 +253,7 @@ How many phoible inventories have uvular consonants?
 
     nrow(uvulars %>% select(InventoryID) %>% distinct())
 
-    ## [1] 425
+    ## [1] 426
 
 How many are marginal?
 
@@ -288,7 +291,7 @@ How many phoible inventories have ejectives?
 
     nrow(ejectives %>% select(InventoryID) %>% distinct())
 
-    ## [1] 268
+    ## [1] 267
 
 How many are marginal?
 
@@ -338,9 +341,9 @@ How are uvulars distributed in phoible (across duplicate languages)?
 | Phoneme | count |
 |:--------|------:|
 | q       |   256 |
-| χ       |   215 |
-| ʁ       |   155 |
-| qʼ      |    85 |
+| χ       |   213 |
+| ʁ       |   156 |
+| qʼ      |    84 |
 | qʰ      |    81 |
 | χʷ      |    63 |
 | qʷ      |    50 |
@@ -355,7 +358,7 @@ How are uvulars distributed in phoible (across duplicate languages)?
 | qχʼ     |    10 |
 | qχ      |     9 |
 | ɴ       |     7 |
-| q̰       |     6 |
+| q̰       |     7 |
 | ʁ̞       |     6 |
 | χʷː     |     5 |
 | ɴɢ      |     4 |
@@ -381,7 +384,6 @@ How are uvulars distributed in phoible (across duplicate languages)?
 | ʀʁ      |     2 |
 | ʁʲ      |     2 |
 | ʁʷˤ     |     2 |
-| χʼ      |     2 |
 | ɢː      |     1 |
 | ɢʱ      |     1 |
 | ɢʷˤ     |     1 |
@@ -398,6 +400,7 @@ How are uvulars distributed in phoible (across duplicate languages)?
 | ʰq      |     1 |
 | ʰqʰ     |     1 |
 | ɴː      |     1 |
+| q̚       |     1 |
 | q͈       |     1 |
 | q̺       |     1 |
 | qʲ      |     1 |
@@ -441,6 +444,7 @@ How are uvulars distributed in phoible (across duplicate languages)?
 | χʷʲ     |     1 |
 | χʷʼ     |     1 |
 | χʷˤː    |     1 |
+| χʼ      |     1 |
 | χʼː     |     1 |
 | χˤː     |     1 |
 
@@ -472,13 +476,13 @@ How are uvulars distributed in phoible (across duplicate languages)?
 
 | Phoneme    | count |
 |:-----------|------:|
-| kʼ         |   243 |
-| t̠ʃʼ        |   185 |
-| pʼ         |   179 |
-| tʼ         |   157 |
-| tsʼ        |   129 |
-| qʼ         |    85 |
+| kʼ         |   242 |
+| t̠ʃʼ        |   184 |
+| pʼ         |   178 |
+| tʼ         |   156 |
+| tsʼ        |   128 |
 | kʷʼ        |    84 |
+| qʼ         |    84 |
 | t̪ʼ         |    51 |
 | qʷʼ        |    29 |
 | cʼ         |    28 |
@@ -508,6 +512,7 @@ How are uvulars distributed in phoible (across duplicate languages)?
 | t̪θʼ        |     5 |
 | tɬʼː       |     4 |
 | ʈʼ         |     4 |
+| xʼ         |     4 |
 | cʼː        |     3 |
 | dʼ         |     3 |
 | ᶑʼ         |     3 |
@@ -524,7 +529,6 @@ How are uvulars distributed in phoible (across duplicate languages)?
 | tʲʼ        |     3 |
 | tsʷʼ       |     3 |
 | t̪s̪ʷʼ\|tsʷʼ |     3 |
-| xʼ         |     3 |
 | ʼm         |     3 |
 | ʼn         |     3 |
 | ɕʼ         |     2 |
@@ -549,7 +553,6 @@ How are uvulars distributed in phoible (across duplicate languages)?
 | ʼɲ         |     2 |
 | ʼŋ         |     2 |
 | ʼw         |     2 |
-| χʼ         |     2 |
 | bʼ         |     1 |
 | dzʼ        |     1 |
 | d̠ʒxʼ       |     1 |
@@ -658,6 +661,7 @@ How are uvulars distributed in phoible (across duplicate languages)?
 | ʕʼ         |     1 |
 | θʼ         |     1 |
 | χʷʼ        |     1 |
+| χʼ         |     1 |
 | χʼː        |     1 |
 
     # Order the frequency counts and plot the distribution of uvular consonants in the sample
@@ -696,8 +700,8 @@ How are they distributed via macroarea?
 
 | Var1          | Freq |
 |:--------------|-----:|
-| Africa        |   67 |
-| Eurasia       |  194 |
+| Africa        |   68 |
+| Eurasia       |  193 |
 | North America |   65 |
 | Papunesia     |   13 |
 | South America |   41 |
@@ -725,5 +729,5 @@ How are they distributed via macroarea?
 |:--------------|-----:|
 | Africa        |   70 |
 | Eurasia       |   54 |
-| North America |   77 |
+| North America |   76 |
 | South America |   28 |

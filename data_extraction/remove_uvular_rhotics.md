@@ -15,9 +15,9 @@ impact on removing rhotics from the uvular counts on our results.
 
 An important question in response is, what does the reviewer mean
 explicitly by rhotic? Rhotics are cross-linguistically hard to define;
-see for example the in-depth description of rhotics in (Ladefoged and
-Maddieson 1996). In particular, what phonetic properties should be
-considered for the “gluttal R” phenomenon?
+see for example the in-depth description of rhotics in Ladefoged and
+Maddieson (1996). In particular, what phonetic properties should be
+considered for the “guttural R” phenomenon?
 
 -   <a href="https://en.wikipedia.org/wiki/Guttural_R" class="uri">https://en.wikipedia.org/wiki/Guttural_R</a>
 
@@ -40,9 +40,6 @@ We show in our [extraction code](get_uvulars_ejectives.md) how many
 general rhotics, i.e. according the [IPA
 chart](https://www.internationalphoneticassociation.org/content/full-ipa-chart)
 are present in the data we extracted.
-
-“having thought a bit more, I’d include ʁ and ʀ but exclude χ and cite
-Maddieson & Ladefoged in support.”
 
 Let’s drop the rhotics, including \[ʁ\] and \[ʀ\], but excluding \[χ\]
 (Ladefoged and Maddieson 1996) and re-generate the counts. First load
@@ -82,7 +79,7 @@ Which rhotics did we remove?
 
 | Phoneme | count |
 |:--------|------:|
-| ʁ       |   155 |
+| ʁ       |   156 |
 | ʁʷ      |    34 |
 | ʀ       |    19 |
 | ʁ̞       |     6 |
@@ -215,14 +212,13 @@ observations.
 |         651 | ajab1235     | Aja (Benin)             | adja (Bénin)                                                          | aa     |       2 |                    1 |
 |        1282 | gbes1238     | Gbesi Gbe               | NA                                                                    | gm     |       4 |                    2 |
 |        1281 | kota1272     | Kotafon Gbe             | NA                                                                    | gm     |       4 |                    2 |
-|        1411 | ngom1272     | Ngomba                  | NA                                                                    | gm     |       2 |                    0 |
+|        1411 | ngom1272     | Ngomba                  | NA                                                                    | gm     |       2 |                    1 |
 |        1280 | west2456     | Western Xwla Gbe        | NA                                                                    | gm     |       4 |                    2 |
 |        1279 | xwel1235     | Xwela Gbe               | NA                                                                    | gm     |       4 |                    2 |
 |        1669 | bela1260     | Lemeting                | Metting                                                               | gm     |       1 |                    0 |
 |        2222 | coco1260     | Cocos Islands Malay     | Spoken in Kampung Cocos in the Lahad Datu district of Sabah, Malaysia | uz     |       1 |                    0 |
 |        1214 | muna1247     | Muna                    | NA                                                                    | ph     |       1 |                    0 |
 |        1874 | japr1238     | Japrería                | NA                                                                    | saphon |       1 |                    0 |
-|         862 | barb1263     | Barbareño               | NA                                                                    | ph     |       3 |                    4 |
 |        2474 | chen1255     | Chenchu                 | NA                                                                    | ea     |       1 |                    0 |
 |          61 | aleu1260     | Aleut                   | NA                                                                    | spa    |       3 |                    2 |
 |         319 | cent2128     | Central Siberian Yupik  | NA                                                                    | upsid  |       6 |                    4 |

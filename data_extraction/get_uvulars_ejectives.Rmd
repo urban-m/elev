@@ -36,10 +36,10 @@ Get the PHOIBLE data and merge in the metadata from [Glottolog](https://glottolo
 
 * Hammarström, Harald & Forkel, Robert & Haspelmath, Martin & Bank, Sebastian. 2020. Glottolog 4.2.1. Jena: Max Planck Institute for the Science of Human History. Online: https://doi.org/10.5281/zenodo.3754591
 
-Get latest PHOIBLE data.
+PHOIBLE data is released periodically be version because the editors add new data, make reported corrections, etc. Here we use the PHOIBLE dev version from [May 2020](https://github.com/phoible/dev/tree/646f5e4f64bfefb7868bf4a3b65bcd1da243976a).
 
 ```{r}
-phoible <- read_csv(url("https://github.com/phoible/dev/blob/master/data/phoible.csv?raw=true"), 
+phoible <- read_csv(url("https://github.com/phoible/dev/blob/646f5e4f64bfefb7868bf4a3b65bcd1da243976a/data/phoible.csv?raw=true"), 
                     col_types = c(InventoryID = "i", Marginal = "l", .default = "c"))
 ```
 
