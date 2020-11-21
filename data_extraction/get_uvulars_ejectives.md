@@ -1,18 +1,14 @@
 PHOIBLE uvular and ejective consonants
 ================
 Steven Moran
-(17 November, 2020)
+(21 November, 2020)
 
 # Overview
 
 This report extracts
 [uvulars](https://en.wikipedia.org/wiki/Uvular_consonant) and
 [ejectives](https://en.wikipedia.org/wiki/Ejective_consonant) from
-[PHOIBLE](https://phoible.org/).
-
--   Moran, Steven & McCloy, Daniel (eds.) 2019. PHOIBLE 2.0. Jena: Max
-    Planck Institute for the Science of Human History. Online:
-    <a href="http://phoible.org" class="uri">http://phoible.org</a>.
+[PHOIBLE](https://phoible.org/) (Moran and McCloy 2019).
 
 The output data format for uvulars and ejectives data is a
 [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) file with
@@ -31,18 +27,14 @@ file. Here we also add Urban’s extended macroareas.
 
 ## Data preparation
 
-This report uses these [R](https://cran.r-project.org/) libraries:
+This report uses these [R](https://cran.r-project.org/) libraries
+(Wickham et al. 2019,@knitr):
 
     library(tidyverse)
     library(knitr)
 
 Get the PHOIBLE data and merge in the metadata from
-[Glottolog](https://glottolog.org/):
-
--   Hammarström, Harald & Forkel, Robert & Haspelmath, Martin & Bank,
-    Sebastian. 2020. Glottolog 4.2.1. Jena: Max Planck Institute for the
-    Science of Human History. Online:
-    <a href="https://doi.org/10.5281/zenodo.3754591" class="uri">https://doi.org/10.5281/zenodo.3754591</a>
+[Glottolog](https://glottolog.org/) (Hammarström et al. 2020).
 
 PHOIBLE data is released periodically be version because the editors add
 new data, make reported corrections, etc. Here we use the PHOIBLE dev
@@ -731,3 +723,41 @@ How are they distributed via macroarea?
 | Eurasia       |   54 |
 | North America |   76 |
 | South America |   28 |
+
+# References
+
+<div id="refs" class="references hanging-indent">
+
+<div id="ref-Hammarstrom_etal2020">
+
+Hammarström, Harald, Robert Forkel, Martin Haspelmath, and Sebastian
+Bank. 2020. *Glottolog 4.2.1*. Jena: Max Planck Institute for the
+Science of Human History. <https://doi.org/10.5281/zenodo.3754591>.
+
+</div>
+
+<div id="ref-MoranMcCloy2019">
+
+Moran, Steven, and Daniel McCloy, eds. 2019. *PHOIBLE 2.0*. Jena: Max
+Planck Institute for the Science of Human History.
+<https://doi.org/10.5281/zenodo.2562766>.
+
+</div>
+
+<div id="ref-tidyverse">
+
+Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy
+D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019.
+“Welcome to the tidyverse.” *Journal of Open Source Software* 4 (43):
+1686. <https://doi.org/10.21105/joss.01686>.
+
+</div>
+
+<div id="ref-knitr">
+
+Xie, Yihui. 2020. *Knitr: A General-Purpose Package for Dynamic Report
+Generation in R*. <https://yihui.org/knitr/>.
+
+</div>
+
+</div>

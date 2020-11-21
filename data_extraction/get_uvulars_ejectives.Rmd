@@ -3,13 +3,12 @@ title: "PHOIBLE uvular and ejective consonants"
 author: "Steven Moran"
 date: "(`r format(Sys.time(), '%d %B, %Y')`)"
 output: github_document
+bibliography: '../bibliography/references.bib'
 ---
 
 # Overview
 
-This report extracts [uvulars](https://en.wikipedia.org/wiki/Uvular_consonant) and [ejectives](https://en.wikipedia.org/wiki/Ejective_consonant) from [PHOIBLE](https://phoible.org/).
-
-* Moran, Steven & McCloy, Daniel (eds.) 2019. PHOIBLE 2.0. Jena: Max Planck Institute for the Science of Human History. Online: http://phoible.org.
+This report extracts [uvulars](https://en.wikipedia.org/wiki/Uvular_consonant) and [ejectives](https://en.wikipedia.org/wiki/Ejective_consonant) from [PHOIBLE](https://phoible.org/) [@MoranMcCloy2019].
 
 The output data format for uvulars and ejectives data is a [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) file with the following columns:
 
@@ -25,16 +24,14 @@ The final data file is available in the [uvulars_ejectives_pruned2.csv](../Data/
 
 ## Data preparation
 
-This report uses these [R](https://cran.r-project.org/) libraries:
+This report uses these [R](https://cran.r-project.org/) libraries [@tidyverse,@knitr]:
 
 ```{r, message=F, warning=F}
 library(tidyverse)
 library(knitr)
 ```
 
-Get the PHOIBLE data and merge in the metadata from [Glottolog](https://glottolog.org/):
-
-* Hammarström, Harald & Forkel, Robert & Haspelmath, Martin & Bank, Sebastian. 2020. Glottolog 4.2.1. Jena: Max Planck Institute for the Science of Human History. Online: https://doi.org/10.5281/zenodo.3754591
+Get the PHOIBLE data and merge in the metadata from [Glottolog](https://glottolog.org/) [@Hammarstrom_etal2020].
 
 PHOIBLE data is released periodically be version because the editors add new data, make reported corrections, etc. Here we use the PHOIBLE dev version from [May 2020](https://github.com/phoible/dev/tree/646f5e4f64bfefb7868bf4a3b65bcd1da243976a).
 
@@ -270,3 +267,5 @@ How are they distributed via macroarea?
 ```{r}
 kable(table(ejectives_counts$macroarea))
 ```
+
+# References
