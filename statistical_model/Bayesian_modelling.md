@@ -2,7 +2,7 @@ Bayesian modelling of ejectives and uvulars depending on altitude and
 ancillary analyses
 ================
 Matthias Urban
-18 November, 2020
+21 November, 2020
 
 # Overview
 
@@ -22,35 +22,35 @@ library(boot)
 Read in data
 
 ``` r
-elevdata <- read.csv('../Data/uvulars_ejectives_pruned2_rhotics.csv', header =T)
+elevdata <- read.csv("../Data/uvulars_ejectives_pruned2_rhotics.csv", header = T)
 ```
 
 Change separator from comma to dot for coordinates and treat as numeric
 
 ``` r
-elevdata$latitude<-as.numeric(gsub(',','.',elevdata$latitude))
-elevdata$longitude<-as.numeric(gsub(',','.',elevdata$longitude))
+elevdata$latitude <- as.numeric(gsub(",", ".", elevdata$latitude))
+elevdata$longitude <- as.numeric(gsub(",", ".", elevdata$longitude))
 ```
 
 Treat macroareas as factors
 
 ``` r
-elevdata$macroarea2<-as.factor(elevdata$macroarea2)
+elevdata$macroarea2 <- as.factor(elevdata$macroarea2)
 ```
 
 Remove rows with empty cells for Latitude and Longitude
 
 ``` r
-elevdata<-drop_na(elevdata, elevation)
+elevdata <- drop_na(elevdata, elevation)
 ```
 
 Reduce the data to a binary distinction between presence vs. absence of
 ejectives/uvulars
 
 ``` r
-elevdata<-mutate(elevdata, NonMarginal01 = as.logical(Nonmarginal_Uvular), NonMarginal01 = as.numeric(NonMarginal01))
-elevdata<-mutate(elevdata, NonMarginal02 = as.logical(Nonmarginal_Ejective), NonMarginal02 = as.numeric(NonMarginal02))
-elevdata<-mutate(elevdata, NonMarginal03 = as.logical(Nonmarginal_Uvular_no_rhotics), NonMarginal03 = as.numeric(NonMarginal03))
+elevdata <- mutate(elevdata, NonMarginal01 = as.logical(Nonmarginal_Uvular), NonMarginal01 = as.numeric(NonMarginal01))
+elevdata <- mutate(elevdata, NonMarginal02 = as.logical(Nonmarginal_Ejective), NonMarginal02 = as.numeric(NonMarginal02))
+elevdata <- mutate(elevdata, NonMarginal03 = as.logical(Nonmarginal_Uvular_no_rhotics), NonMarginal03 = as.numeric(NonMarginal03))
 ```
 
 # Modeling
@@ -66,13 +66,13 @@ elevdata <- mutate(elevdata, elevationlog10 = log10(elevation))
 Set prior
 
 ``` r
-priors <-set_prior("normal(0, 2)", class="b", coef="elevationlog10")
+priors <- set_prior("normal(0, 2)", class = "b", coef = "elevationlog10")
 ```
 
 ### Model for uvulars
 
 ``` r
-elevmodeluvulars<-brm(NonMarginal01 ~ elevationlog10 + (1+ elevationlog10|macroarea2) +(1|family_id), family='bernoulli', data=elevdata, seed=31011, warmup=6000, iter=8000, chains=4, prior=priors, control=list(adapt_delta=0.999, max_treedepth=20))
+elevmodeluvulars <- brm(NonMarginal01 ~ elevationlog10 + (1 + elevationlog10 | macroarea2) + (1 | family_id), family = "bernoulli", data = elevdata, seed = 31011, warmup = 6000, iter = 8000, chains = 4, prior = priors, control = list(adapt_delta = 0.999, max_treedepth = 20))
 ```
 
     ## Compiling Stan program...
@@ -137,7 +137,7 @@ pp_check(elevmodeluvulars)
 ![](Bayesian_modelling_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
 
 ``` r
-pp_check(elevmodeluvulars, type="error_binned")
+pp_check(elevmodeluvulars, type = "error_binned")
 ```
 
     ## Using 10 posterior samples for ppc type 'error_binned' by default.
@@ -147,8 +147,8 @@ pp_check(elevmodeluvulars, type="error_binned")
 Assess predictive accuracy
 
 ``` r
-modelled_elevdata<-elevdata %>% drop_na(NonMarginal01, elevationlog10, macroarea2, family_id)
-elevmodeluvulars_pred <- predict(elevmodeluvulars, type = "response")[ , "Estimate"]
+modelled_elevdata <- elevdata %>% drop_na(NonMarginal01, elevationlog10, macroarea2, family_id)
+elevmodeluvulars_pred <- predict(elevmodeluvulars, type = "response")[, "Estimate"]
 elevmodeluvulars_pred <- as.numeric(elevmodeluvulars_pred > mean(modelled_elevdata$NonMarginal01))
 (classtab_elevmodeluvulars <- table(predicted = elevmodeluvulars_pred, observed = modelled_elevdata$NonMarginal01))
 ```
@@ -167,8 +167,8 @@ elevmodeluvulars_pred <- as.numeric(elevmodeluvulars_pred > mean(modelled_elevda
 Assess posterior probability versus chance
 
 ``` r
-elevmodeluvularssamples<-posterior_samples(elevmodeluvulars)
-sum(elevmodeluvularssamples$b_elevationlog10 < 0) /nrow(elevmodeluvularssamples)
+elevmodeluvularssamples <- posterior_samples(elevmodeluvulars)
+sum(elevmodeluvularssamples$b_elevationlog10 < 0) / nrow(elevmodeluvularssamples)
 ```
 
     ## [1] 0.2785
@@ -176,7 +176,7 @@ sum(elevmodeluvularssamples$b_elevationlog10 < 0) /nrow(elevmodeluvularssamples)
 ### Model for uvulars without rhotics
 
 ``` r
-elevmodeluvularswithoutrhotics<-brm(NonMarginal03 ~ elevationlog10 + (1+elevationlog10| macroarea2) +(1|family_id), family='bernoulli', data=elevdata, seed=31011, warmup=6000, iter=8000, chains=4, prior=priors, control=list(adapt_delta=0.999, max_treedepth=20))
+elevmodeluvularswithoutrhotics <- brm(NonMarginal03 ~ elevationlog10 + (1 + elevationlog10 | macroarea2) + (1 | family_id), family = "bernoulli", data = elevdata, seed = 31011, warmup = 6000, iter = 8000, chains = 4, prior = priors, control = list(adapt_delta = 0.999, max_treedepth = 20))
 ```
 
     ## Compiling Stan program...
@@ -243,7 +243,7 @@ pp_check(elevmodeluvularswithoutrhotics)
 ![](Bayesian_modelling_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
 
 ``` r
-pp_check(elevmodeluvularswithoutrhotics, type="error_binned")
+pp_check(elevmodeluvularswithoutrhotics, type = "error_binned")
 ```
 
     ## Using 10 posterior samples for ppc type 'error_binned' by default.
@@ -253,8 +253,8 @@ pp_check(elevmodeluvularswithoutrhotics, type="error_binned")
 Assess predictive accuracy
 
 ``` r
-modelled_elevdata<-elevdata %>% drop_na(NonMarginal03, elevationlog10, macroarea2, family_id)
-elevmodeluvularswithoutrhotics_pred <- predict(elevmodeluvularswithoutrhotics, type = "response")[ , "Estimate"]
+modelled_elevdata <- elevdata %>% drop_na(NonMarginal03, elevationlog10, macroarea2, family_id)
+elevmodeluvularswithoutrhotics_pred <- predict(elevmodeluvularswithoutrhotics, type = "response")[, "Estimate"]
 elevmodeluvularswithoutrhotics_pred <- as.numeric(elevmodeluvularswithoutrhotics_pred > mean(modelled_elevdata$NonMarginal03))
 (classtab_elevmodeluvularswithoutrhotics <- table(predicted = elevmodeluvularswithoutrhotics_pred, observed = modelled_elevdata$NonMarginal03))
 ```
@@ -273,8 +273,8 @@ elevmodeluvularswithoutrhotics_pred <- as.numeric(elevmodeluvularswithoutrhotics
 Assess posterior probability versus chance
 
 ``` r
-elevmodeluvularswithoutrhoticssamples<-posterior_samples(elevmodeluvularswithoutrhotics)
-sum(elevmodeluvularswithoutrhoticssamples$b_elevationlog10 < 0) /nrow(elevmodeluvularswithoutrhoticssamples)
+elevmodeluvularswithoutrhoticssamples <- posterior_samples(elevmodeluvularswithoutrhotics)
+sum(elevmodeluvularswithoutrhoticssamples$b_elevationlog10 < 0) / nrow(elevmodeluvularswithoutrhoticssamples)
 ```
 
     ## [1] 0.099625
@@ -282,7 +282,7 @@ sum(elevmodeluvularswithoutrhoticssamples$b_elevationlog10 < 0) /nrow(elevmodelu
 ### Model for ejectives
 
 ``` r
-elevmodelejectives<-brm(NonMarginal02 ~ elevationlog10 + (1+ elevationlog10|macroarea2) +(1|family_id), family='bernoulli', data=elevdata, seed=31011, warmup=6000, iter=8000, chains=4, prior=priors, control=list(adapt_delta=0.999, max_treedepth=20))
+elevmodelejectives <- brm(NonMarginal02 ~ elevationlog10 + (1 + elevationlog10 | macroarea2) + (1 | family_id), family = "bernoulli", data = elevdata, seed = 31011, warmup = 6000, iter = 8000, chains = 4, prior = priors, control = list(adapt_delta = 0.999, max_treedepth = 20))
 ```
 
     ## Compiling Stan program...
@@ -349,7 +349,7 @@ pp_check(elevmodelejectives)
 ![](Bayesian_modelling_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
 
 ``` r
-pp_check(elevmodelejectives, type="error_binned")
+pp_check(elevmodelejectives, type = "error_binned")
 ```
 
     ## Using 10 posterior samples for ppc type 'error_binned' by default.
@@ -359,28 +359,28 @@ pp_check(elevmodelejectives, type="error_binned")
 Assess predictive accuracy
 
 ``` r
-modelled_elevdata<-elevdata %>% drop_na(NonMarginal02, elevationlog10, macroarea2, family_id)
-elevmodelejectives_pred <- predict(elevmodelejectives, type = "response")[ , "Estimate"]
+modelled_elevdata <- elevdata %>% drop_na(NonMarginal02, elevationlog10, macroarea2, family_id)
+elevmodelejectives_pred <- predict(elevmodelejectives, type = "response")[, "Estimate"]
 elevmodelejectives_pred <- as.numeric(elevmodelejectives_pred > mean(modelled_elevdata$NonMarginal02))
 (classtab_elevmodelejectives <- table(predicted = elevmodelejectives_pred, observed = modelled_elevdata$NonMarginal02))
 ```
 
     ##          observed
     ## predicted    0    1
-    ##         0 1700   10
-    ##         1  158  163
+    ##         0 1699   10
+    ##         1  159  163
 
 ``` r
 (acc_elevmodelejectives <- sum(diag(classtab_elevmodelejectives)) / sum(classtab_elevmodelejectives))
 ```
 
-    ## [1] 0.9172821
+    ## [1] 0.9167898
 
 Assess posterior probability versus chance
 
 ``` r
-elevmodelejectivessamples<-posterior_samples(elevmodelejectives)
-sum(elevmodelejectivessamples$b_elevationlog10 < 0) /nrow(elevmodelejectivessamples)
+elevmodelejectivessamples <- posterior_samples(elevmodelejectives)
+sum(elevmodelejectivessamples$b_elevationlog10 < 0) / nrow(elevmodelejectivessamples)
 ```
 
     ## [1] 0.018
@@ -393,16 +393,16 @@ Compute median elevations and proportions of uvulars and ejectives by
 area
 
 ``` r
-medianelevarea<-aggregate(elevation~macroarea2, FUN="median", data=elevdata)
-uvularproportionarea<-aggregate(NonMarginal01~macroarea2, FUN="mean", data=elevdata)
-uvularwithoutrhoticsproportionarea<-aggregate(NonMarginal03~macroarea2, FUN="mean", data=elevdata)
-ejectiveproportionarea<-aggregate(NonMarginal02~macroarea2, FUN="mean", data=elevdata)
+medianelevarea <- aggregate(elevation ~ macroarea2, FUN = "median", data = elevdata)
+uvularproportionarea <- aggregate(NonMarginal01 ~ macroarea2, FUN = "mean", data = elevdata)
+uvularwithoutrhoticsproportionarea <- aggregate(NonMarginal03 ~ macroarea2, FUN = "mean", data = elevdata)
+ejectiveproportionarea <- aggregate(NonMarginal02 ~ macroarea2, FUN = "mean", data = elevdata)
 ```
 
 Least squares regression
 
 ``` r
-summary(lm(uvularproportionarea$NonMarginal01~medianelevarea$elevation))
+summary(lm(uvularproportionarea$NonMarginal01 ~ medianelevarea$elevation))
 ```
 
     ## 
@@ -425,7 +425,7 @@ summary(lm(uvularproportionarea$NonMarginal01~medianelevarea$elevation))
     ## F-statistic: 5.985 on 1 and 9 DF,  p-value: 0.03697
 
 ``` r
-summary(lm(uvularwithoutrhoticsproportionarea$NonMarginal03~medianelevarea$elevation))
+summary(lm(uvularwithoutrhoticsproportionarea$NonMarginal03 ~ medianelevarea$elevation))
 ```
 
     ## 
@@ -449,7 +449,7 @@ summary(lm(uvularwithoutrhoticsproportionarea$NonMarginal03~medianelevarea$eleva
     ## F-statistic: 6.693 on 1 and 9 DF,  p-value: 0.02936
 
 ``` r
-summary(lm(ejectiveproportionarea$NonMarginal02~medianelevarea$elevation))
+summary(lm(ejectiveproportionarea$NonMarginal02 ~ medianelevarea$elevation))
 ```
 
     ## 
@@ -472,22 +472,22 @@ summary(lm(ejectiveproportionarea$NonMarginal02~medianelevarea$elevation))
 Plot results
 
 ``` r
-plot(medianelevarea$elevation, uvularproportionarea$NonMarginal01, bg="black", pch=21, xlab="Median elevation per area", ylab="Proportion Uvulars")
-lines(lowess(medianelevarea$elevation, uvularproportionarea$NonMarginal01, f=10, iter=10))
+plot(medianelevarea$elevation, uvularproportionarea$NonMarginal01, bg = "black", pch = 21, xlab = "Median elevation per area", ylab = "Proportion Uvulars")
+lines(lowess(medianelevarea$elevation, uvularproportionarea$NonMarginal01, f = 10, iter = 10))
 ```
 
 ![](Bayesian_modelling_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
 
 ``` r
-plot(medianelevarea$elevation, uvularwithoutrhoticsproportionarea$NonMarginal03, bg="black", pch=21, xlab="Median elevation per area", ylab="Proportion Uvulars without Rhotics")
-lines(lowess(medianelevarea$elevation, uvularwithoutrhoticsproportionarea$NonMarginal03, f=10, iter=10))
+plot(medianelevarea$elevation, uvularwithoutrhoticsproportionarea$NonMarginal03, bg = "black", pch = 21, xlab = "Median elevation per area", ylab = "Proportion Uvulars without Rhotics")
+lines(lowess(medianelevarea$elevation, uvularwithoutrhoticsproportionarea$NonMarginal03, f = 10, iter = 10))
 ```
 
 ![](Bayesian_modelling_files/figure-gfm/unnamed-chunk-29-2.png)<!-- -->
 
 ``` r
-plot(medianelevarea$elevation, ejectiveproportionarea$NonMarginal02, bg="black", pch=21, xlab="Median elevation per area", ylab="Proportion Ejectives")
-lines(lowess(medianelevarea$elevation, ejectiveproportionarea$NonMarginal02, f=10, iter=10))
+plot(medianelevarea$elevation, ejectiveproportionarea$NonMarginal02, bg = "black", pch = 21, xlab = "Median elevation per area", ylab = "Proportion Ejectives")
+lines(lowess(medianelevarea$elevation, ejectiveproportionarea$NonMarginal02, f = 10, iter = 10))
 ```
 
 ![](Bayesian_modelling_files/figure-gfm/unnamed-chunk-29-3.png)<!-- -->
@@ -495,23 +495,23 @@ lines(lowess(medianelevarea$elevation, ejectiveproportionarea$NonMarginal02, f=1
 ### By family
 
 ``` r
-largefamilies<-filter(elevdata, family_id %in% c("afro1255", "araw1281", "atha1245", "atla1278", "aust1307", "cari1283", "gong1255", "mand1469", "maya1287", "mong1329", "nakh1245", "otom1299", "sali1255", "sino1245", "taik1256", "tupi1275", "turk1311", "ural1272"))
+largefamilies <- filter(elevdata, family_id %in% c("afro1255", "araw1281", "atha1245", "atla1278", "aust1307", "cari1283", "gong1255", "mand1469", "maya1287", "mong1329", "nakh1245", "otom1299", "sali1255", "sino1245", "taik1256", "tupi1275", "turk1311", "ural1272"))
 ```
 
 Compute median elevations and proportions of uvulars and ejectives per
 by family
 
 ``` r
-medianelevfamily<-aggregate(elevation~family_id, FUN="median", data=largefamilies)
-uvularproportionfamily<-aggregate(NonMarginal01~family_id, FUN="mean", data=largefamilies)
-uvularwithoutrhoticsproportionfamily<-aggregate(NonMarginal03~family_id, FUN="mean", data=largefamilies)
-ejectiveproportionfamily<-aggregate(NonMarginal02~family_id, FUN="mean", data=largefamilies)
+medianelevfamily <- aggregate(elevation ~ family_id, FUN = "median", data = largefamilies)
+uvularproportionfamily <- aggregate(NonMarginal01 ~ family_id, FUN = "mean", data = largefamilies)
+uvularwithoutrhoticsproportionfamily <- aggregate(NonMarginal03 ~ family_id, FUN = "mean", data = largefamilies)
+ejectiveproportionfamily <- aggregate(NonMarginal02 ~ family_id, FUN = "mean", data = largefamilies)
 ```
 
 Least squares regression
 
 ``` r
-summary(lm(uvularproportionfamily$NonMarginal01~medianelevfamily$elevation))
+summary(lm(uvularproportionfamily$NonMarginal01 ~ medianelevfamily$elevation))
 ```
 
     ## 
@@ -532,7 +532,7 @@ summary(lm(uvularproportionfamily$NonMarginal01~medianelevfamily$elevation))
     ## F-statistic: 1.198 on 1 and 16 DF,  p-value: 0.2898
 
 ``` r
-summary(lm(uvularwithoutrhoticsproportionfamily$NonMarginal03~medianelevfamily$elevation))
+summary(lm(uvularwithoutrhoticsproportionfamily$NonMarginal03 ~ medianelevfamily$elevation))
 ```
 
     ## 
@@ -554,7 +554,7 @@ summary(lm(uvularwithoutrhoticsproportionfamily$NonMarginal03~medianelevfamily$e
     ## F-statistic: 1.192 on 1 and 16 DF,  p-value: 0.2911
 
 ``` r
-summary(lm(ejectiveproportionfamily$NonMarginal02~medianelevfamily$elevation))
+summary(lm(ejectiveproportionfamily$NonMarginal02 ~ medianelevfamily$elevation))
 ```
 
     ## 
@@ -577,22 +577,22 @@ summary(lm(ejectiveproportionfamily$NonMarginal02~medianelevfamily$elevation))
 Plot results
 
 ``` r
-plot(medianelevfamily$elevation, uvularproportionfamily$NonMarginal01, bg="black", pch=21, xlab="Median elevation per family", ylab="Proportion Uvulars")
-lines(lowess(medianelevfamily$elevation, uvularproportionfamily$NonMarginal01, f=10, iter=10))
+plot(medianelevfamily$elevation, uvularproportionfamily$NonMarginal01, bg = "black", pch = 21, xlab = "Median elevation per family", ylab = "Proportion Uvulars")
+lines(lowess(medianelevfamily$elevation, uvularproportionfamily$NonMarginal01, f = 10, iter = 10))
 ```
 
 ![](Bayesian_modelling_files/figure-gfm/unnamed-chunk-33-1.png)<!-- -->
 
 ``` r
-plot(medianelevfamily$elevation, uvularwithoutrhoticsproportionfamily$NonMarginal03, bg="black", pch=21, xlab="Median elevation per family", ylab="Proportion Uvulars without Rhotics")
-lines(lowess(medianelevfamily$elevation, uvularwithoutrhoticsproportionfamily$NonMarginal03, f=10, iter=10))
+plot(medianelevfamily$elevation, uvularwithoutrhoticsproportionfamily$NonMarginal03, bg = "black", pch = 21, xlab = "Median elevation per family", ylab = "Proportion Uvulars without Rhotics")
+lines(lowess(medianelevfamily$elevation, uvularwithoutrhoticsproportionfamily$NonMarginal03, f = 10, iter = 10))
 ```
 
 ![](Bayesian_modelling_files/figure-gfm/unnamed-chunk-33-2.png)<!-- -->
 
 ``` r
-plot(medianelevfamily$elevation, ejectiveproportionfamily$NonMarginal02, bg="black", pch=21, xlab="Median elevation per family", ylab="Proportion Ejectives")
-lines(lowess(medianelevfamily$elevation, ejectiveproportionfamily$NonMarginal02, f=10, iter=10))
+plot(medianelevfamily$elevation, ejectiveproportionfamily$NonMarginal02, bg = "black", pch = 21, xlab = "Median elevation per family", ylab = "Proportion Ejectives")
+lines(lowess(medianelevfamily$elevation, ejectiveproportionfamily$NonMarginal02, f = 10, iter = 10))
 ```
 
 ![](Bayesian_modelling_files/figure-gfm/unnamed-chunk-33-3.png)<!-- -->
