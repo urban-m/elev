@@ -1,7 +1,7 @@
 Production of maps and plots for descriptive statistics
 ================
 Matthias Urban
-18 November, 2020
+22 November, 2020
 
 # Required packages
 
@@ -19,34 +19,34 @@ require(ggplot2)
 Read in data
 
 ``` r
-elevdata <- read.csv('../Data/uvulars_ejectives_pruned2_rhotics.csv', header =T)
+elevdata <- read.csv("../Data/uvulars_ejectives_pruned2_rhotics.csv", header = T)
 ```
 
 Change separator from comma to dot for coordinates and treat as numeric
 
 ``` r
-elevdata$latitude<-as.numeric(gsub(',','.',elevdata$latitude))
-elevdata$longitude<-as.numeric(gsub(',','.',elevdata$longitude))
+elevdata$latitude <- as.numeric(gsub(",", ".", elevdata$latitude))
+elevdata$longitude <- as.numeric(gsub(",", ".", elevdata$longitude))
 ```
 
 Treat macroareas as factors
 
 ``` r
-elevdata$macroarea2<-as.factor(elevdata$macroarea2)
+elevdata$macroarea2 <- as.factor(elevdata$macroarea2)
 ```
 
 Remove rows with empty cells for Elevation
 
 ``` r
-elevdata<-drop_na(elevdata, elevation)
+elevdata <- drop_na(elevdata, elevation)
 ```
 
 Reduce the data to a binary distinction between presence vs. absence of
 ejectives/uvulars
 
 ``` r
-elevdata<-mutate(elevdata, NonMarginal01 = as.logical(Nonmarginal_Uvular), NonMarginal01 = as.numeric(NonMarginal01))
-elevdata<-mutate(elevdata, NonMarginal02 = as.logical(Nonmarginal_Ejective), NonMarginal02 = as.numeric(NonMarginal02))
+elevdata <- mutate(elevdata, NonMarginal01 = as.logical(Nonmarginal_Uvular), NonMarginal01 = as.numeric(NonMarginal01))
+elevdata <- mutate(elevdata, NonMarginal02 = as.logical(Nonmarginal_Ejective), NonMarginal02 = as.numeric(NonMarginal02))
 ```
 
 # Plot maps
@@ -54,18 +54,18 @@ elevdata<-mutate(elevdata, NonMarginal02 = as.logical(Nonmarginal_Ejective), Non
 ## Uvulars
 
 ``` r
-map <- openmap(c(85,-180), c(-80,180), type='nps', minNumTiles=100)
-map<-openproj(map, projection="+init=epsg:3832")
+map <- openmap(c(85, -180), c(-80, 180), type = "nps", minNumTiles = 100)
+map <- openproj(map, projection = "+init=epsg:3832")
 plot(map)
-plotdatanouvulars<-drop_na(elevdata %>% filter(NonMarginal01==F) %>% select(latitude, longitude))
-plotdatanouvulars<-st_as_sf(plotdatanouvulars, coords = c("longitude", "latitude"), crs=4326)
-plotdatanouvulars<-st_transform(plotdatanouvulars, crs=3832)
-plot(plotdatanouvulars, pch=21, col="black", bg="white", cex=1.2, add=T)
+plotdatanouvulars <- drop_na(elevdata %>% filter(NonMarginal01 == F) %>% select(latitude, longitude))
+plotdatanouvulars <- st_as_sf(plotdatanouvulars, coords = c("longitude", "latitude"), crs = 4326)
+plotdatanouvulars <- st_transform(plotdatanouvulars, crs = 3832)
+plot(plotdatanouvulars, pch = 21, col = "black", bg = "white", cex = 1.2, add = T)
 
-plotdatauvulars<- drop_na(elevdata %>% filter(NonMarginal01==T) %>% select(latitude, longitude))
-plotdatauvulars<-st_as_sf(plotdatauvulars, coords = c("longitude", "latitude"), crs=4326)
-plotdatauvulars<-st_transform(plotdatauvulars, crs=3832)
-plot(plotdatauvulars, pch=21, col="white", bg="black", cex=1.2, add=T)
+plotdatauvulars <- drop_na(elevdata %>% filter(NonMarginal01 == T) %>% select(latitude, longitude))
+plotdatauvulars <- st_as_sf(plotdatauvulars, coords = c("longitude", "latitude"), crs = 4326)
+plotdatauvulars <- st_transform(plotdatauvulars, crs = 3832)
+plot(plotdatauvulars, pch = 21, col = "white", bg = "black", cex = 1.2, add = T)
 ```
 
 ![](Maps_and_descriptive_statistics_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
@@ -73,18 +73,18 @@ plot(plotdatauvulars, pch=21, col="white", bg="black", cex=1.2, add=T)
 ## Ejectives
 
 ``` r
-map <- openmap(c(85,-180), c(-80,180), type='nps', minNumTiles=100)
-map<-openproj(map, projection="+init=epsg:3832")
+map <- openmap(c(85, -180), c(-80, 180), type = "nps", minNumTiles = 100)
+map <- openproj(map, projection = "+init=epsg:3832")
 plot(map)
-plotdatanoejectives<- drop_na(elevdata %>% filter(NonMarginal02==F) %>% select(latitude, longitude))
-plotdatanoejectives<-st_as_sf(plotdatanoejectives, coords = c("longitude", "latitude"), crs=4326)
-plotdatanoejectives<-st_transform(plotdatanoejectives, crs=3832)
-plot(plotdatanoejectives, pch=21, col="black", bg="white", cex=1.2, add=T)
+plotdatanoejectives <- drop_na(elevdata %>% filter(NonMarginal02 == F) %>% select(latitude, longitude))
+plotdatanoejectives <- st_as_sf(plotdatanoejectives, coords = c("longitude", "latitude"), crs = 4326)
+plotdatanoejectives <- st_transform(plotdatanoejectives, crs = 3832)
+plot(plotdatanoejectives, pch = 21, col = "black", bg = "white", cex = 1.2, add = T)
 
-plotdataejectives<- drop_na(elevdata %>% filter(NonMarginal02==T) %>% select(latitude, longitude))
-plotdataejectives<-st_as_sf(plotdataejectives, coords = c("longitude", "latitude"), crs=4326)
-plotdataejectives<-st_transform(plotdataejectives, crs=3832)
-plot(plotdataejectives, pch=21, col="white", bg="black", cex=1.2, add=T)
+plotdataejectives <- drop_na(elevdata %>% filter(NonMarginal02 == T) %>% select(latitude, longitude))
+plotdataejectives <- st_as_sf(plotdataejectives, coords = c("longitude", "latitude"), crs = 4326)
+plotdataejectives <- st_transform(plotdataejectives, crs = 3832)
+plot(plotdataejectives, pch = 21, col = "white", bg = "black", cex = 1.2, add = T)
 ```
 
 ![](Maps_and_descriptive_statistics_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
@@ -94,22 +94,22 @@ plot(plotdataejectives, pch=21, col="white", bg="black", cex=1.2, add=T)
 Subset data
 
 ``` r
-uvulars<-elevdata %>% filter(NonMarginal01==T)
-nouvulars<-elevdata %>% filter(NonMarginal01==F)
-ejectives<-elevdata %>% filter(NonMarginal02==T)
-noejectives<-elevdata %>% filter(NonMarginal02==F)
+uvulars <- elevdata %>% filter(NonMarginal01 == T)
+nouvulars <- elevdata %>% filter(NonMarginal01 == F)
+ejectives <- elevdata %>% filter(NonMarginal02 == T)
+noejectives <- elevdata %>% filter(NonMarginal02 == F)
 ```
 
 Compute global means and median values
 
 ``` r
-mean(uvulars$elevation, na.rm=1)
+mean(uvulars$elevation, na.rm = 1)
 ```
 
     ## [1] 1136.301
 
 ``` r
-median(uvulars$elevation, na.rm=1)
+median(uvulars$elevation, na.rm = 1)
 ```
 
     ## [1] 623
@@ -117,13 +117,13 @@ median(uvulars$elevation, na.rm=1)
     ## [1] 1136.301
 
 ``` r
-mean(nouvulars$elevation, na.rm=1)
+mean(nouvulars$elevation, na.rm = 1)
 ```
 
     ## [1] 590.1413
 
 ``` r
-median(nouvulars$elevation, na.rm=1)
+median(nouvulars$elevation, na.rm = 1)
 ```
 
     ## [1] 306
@@ -131,13 +131,13 @@ median(nouvulars$elevation, na.rm=1)
     ## [1] 590.1413
 
 ``` r
-mean(ejectives$elevation, na.rm=1)
+mean(ejectives$elevation, na.rm = 1)
 ```
 
     ## [1] 1236.913
 
 ``` r
-median(ejectives$elevation, na.rm=1)
+median(ejectives$elevation, na.rm = 1)
 ```
 
     ## [1] 1136
@@ -145,13 +145,13 @@ median(ejectives$elevation, na.rm=1)
     ## [1] 1236.913
 
 ``` r
-mean(noejectives$elevation, na.rm=1)
+mean(noejectives$elevation, na.rm = 1)
 ```
 
     ## [1] 606.0188
 
 ``` r
-median(noejectives$elevation, na.rm=1)
+median(noejectives$elevation, na.rm = 1)
 ```
 
     ## [1] 304.5
@@ -161,7 +161,7 @@ median(noejectives$elevation, na.rm=1)
 Compute means and median values by area
 
 ``` r
-aggregate(elevation~macroarea2, FUN='mean', data=uvulars)
+aggregate(elevation ~ macroarea2, FUN = "mean", data = uvulars)
 ```
 
     ##               macroarea2 elevation
@@ -176,7 +176,7 @@ aggregate(elevation~macroarea2, FUN='mean', data=uvulars)
     ## 9           Western Asia  875.2143
 
 ``` r
-aggregate(elevation~macroarea2, FUN='median', data=uvulars)
+aggregate(elevation ~ macroarea2, FUN = "median", data = uvulars)
 ```
 
     ##               macroarea2 elevation
@@ -202,7 +202,7 @@ aggregate(elevation~macroarea2, FUN='median', data=uvulars)
     ## 9           Western Asia  875.2143
 
 ``` r
-aggregate(elevation~macroarea2, FUN='mean', data=nouvulars)
+aggregate(elevation ~ macroarea2, FUN = "mean", data = nouvulars)
 ```
 
     ##                macroarea2 elevation
@@ -219,7 +219,7 @@ aggregate(elevation~macroarea2, FUN='mean', data=nouvulars)
     ## 11           Western Asia 1340.6000
 
 ``` r
-aggregate(elevation~macroarea2, FUN='median', data=nouvulars)
+aggregate(elevation ~ macroarea2, FUN = "median", data = nouvulars)
 ```
 
     ##                macroarea2 elevation
@@ -249,7 +249,7 @@ aggregate(elevation~macroarea2, FUN='median', data=nouvulars)
     ## 11           Western Asia 1340.6000
 
 ``` r
-aggregate(elevation~macroarea2, FUN='mean', data=ejectives)
+aggregate(elevation ~ macroarea2, FUN = "mean", data = ejectives)
 ```
 
     ##         macroarea2 elevation
@@ -262,7 +262,7 @@ aggregate(elevation~macroarea2, FUN='mean', data=ejectives)
     ## 7     Western Asia 1182.0000
 
 ``` r
-aggregate(elevation~macroarea2, FUN='median', data=ejectives)
+aggregate(elevation ~ macroarea2, FUN = "median", data = ejectives)
 ```
 
     ##         macroarea2 elevation
@@ -284,7 +284,7 @@ aggregate(elevation~macroarea2, FUN='median', data=ejectives)
     ## 7     Western Asia 1182.0000
 
 ``` r
-aggregate(elevation~macroarea2, FUN='mean', data=noejectives)
+aggregate(elevation ~ macroarea2, FUN = "mean", data = noejectives)
 ```
 
     ##                macroarea2 elevation
@@ -301,7 +301,7 @@ aggregate(elevation~macroarea2, FUN='mean', data=noejectives)
     ## 11           Western Asia  948.5333
 
 ``` r
-aggregate(elevation~macroarea2, FUN='median', data=noejectives)
+aggregate(elevation ~ macroarea2, FUN = "median", data = noejectives)
 ```
 
     ##                macroarea2 elevation
@@ -333,7 +333,7 @@ aggregate(elevation~macroarea2, FUN='median', data=noejectives)
 Compute number of observations by area
 
 ``` r
-aggregate(NonMarginal01~macroarea2, FUN=length, data=uvulars)
+aggregate(NonMarginal01 ~ macroarea2, FUN = length, data = uvulars)
 ```
 
     ##               macroarea2 NonMarginal01
@@ -359,7 +359,7 @@ aggregate(NonMarginal01~macroarea2, FUN=length, data=uvulars)
     ## 9           Western Asia            16
 
 ``` r
-aggregate(NonMarginal01~macroarea2, FUN=length, data=nouvulars)
+aggregate(NonMarginal01 ~ macroarea2, FUN = length, data = nouvulars)
 ```
 
     ##                macroarea2 NonMarginal01
@@ -389,7 +389,7 @@ aggregate(NonMarginal01~macroarea2, FUN=length, data=nouvulars)
     ## 11           Western Asia             5
 
 ``` r
-aggregate(NonMarginal02~macroarea2, FUN=length, data=ejectives)
+aggregate(NonMarginal02 ~ macroarea2, FUN = length, data = ejectives)
 ```
 
     ##         macroarea2 NonMarginal02
@@ -411,7 +411,7 @@ aggregate(NonMarginal02~macroarea2, FUN=length, data=ejectives)
     ## 7     Western Asia             4
 
 ``` r
-aggregate(NonMarginal02~macroarea2, FUN=length, data=noejectives)
+aggregate(NonMarginal02 ~ macroarea2, FUN = length, data = noejectives)
 ```
 
     ##                macroarea2 NonMarginal02
@@ -443,25 +443,31 @@ aggregate(NonMarginal02~macroarea2, FUN=length, data=noejectives)
 ## Plot distribution of number of uvulars and ejectives depending on altitude
 
 ``` r
-nobservations <- function(x){return(c(y = 6000, label = length(x)))}
+nobservations <- function(x) {
+  return(c(y = 6000, label = length(x)))
+}
 
-elevdata %>% filter(Nonmarginal_Uvular < 15) %>%
-  ggplot(aes(group=Nonmarginal_Uvular, x=Nonmarginal_Uvular, y=elevation)) +
-  geom_boxplot(outlier.alpha=0.1) +
+elevdata %>%
+  filter(Nonmarginal_Uvular < 15) %>%
+  ggplot(aes(group = Nonmarginal_Uvular, x = Nonmarginal_Uvular, y = elevation)) +
+  geom_boxplot(outlier.alpha = 0.1) +
   stat_summary(fun.data = nobservations, geom = "text", fun = median) +
-  labs(x="Number of uvular consonants", y ="Elevation")
+  labs(x = "Number of uvular consonants", y = "Elevation")
 ```
 
 ![](Maps_and_descriptive_statistics_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
 
 ``` r
-nobservations <- function(x){return(c(y = 6000, label = length(x)))}
+nobservations <- function(x) {
+  return(c(y = 6000, label = length(x)))
+}
 
-elevdata %>% filter(Nonmarginal_Ejective < 15) %>% 
-  ggplot(aes(group=Nonmarginal_Ejective, x=Nonmarginal_Ejective, y=elevation)) +
-  geom_boxplot(outlier.alpha=0.1) +
+elevdata %>%
+  filter(Nonmarginal_Ejective < 15) %>%
+  ggplot(aes(group = Nonmarginal_Ejective, x = Nonmarginal_Ejective, y = elevation)) +
+  geom_boxplot(outlier.alpha = 0.1) +
   stat_summary(fun.data = nobservations, geom = "text", fun = median) +
-  labs(x="Number of ejective consonants", y ="Elevation")
+  labs(x = "Number of ejective consonants", y = "Elevation")
 ```
 
 ![](Maps_and_descriptive_statistics_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
