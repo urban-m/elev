@@ -54,7 +54,7 @@ elevdata <- mutate(elevdata, NonMarginal02 = as.logical(Nonmarginal_Ejective), N
 ## Ejectives
 
 ``` r
-png(file="fig1_pacific_centered.png", width=2013, height = 1656)
+png(file="fig1_pacific_centered.tiff", width=2013, height = 1656)
 map <- openmap(c(78, -180), c(-62, 180), type = "nps", minNumTiles = 100)
 map <- openproj(map, projection = "+init=epsg:3832")
 plot(map)
@@ -73,7 +73,7 @@ dev.off()
 ## Uvulars
 
 ``` r
-png(file="fig2_pacific_centered.png", width=2013, height = 1656)
+png(file="fig2_pacific_centered.tiff", width=2013, height = 1656)
 map <- openmap(c(78, -180), c(-62, 180), type = "nps", minNumTiles = 100)
 map <- openproj(map, projection = "+init=epsg:3832")
 plot(map)
