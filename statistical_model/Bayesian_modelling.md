@@ -2,7 +2,7 @@ Bayesian modelling of ejectives and uvulars depending on altitude and
 ancillary analyses
 ================
 Matthias Urban
-21 November, 2020
+23 Dezember, 2020
 
 # Overview
 
@@ -155,14 +155,14 @@ elevmodeluvulars_pred <- as.numeric(elevmodeluvulars_pred > mean(modelled_elevda
 
     ##          observed
     ## predicted    0    1
-    ##         0 1482   40
-    ##         1  293  216
+    ##         0 1330  192
+    ##         1  445   64
 
 ``` r
 (acc_elevmodeluvulars <- sum(diag(classtab_elevmodeluvulars)) / sum(classtab_elevmodeluvulars))
 ```
 
-    ## [1] 0.8360414
+    ## [1] 0.6863614
 
 Assess posterior probability versus chance
 
@@ -261,14 +261,14 @@ elevmodeluvularswithoutrhotics_pred <- as.numeric(elevmodeluvularswithoutrhotics
 
     ##          observed
     ## predicted    0    1
-    ##         0 1531   34
-    ##         1  262  204
+    ##         0 1385  180
+    ##         1  408   58
 
 ``` r
 (acc_elevmodeluvularswithoutrhotics <- sum(diag(classtab_elevmodeluvularswithoutrhotics)) / sum(classtab_elevmodeluvularswithoutrhotics))
 ```
 
-    ## [1] 0.854259
+    ## [1] 0.7104874
 
 Assess posterior probability versus chance
 
@@ -367,14 +367,14 @@ elevmodelejectives_pred <- as.numeric(elevmodelejectives_pred > mean(modelled_el
 
     ##          observed
     ## predicted    0    1
-    ##         0 1699   10
-    ##         1  159  163
+    ##         0 1561  148
+    ##         1  297   25
 
 ``` r
 (acc_elevmodelejectives <- sum(diag(classtab_elevmodelejectives)) / sum(classtab_elevmodelejectives))
 ```
 
-    ## [1] 0.9167898
+    ## [1] 0.7808961
 
 Assess posterior probability versus chance
 
@@ -472,25 +472,22 @@ summary(lm(ejectiveproportionarea$NonMarginal02 ~ medianelevarea$elevation))
 Plot results
 
 ``` r
-plot(medianelevarea$elevation, uvularproportionarea$NonMarginal01, bg = "black", pch = 21, xlab = "Median elevation per area", ylab = "Proportion Uvulars")
-lines(lowess(medianelevarea$elevation, uvularproportionarea$NonMarginal01, f = 10, iter = 10))
-```
-
-![](Bayesian_modelling_files/figure-gfm/unnamed-chunk-29-1.png)<!-- -->
-
-``` r
-plot(medianelevarea$elevation, uvularwithoutrhoticsproportionarea$NonMarginal03, bg = "black", pch = 21, xlab = "Median elevation per area", ylab = "Proportion Uvulars without Rhotics")
-lines(lowess(medianelevarea$elevation, uvularwithoutrhoticsproportionarea$NonMarginal03, f = 10, iter = 10))
-```
-
-![](Bayesian_modelling_files/figure-gfm/unnamed-chunk-29-2.png)<!-- -->
-
-``` r
-plot(medianelevarea$elevation, ejectiveproportionarea$NonMarginal02, bg = "black", pch = 21, xlab = "Median elevation per area", ylab = "Proportion Ejectives")
+png(file="fig4a_updated.png", width=1342, height=1104)
+plot(medianelevarea$elevation, ejectiveproportionarea$NonMarginal02, bg = "black", pch = 21, xlab = "Median elevation per area", ylab = "", cex.lab=2.5)
+title(ylab="Proportion Ejectives", line=2.2, cex.lab=2.5)
 lines(lowess(medianelevarea$elevation, ejectiveproportionarea$NonMarginal02, f = 10, iter = 10))
+dev.off()
+png(file="fig4b_updated.png", width=1342, height=1104)
+plot(medianelevarea$elevation, uvularproportionarea$NonMarginal01, bg = "black", pch = 21, xlab = "Median elevation per area", ylab = "", cex.lab=2.5)
+title(ylab="Proportion Uvulars", line=2.2, cex.lab=2.5)
+lines(lowess(medianelevarea$elevation, uvularproportionarea$NonMarginal01, f = 10, iter = 10))
+dev.off()
+png(file="fig4c_updated.png", width=1342, height=1104)
+plot(medianelevarea$elevation, uvularwithoutrhoticsproportionarea$NonMarginal03, bg = "black", pch = 21, xlab = "Median elevation per area", ylab = "", cex.lab=2.5)
+title(ylab="Proportion Uvulars without Rhotics", line=2.2, cex.lab=2.5)
+lines(lowess(medianelevarea$elevation, uvularwithoutrhoticsproportionarea$NonMarginal03, f = 10, iter = 10))
+dev.off()
 ```
-
-![](Bayesian_modelling_files/figure-gfm/unnamed-chunk-29-3.png)<!-- -->
 
 ### By family
 
@@ -577,22 +574,19 @@ summary(lm(ejectiveproportionfamily$NonMarginal02 ~ medianelevfamily$elevation))
 Plot results
 
 ``` r
-plot(medianelevfamily$elevation, uvularproportionfamily$NonMarginal01, bg = "black", pch = 21, xlab = "Median elevation per family", ylab = "Proportion Uvulars")
-lines(lowess(medianelevfamily$elevation, uvularproportionfamily$NonMarginal01, f = 10, iter = 10))
-```
-
-![](Bayesian_modelling_files/figure-gfm/unnamed-chunk-33-1.png)<!-- -->
-
-``` r
-plot(medianelevfamily$elevation, uvularwithoutrhoticsproportionfamily$NonMarginal03, bg = "black", pch = 21, xlab = "Median elevation per family", ylab = "Proportion Uvulars without Rhotics")
-lines(lowess(medianelevfamily$elevation, uvularwithoutrhoticsproportionfamily$NonMarginal03, f = 10, iter = 10))
-```
-
-![](Bayesian_modelling_files/figure-gfm/unnamed-chunk-33-2.png)<!-- -->
-
-``` r
-plot(medianelevfamily$elevation, ejectiveproportionfamily$NonMarginal02, bg = "black", pch = 21, xlab = "Median elevation per family", ylab = "Proportion Ejectives")
+png(file="fig5a_updated.png", width=1342, height=1104)
+plot(medianelevfamily$elevation, ejectiveproportionfamily$NonMarginal02, bg = "black", pch = 21, xlab = "Median elevation per family", ylab = "", cex.lab=2.5)
+title(ylab="Proportion Ejectives", line=2.2, cex.lab=2.5)
 lines(lowess(medianelevfamily$elevation, ejectiveproportionfamily$NonMarginal02, f = 10, iter = 10))
+dev.off()
+png(file="fig5b_updated.png", width=1342, height=1104)
+plot(medianelevfamily$elevation, uvularproportionfamily$NonMarginal01, bg = "black", pch = 21, xlab = "Median elevation per family", ylab = "", cex.lab=2.5)
+lines(lowess(medianelevfamily$elevation, uvularproportionfamily$NonMarginal01, f = 10, iter = 10))
+title(ylab="Proportion Uvulars", line=2.2, cex.lab=2.5)
+dev.off()
+png(file="fig5c_updated.png", width=1342, height=1104)
+plot(medianelevfamily$elevation, uvularwithoutrhoticsproportionfamily$NonMarginal03, bg = "black", pch = 21, xlab = "Median elevation per family", ylab = "", cex.lab=2.5)
+title(ylab="Proportion Uvulars without Rhotics", line=2.2, cex.lab=2.5)
+lines(lowess(medianelevfamily$elevation, uvularwithoutrhoticsproportionfamily$NonMarginal03, f = 10, iter = 10))
+dev.off()
 ```
-
-![](Bayesian_modelling_files/figure-gfm/unnamed-chunk-33-3.png)<!-- -->
