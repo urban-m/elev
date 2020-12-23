@@ -1,7 +1,7 @@
 Production of maps and plots for descriptive statistics
 ================
 Matthias Urban
-21 Dezember, 2020
+23 Dezember, 2020
 
 # Required packages
 
@@ -54,7 +54,7 @@ elevdata <- mutate(elevdata, NonMarginal02 = as.logical(Nonmarginal_Ejective), N
 ## Ejectives
 
 ``` r
-png(file="fig1_pacific_centered.tiff", width=2013, height = 1656)
+tiff(file="fig1_pacific_centered.tiff", width=2013, height = 1656)
 map <- openmap(c(78, -180), c(-62, 180), type = "nps", minNumTiles = 100)
 map <- openproj(map, projection = "+init=epsg:3832")
 plot(map)
@@ -73,7 +73,7 @@ dev.off()
 ## Uvulars
 
 ``` r
-png(file="fig2_pacific_centered.tiff", width=2013, height = 1656)
+tiff(file="fig2_pacific_centered.tiff", width=2013, height = 1656)
 map <- openmap(c(78, -180), c(-62, 180), type = "nps", minNumTiles = 100)
 map <- openproj(map, projection = "+init=epsg:3832")
 plot(map)
@@ -448,28 +448,30 @@ aggregate(NonMarginal02 ~ macroarea2, FUN = length, data = noejectives)
 nobservations <- function(x) {
   return(c(y = 6000, label = length(x)))
 }
-
+png(file="fig3b_updated.png", width=1342, height=1104)
 elevdata %>%
   filter(Nonmarginal_Uvular < 15) %>%
   ggplot(aes(group = Nonmarginal_Uvular, x = Nonmarginal_Uvular, y = elevation)) +
   geom_boxplot(outlier.alpha = 0.1) +
-  stat_summary(fun.data = nobservations, geom = "text", fun = median) +
-  labs(x = "Number of uvular consonants", y = "Elevation")
+  stat_summary(fun.data = nobservations, geom = "text", fun = median, size=10) +
+  labs(x = "Number of uvular consonants", y = "Elevation") +
+  theme(axis.text=element_text(size=16),
+        axis.title=element_text(size=24,face="bold"))
+dev.off()
 ```
-
-![](Maps_and_descriptive_statistics_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
 
 ``` r
 nobservations <- function(x) {
   return(c(y = 6000, label = length(x)))
 }
-
+png(file="fig3a_updated.png", width=1342, height=1104)
 elevdata %>%
   filter(Nonmarginal_Ejective < 15) %>%
   ggplot(aes(group = Nonmarginal_Ejective, x = Nonmarginal_Ejective, y = elevation)) +
   geom_boxplot(outlier.alpha = 0.1) +
-  stat_summary(fun.data = nobservations, geom = "text", fun = median) +
-  labs(x = "Number of ejective consonants", y = "Elevation")
+  stat_summary(fun.data = nobservations, geom = "text", fun = median, size=10) +
+  labs(x = "Number of ejective consonants", y = "Elevation")+
+  theme(axis.text=element_text(size=16),
+        axis.title=element_text(size=24,face="bold"))
+dev.off()
 ```
-
-![](Maps_and_descriptive_statistics_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
