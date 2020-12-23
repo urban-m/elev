@@ -212,7 +212,7 @@ plot(medianelevarea$elevation, uvularproportionarea$NonMarginal01, bg = "black",
 title(ylab="Proportion Uvulars", line=2.2, cex.lab=2.5)
 lines(lowess(medianelevarea$elevation, uvularproportionarea$NonMarginal01, f = 10, iter = 10))
 dev.off()
-tiff(file="fig4b_updated.tiff", width=972, height=800)
+tiff(file="fig4c_updated.tiff", width=972, height=800)
 plot(medianelevarea$elevation, uvularwithoutrhoticsproportionarea$NonMarginal03, bg = "black", pch = 21, xlab = "Median elevation per area", ylab = "", cex.lab=2.5)
 title(ylab="Proportion Uvulars without Rhotics", line=2.2, cex.lab=2.5)
 lines(lowess(medianelevarea$elevation, uvularwithoutrhoticsproportionarea$NonMarginal03, f = 10, iter = 10))
