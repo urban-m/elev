@@ -429,7 +429,7 @@ map$cols[1:length(map$cols)] <- rev(map$cols[1:length(map$cols)])
 # p
 
 # Save figure for publication
-tiff('figures/simmap_ejectives_st.tiff', res=300, compression = 'lzw', units="in", width=5.2, height=6)
+tiff('figures/simmap_uvulars_st.tiff', res=300, compression = 'lzw', units="in", width=5.2, height=6)
 plot(map,
      lwd=3,
      fsize=c(0.5,0.6), 
