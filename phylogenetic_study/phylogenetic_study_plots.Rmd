@@ -80,9 +80,12 @@ Here are the traits plotted on the pruned phylogeny.
 ```{r distribution_ejectives_uvulars_ie, message=FALSE, warning=FALSE}
 load('trees/ie-c-trees.Rdata')
 traits.print <- pr_sum_tree$data %>% select(-taxa)
+
 p <- reverse.time(ggtree(pr_sum_tree$tree, ladderize=T, right=T)) +
   geom_tiplab(align=T, linesize = .1, size = 2) 
 plot.tree(p, traits.print)
+
+ggsave("figures/distribution_ejectives_uvulars_ie.tiff", dpi=300, compression = 'lzw')
 ```
 
 With this data, the IE pruned tree has this many data points:
@@ -90,7 +93,6 @@ With this data, the IE pruned tree has this many data points:
 ```{r}
 nrow(pr_sum_tree$data)
 ```
-
 
 Here are the stochastic character maps.
 
@@ -107,13 +109,30 @@ names(data) <- pr_sum_tree$data$taxa
 treemaps <- make.simmap(pr_sum_tree$tree, data, model="ARD", nsim=10, Q="empirical", pi="estimated")
 
 # Plot simmap
-map = densityMap(treemaps, plot=F, res=300)
+map = densityMap(treemaps, plot=FALSE, res=300)
 map$cols[1:length(map$cols)] <- rev(map$cols[1:length(map$cols)])
-p <- plot(map, outline=T, lwd=c(3,3),
-          fsize=c(0.6,0.6), ftype='reg', 
-          legend=2000, leg.txt=c("0",paste0("Posterior Probability (Y)"),"1"))
-title(main="Ejectives")
-p
+
+# Save figure for publication
+tiff('figures/simmap_ejectives_ie.tiff', res=300, compression = 'lzw', units="in", width=5.2, height=6)
+plot(map,
+     lwd=3,
+     fsize=c(0.5,0.6), 
+     ftype="reg",
+     outline=TRUE,
+     legend=2000,
+     leg.txt=c("0", 
+               paste0("Posterior Probability (Y)"),"1"))
+# par(mar=c(5.1,4.1,4.1,2.1))
+dev.off()
+
+plot(map,
+     lwd=3,
+     fsize=c(0.5,0.6), 
+     ftype="reg",
+     outline=TRUE,
+     legend=2000,
+     leg.txt=c("0", 
+               paste0("Posterior Probability (Y)"),"1"))
 ```
 
 For uvulars:
@@ -131,11 +150,34 @@ treemaps <- make.simmap(pr_sum_tree$tree, data, model="ARD", nsim=10, Q="empiric
 # Plot simmap
 map = densityMap(treemaps, plot=F, res=300)
 map$cols[1:length(map$cols)] <- rev(map$cols[1:length(map$cols)])
-p <- plot(map, outline=T, lwd=c(3,3),
-          fsize=c(0.6,0.6), ftype='reg', 
-          legend=2000, leg.txt=c("0",paste0("Posterior Probability (Y)"),"1"))
-title(main="Uvulars")
-p
+
+#p <- plot(map, outline=T, lwd=c(3,3),
+#          fsize=c(0.6,0.6), ftype='reg', 
+#          legend=2000, leg.txt=c("0",paste0("Posterior Probability (Y)"),"1"))
+#title(main="Uvulars")
+#p
+
+# Save figure for publication
+tiff('figures/simmap_uvulars_ie.tiff', res=300, compression = 'lzw', units="in", width=5.2, height=6)
+plot(map,
+     lwd=3,
+     fsize=c(0.5,0.6), 
+     ftype="reg",
+     outline=TRUE,
+     legend=2000,
+     leg.txt=c("0", 
+               paste0("Posterior Probability (Y)"),"1"))
+# par(mar=c(5.1,4.1,4.1,2.1))
+dev.off()
+
+plot(map,
+     lwd=3,
+     fsize=c(0.5,0.6), 
+     ftype="reg",
+     outline=TRUE,
+     legend=2000,
+     leg.txt=c("0", 
+               paste0("Posterior Probability (Y)"),"1"))
 ```
 
 
@@ -153,6 +195,8 @@ traits.print <- pr_sum_tree$data %>% select(-taxa)
 p <- reverse.time(ggtree(pr_sum_tree$tree, ladderize=T, right=T)) +
   geom_tiplab(align=T, linesize = .1, size = 2) 
 plot.tree(p, traits.print)
+
+ggsave("figures/distribution_ejectives_uvulars_st.tiff", dpi=300, compression = 'lzw')
 ```
 
 With this data, the ST pruned tree has this many data points:
@@ -175,11 +219,34 @@ treemaps <- make.simmap(pr_sum_tree$tree, data, model="ARD", nsim=10, Q="empiric
 # Plot simmap
 map = densityMap(treemaps, plot=F, res=300)
 map$cols[1:length(map$cols)] <- rev(map$cols[1:length(map$cols)])
-p <- plot(map, outline=T, lwd=c(3,3),
-          fsize=c(0.6,0.6), ftype='reg', 
-          legend=2000, leg.txt=c("0",paste0("Posterior Probability (Y)"),"1"))
-title(main="Ejectives")
-p
+
+#p <- plot(map, outline=T, lwd=c(3,3),
+#          fsize=c(0.6,0.6), ftype='reg', 
+#          legend=2000, leg.txt=c("0",paste0("Posterior Probability (Y)"),"1"))
+#title(main="Ejectives")
+#p
+
+# Save figure for publication
+tiff('figures/simmap_ejectives_st.tiff', res=300, compression = 'lzw', units="in", width=5.2, height=6)
+plot(map,
+     lwd=3,
+     fsize=c(0.5,0.6), 
+     ftype="reg",
+     outline=TRUE,
+     legend=2000,
+     leg.txt=c("0", 
+               paste0("Posterior Probability (Y)"),"1"))
+# par(mar=c(5.1,4.1,4.1,2.1))
+dev.off()
+
+plot(map,
+     lwd=3,
+     fsize=c(0.5,0.6), 
+     ftype="reg",
+     outline=TRUE,
+     legend=2000,
+     leg.txt=c("0", 
+               paste0("Posterior Probability (Y)"),"1"))
 ```
 
 For uvulars:
@@ -197,11 +264,34 @@ treemaps <- make.simmap(pr_sum_tree$tree, data, model="ARD", nsim=10, Q="empiric
 # Plot simmap
 map = densityMap(treemaps, plot=F, res=300)
 map$cols[1:length(map$cols)] <- rev(map$cols[1:length(map$cols)])
-p <- plot(map, outline=T, lwd=c(3,3),
-          fsize=c(0.6,0.6), ftype='reg', 
-          legend=2000, leg.txt=c("0",paste0("Posterior Probability (Y)"),"1"))
-title(main="Uvulars")
-p
+
+#p <- plot(map, outline=T, lwd=c(3,3),
+#          fsize=c(0.6,0.6), ftype='reg', 
+#          legend=2000, leg.txt=c("0",paste0("Posterior Probability (Y)"),"1"))
+#title(main="Uvulars")
+# p
+
+# Save figure for publication
+tiff('figures/simmap_ejectives_st.tiff', res=300, compression = 'lzw', units="in", width=5.2, height=6)
+plot(map,
+     lwd=3,
+     fsize=c(0.5,0.6), 
+     ftype="reg",
+     outline=TRUE,
+     legend=2000,
+     leg.txt=c("0", 
+               paste0("Posterior Probability (Y)"),"1"))
+# par(mar=c(5.1,4.1,4.1,2.1))
+dev.off()
+
+plot(map,
+     lwd=3,
+     fsize=c(0.5,0.6), 
+     ftype="reg",
+     outline=TRUE,
+     legend=2000,
+     leg.txt=c("0", 
+               paste0("Posterior Probability (Y)"),"1"))
 ```
 
 

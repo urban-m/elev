@@ -2,10 +2,9 @@ Phylogenetic study of ejectives and uvulars (presense / absence) in IE
 and ST
 ================
 Steven Moran
-21 September, 2020
+24 December, 2020
 
-Analyses
-========
+# Analyses
 
 For each prune phylogeny we plot the trait coverage (has or does not
 have ejectives and uvulars) and then we generate stochasic character
@@ -21,14 +20,12 @@ References
 
 -   Moran, Steven & McCloy, Daniel (eds.) 2019.PHOIBLE 2.0. Jena: Max
     Planck Institute for the Science of Human History. (Available online
-    at <a href="http://phoible.org" class="uri">http://phoible.org</a>,
-    Accessed on 2020-05-16.)
+    at <http://phoible.org>, Accessed on 2020-05-16.)
 
 -   Hammarström, Harald & Forkel, Robert & Haspelmath, Martin & Bank,
     Sebastian. 2020. Glottolog 4.2.1. Jena: Max Planck Institute for the
     Science of Human History. (Available online at
-    <a href="http://glottolog.org" class="uri">http://glottolog.org</a>,
-    Accessed on 2020-05-16.)
+    <http://glottolog.org>, Accessed on 2020-05-16.)
 
 To generate stochastic character maps (Nielsen, 2002; Huelsenbeck et.
 al, 2003; Revell, 20120) we use the `phytools::make.simmap` function for
@@ -49,43 +46,44 @@ References
     biology (and other things). Methods Ecol. Evol. 3, 217–223 (2012).
     doi: 10.1111/j.2041-210X.2011.00169.x
 
-<!-- -->
+``` r
+library(dplyr)
+library(ggtree)
+library(ggplot2) # http://bioconductor.org/packages/release/bioc/html/ggtree.html
 
-    library(dplyr)
-    library(ggtree)
-    library(ggplot2) # http://bioconductor.org/packages/release/bioc/html/ggtree.html
+library(phytools)
+library(phylotools)
+source('lib/functions.R')
 
-    library(phytools)
-    library(phylotools)
-    source('lib/functions.R')
-
-    load("trees/traits.Rdata")
+load("trees/traits.Rdata")
+```
 
 Plot function.
 
-    # Define color schema
-    color.scheme <- c('blue','red')
-    names(color.scheme) <- c('Y','N')
+``` r
+# Define color schema
+color.scheme <- c('blue','red')
+names(color.scheme) <- c('Y','N')
 
-    # Function to reverse time in the plot
-    reverse.time <- function(p) { p$data$x <- p$data$x - max(p$data$x); return(p) }
+# Function to reverse time in the plot
+reverse.time <- function(p) { p$data$x <- p$data$x - max(p$data$x); return(p) }
 
-    # Create tree and heatmap figure
-    plot.tree <- function(pr_sum_tree_plot, features_plot) {
-      gheatmap(pr_sum_tree_plot, features_plot,
-               colnames_position='top', color='black',
-               colnames_offset_y = 0.1, font.size = 2.5,
-               width=0.4, offset = 8) +
-        scale_fill_manual(name="", values=color.scheme) + 
-        scale_x_continuous(breaks=c(-6000,-4000,-2000,0)) +
-        scale_y_continuous(expand = c(-0.01, 1)) +
-        theme_tree2(axis.text.x=element_text(size=8)) +
-        theme(legend.position='none',  
-              axis.ticks=element_line(color='grey'))
-    }
+# Create tree and heatmap figure
+plot.tree <- function(pr_sum_tree_plot, features_plot) {
+  gheatmap(pr_sum_tree_plot, features_plot,
+           colnames_position='top', color='black',
+           colnames_offset_y = 0.1, font.size = 2.5,
+           width=0.4, offset = 8) +
+    scale_fill_manual(name="", values=color.scheme) + 
+    scale_x_continuous(breaks=c(-6000,-4000,-2000,0)) +
+    scale_y_continuous(expand = c(-0.01, 1)) +
+    theme_tree2(axis.text.x=element_text(size=8)) +
+    theme(legend.position='none',  
+          axis.ticks=element_line(color='grey'))
+}
+```
 
-Indo-European
--------------
+## Indo-European
 
 The phylogeny comes from:
 
@@ -95,17 +93,26 @@ The phylogeny comes from:
 
 Here are the traits plotted on the pruned phylogeny.
 
-    load('trees/ie-c-trees.Rdata')
-    traits.print <- pr_sum_tree$data %>% select(-taxa)
-    p <- reverse.time(ggtree(pr_sum_tree$tree, ladderize=T, right=T)) +
-      geom_tiplab(align=T, linesize = .1, size = 2) 
-    plot.tree(p, traits.print)
+``` r
+load('trees/ie-c-trees.Rdata')
+traits.print <- pr_sum_tree$data %>% select(-taxa)
+
+p <- reverse.time(ggtree(pr_sum_tree$tree, ladderize=T, right=T)) +
+  geom_tiplab(align=T, linesize = .1, size = 2) 
+plot.tree(p, traits.print)
+```
 
 ![](phylogenetic_study_plots_files/figure-gfm/distribution_ejectives_uvulars_ie-1.png)<!-- -->
 
+``` r
+ggsave("figures/distribution_ejectives_uvulars_ie.tiff", dpi=300, compression = 'lzw')
+```
+
 With this data, the IE pruned tree has this many data points:
 
-    nrow(pr_sum_tree$data)
+``` r
+nrow(pr_sum_tree$data)
+```
 
     ## [1] 58
 
@@ -113,21 +120,24 @@ Here are the stochastic character maps.
 
 For ejectives:
 
-    data <- pr_sum_tree$tree[["tip.label"]]
-    data <- data.matrix(data)
+``` r
+data <- pr_sum_tree$tree[["tip.label"]]
+data <- data.matrix(data)
 
-    data <- pr_sum_tree$data[, "has_ejectives"]
-    names(data) <- pr_sum_tree$data$taxa
+data <- pr_sum_tree$data[, "has_ejectives"]
+names(data) <- pr_sum_tree$data$taxa
 
-    # Generate simmmap data: empirical = q has the maximum probablity; full bayesian = mcmc, pi=estimated
-    treemaps <- make.simmap(pr_sum_tree$tree, data, model="ARD", nsim=10, Q="empirical", pi="estimated")
+# Generate simmmap data: empirical = q has the maximum probablity; full bayesian = mcmc, pi=estimated
+treemaps <- make.simmap(pr_sum_tree$tree, data, model="ARD", nsim=10, Q="empirical", pi="estimated")
+```
 
     ## Using pi estimated from the stationary distribution of Q assuming a flat prior.
     ## pi =
     ##        N        Y 
     ## 0.939401 0.060599 
     ## 
-    ## make.simmap is sampling character histories conditioned on the transition matrix
+    ## make.simmap is sampling character histories conditioned on
+    ## the transition matrix
     ## 
     ## Q =
     ##               N            Y
@@ -141,40 +151,66 @@ For ejectives:
 
     ## Done.
 
-    # Plot simmap
-    map = densityMap(treemaps, plot=F, res=300)
+``` r
+# Plot simmap
+map = densityMap(treemaps, plot=FALSE, res=300)
+```
 
     ## sorry - this might take a while; please be patient
 
-    map$cols[1:length(map$cols)] <- rev(map$cols[1:length(map$cols)])
-    p <- plot(map, outline=T, lwd=c(3,3),
-              fsize=c(0.6,0.6), ftype='reg', 
-              legend=2000, leg.txt=c("0",paste0("Posterior Probability (Y)"),"1"))
-    title(main="Ejectives")
+``` r
+map$cols[1:length(map$cols)] <- rev(map$cols[1:length(map$cols)])
+
+# Save figure for publication
+tiff('figures/simmap_ejectives_ie.tiff', res=300, compression = 'lzw', units="in", width=5.2, height=6)
+plot(map,
+     lwd=3,
+     fsize=c(0.5,0.6), 
+     ftype="reg",
+     outline=TRUE,
+     legend=2000,
+     leg.txt=c("0", 
+               paste0("Posterior Probability (Y)"),"1"))
+# par(mar=c(5.1,4.1,4.1,2.1))
+dev.off()
+```
+
+    ## quartz_off_screen 
+    ##                 2
+
+``` r
+plot(map,
+     lwd=3,
+     fsize=c(0.5,0.6), 
+     ftype="reg",
+     outline=TRUE,
+     legend=2000,
+     leg.txt=c("0", 
+               paste0("Posterior Probability (Y)"),"1"))
+```
 
 ![](phylogenetic_study_plots_files/figure-gfm/simmap_ejectives_ie-1.png)<!-- -->
 
-    p
-
-    ## [1] 0
-
 For uvulars:
 
-    data <- pr_sum_tree$tree[["tip.label"]]
-    data <- data.matrix(data)
+``` r
+data <- pr_sum_tree$tree[["tip.label"]]
+data <- data.matrix(data)
 
-    data <- pr_sum_tree$data[, "has_uvulars"]
-    names(data) <- pr_sum_tree$data$taxa
+data <- pr_sum_tree$data[, "has_uvulars"]
+names(data) <- pr_sum_tree$data$taxa
 
-    # Generate simmmap data: empirical = q has the maximum probablity; full bayesian = mcmc, pi=estimated
-    treemaps <- make.simmap(pr_sum_tree$tree, data, model="ARD", nsim=10, Q="empirical", pi="estimated")
+# Generate simmmap data: empirical = q has the maximum probablity; full bayesian = mcmc, pi=estimated
+treemaps <- make.simmap(pr_sum_tree$tree, data, model="ARD", nsim=10, Q="empirical", pi="estimated")
+```
 
     ## Using pi estimated from the stationary distribution of Q assuming a flat prior.
     ## pi =
     ##        N        Y 
     ## 0.775862 0.224138 
     ## 
-    ## make.simmap is sampling character histories conditioned on the transition matrix
+    ## make.simmap is sampling character histories conditioned on
+    ## the transition matrix
     ## 
     ## Q =
     ##             N           Y
@@ -188,25 +224,53 @@ For uvulars:
 
     ## Done.
 
-    # Plot simmap
-    map = densityMap(treemaps, plot=F, res=300)
+``` r
+# Plot simmap
+map = densityMap(treemaps, plot=F, res=300)
+```
 
     ## sorry - this might take a while; please be patient
 
-    map$cols[1:length(map$cols)] <- rev(map$cols[1:length(map$cols)])
-    p <- plot(map, outline=T, lwd=c(3,3),
-              fsize=c(0.6,0.6), ftype='reg', 
-              legend=2000, leg.txt=c("0",paste0("Posterior Probability (Y)"),"1"))
-    title(main="Uvulars")
+``` r
+map$cols[1:length(map$cols)] <- rev(map$cols[1:length(map$cols)])
+
+#p <- plot(map, outline=T, lwd=c(3,3),
+#          fsize=c(0.6,0.6), ftype='reg', 
+#          legend=2000, leg.txt=c("0",paste0("Posterior Probability (Y)"),"1"))
+#title(main="Uvulars")
+#p
+
+# Save figure for publication
+tiff('figures/simmap_uvulars_ie.tiff', res=300, compression = 'lzw', units="in", width=5.2, height=6)
+plot(map,
+     lwd=3,
+     fsize=c(0.5,0.6), 
+     ftype="reg",
+     outline=TRUE,
+     legend=2000,
+     leg.txt=c("0", 
+               paste0("Posterior Probability (Y)"),"1"))
+# par(mar=c(5.1,4.1,4.1,2.1))
+dev.off()
+```
+
+    ## quartz_off_screen 
+    ##                 2
+
+``` r
+plot(map,
+     lwd=3,
+     fsize=c(0.5,0.6), 
+     ftype="reg",
+     outline=TRUE,
+     legend=2000,
+     leg.txt=c("0", 
+               paste0("Posterior Probability (Y)"),"1"))
+```
 
 ![](phylogenetic_study_plots_files/figure-gfm/simmap_uvulars_ie-1.png)<!-- -->
 
-    p
-
-    ## [1] 0
-
-Sino-Tibetan
-------------
+## Sino-Tibetan
 
 Phylogeny comes from:
 
@@ -216,35 +280,46 @@ Phylogeny comes from:
 
 Here are the traits plotted on the pruned phylogeny.
 
-    load('trees/sinotibetan-z-trees.Rdata')
-    traits.print <- pr_sum_tree$data %>% select(-taxa)
-    p <- reverse.time(ggtree(pr_sum_tree$tree, ladderize=T, right=T)) +
-      geom_tiplab(align=T, linesize = .1, size = 2) 
-    plot.tree(p, traits.print)
+``` r
+load('trees/sinotibetan-z-trees.Rdata')
+traits.print <- pr_sum_tree$data %>% select(-taxa)
+p <- reverse.time(ggtree(pr_sum_tree$tree, ladderize=T, right=T)) +
+  geom_tiplab(align=T, linesize = .1, size = 2) 
+plot.tree(p, traits.print)
+```
 
 ![](phylogenetic_study_plots_files/figure-gfm/distribution_ejectives_uvulars_st-1.png)<!-- -->
 
+``` r
+ggsave("figures/distribution_ejectives_uvulars_st.tiff", dpi=300, compression = 'lzw')
+```
+
 With this data, the ST pruned tree has this many data points:
 
-    nrow(pr_sum_tree$data)
+``` r
+nrow(pr_sum_tree$data)
+```
 
     ## [1] 39
 
-    data <- pr_sum_tree$tree[["tip.label"]]
-    data <- data.matrix(data)
+``` r
+data <- pr_sum_tree$tree[["tip.label"]]
+data <- data.matrix(data)
 
-    data <- pr_sum_tree$data[, "has_ejectives"]
-    names(data) <- pr_sum_tree$data$taxa
+data <- pr_sum_tree$data[, "has_ejectives"]
+names(data) <- pr_sum_tree$data$taxa
 
-    # Generate simmmap data: empirical = q has the maximum probablity; full bayesian = mcmc, pi=estimated
-    treemaps <- make.simmap(pr_sum_tree$tree, data, model="ARD", nsim=10, Q="empirical", pi="estimated")
+# Generate simmmap data: empirical = q has the maximum probablity; full bayesian = mcmc, pi=estimated
+treemaps <- make.simmap(pr_sum_tree$tree, data, model="ARD", nsim=10, Q="empirical", pi="estimated")
+```
 
     ## Using pi estimated from the stationary distribution of Q assuming a flat prior.
     ## pi =
     ##        N        Y 
     ## 0.974359 0.025641 
     ## 
-    ## make.simmap is sampling character histories conditioned on the transition matrix
+    ## make.simmap is sampling character histories conditioned on
+    ## the transition matrix
     ## 
     ## Q =
     ##              N            Y
@@ -258,40 +333,72 @@ With this data, the ST pruned tree has this many data points:
 
     ## Done.
 
-    # Plot simmap
-    map = densityMap(treemaps, plot=F, res=300)
+``` r
+# Plot simmap
+map = densityMap(treemaps, plot=F, res=300)
+```
 
     ## sorry - this might take a while; please be patient
 
-    map$cols[1:length(map$cols)] <- rev(map$cols[1:length(map$cols)])
-    p <- plot(map, outline=T, lwd=c(3,3),
-              fsize=c(0.6,0.6), ftype='reg', 
-              legend=2000, leg.txt=c("0",paste0("Posterior Probability (Y)"),"1"))
-    title(main="Ejectives")
+``` r
+map$cols[1:length(map$cols)] <- rev(map$cols[1:length(map$cols)])
+
+#p <- plot(map, outline=T, lwd=c(3,3),
+#          fsize=c(0.6,0.6), ftype='reg', 
+#          legend=2000, leg.txt=c("0",paste0("Posterior Probability (Y)"),"1"))
+#title(main="Ejectives")
+#p
+
+# Save figure for publication
+tiff('figures/simmap_ejectives_st.tiff', res=300, compression = 'lzw', units="in", width=5.2, height=6)
+plot(map,
+     lwd=3,
+     fsize=c(0.5,0.6), 
+     ftype="reg",
+     outline=TRUE,
+     legend=2000,
+     leg.txt=c("0", 
+               paste0("Posterior Probability (Y)"),"1"))
+# par(mar=c(5.1,4.1,4.1,2.1))
+dev.off()
+```
+
+    ## quartz_off_screen 
+    ##                 2
+
+``` r
+plot(map,
+     lwd=3,
+     fsize=c(0.5,0.6), 
+     ftype="reg",
+     outline=TRUE,
+     legend=2000,
+     leg.txt=c("0", 
+               paste0("Posterior Probability (Y)"),"1"))
+```
 
 ![](phylogenetic_study_plots_files/figure-gfm/simmap_ejectives_st-1.png)<!-- -->
 
-    p
-
-    ## [1] 0
-
 For uvulars:
 
-    data <- pr_sum_tree$tree[["tip.label"]]
-    data <- data.matrix(data)
+``` r
+data <- pr_sum_tree$tree[["tip.label"]]
+data <- data.matrix(data)
 
-    data <- pr_sum_tree$data[, "has_uvulars"]
-    names(data) <- pr_sum_tree$data$taxa
+data <- pr_sum_tree$data[, "has_uvulars"]
+names(data) <- pr_sum_tree$data$taxa
 
-    # Generate simmmap data: empirical = q has the maximum probablity; full bayesian = mcmc, pi=estimated
-    treemaps <- make.simmap(pr_sum_tree$tree, data, model="ARD", nsim=10, Q="empirical", pi="estimated")
+# Generate simmmap data: empirical = q has the maximum probablity; full bayesian = mcmc, pi=estimated
+treemaps <- make.simmap(pr_sum_tree$tree, data, model="ARD", nsim=10, Q="empirical", pi="estimated")
+```
 
     ## Using pi estimated from the stationary distribution of Q assuming a flat prior.
     ## pi =
     ##        N        Y 
     ## 0.820186 0.179814 
     ## 
-    ## make.simmap is sampling character histories conditioned on the transition matrix
+    ## make.simmap is sampling character histories conditioned on
+    ## the transition matrix
     ## 
     ## Q =
     ##               N             Y
@@ -305,19 +412,48 @@ For uvulars:
 
     ## Done.
 
-    # Plot simmap
-    map = densityMap(treemaps, plot=F, res=300)
+``` r
+# Plot simmap
+map = densityMap(treemaps, plot=F, res=300)
+```
 
     ## sorry - this might take a while; please be patient
 
-    map$cols[1:length(map$cols)] <- rev(map$cols[1:length(map$cols)])
-    p <- plot(map, outline=T, lwd=c(3,3),
-              fsize=c(0.6,0.6), ftype='reg', 
-              legend=2000, leg.txt=c("0",paste0("Posterior Probability (Y)"),"1"))
-    title(main="Uvulars")
+``` r
+map$cols[1:length(map$cols)] <- rev(map$cols[1:length(map$cols)])
+
+#p <- plot(map, outline=T, lwd=c(3,3),
+#          fsize=c(0.6,0.6), ftype='reg', 
+#          legend=2000, leg.txt=c("0",paste0("Posterior Probability (Y)"),"1"))
+#title(main="Uvulars")
+# p
+
+# Save figure for publication
+tiff('figures/simmap_ejectives_st.tiff', res=300, compression = 'lzw', units="in", width=5.2, height=6)
+plot(map,
+     lwd=3,
+     fsize=c(0.5,0.6), 
+     ftype="reg",
+     outline=TRUE,
+     legend=2000,
+     leg.txt=c("0", 
+               paste0("Posterior Probability (Y)"),"1"))
+# par(mar=c(5.1,4.1,4.1,2.1))
+dev.off()
+```
+
+    ## quartz_off_screen 
+    ##                 2
+
+``` r
+plot(map,
+     lwd=3,
+     fsize=c(0.5,0.6), 
+     ftype="reg",
+     outline=TRUE,
+     legend=2000,
+     leg.txt=c("0", 
+               paste0("Posterior Probability (Y)"),"1"))
+```
 
 ![](phylogenetic_study_plots_files/figure-gfm/simmap_uvulars_st-1.png)<!-- -->
-
-    p
-
-    ## [1] 0
