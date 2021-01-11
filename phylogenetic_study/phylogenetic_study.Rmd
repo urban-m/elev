@@ -1,26 +1,22 @@
 ---
 title: "Phylogenetic study of ejectives and uvulars (presense / absence) in IE and ST"
-author: "Steven Moran"
+author: "Steven Moran\n"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   github_document:
   pandoc_args: --webtex
+bibliography: '../bibliography/references.bib'
 ---
 
 # Overview
 
 For the traits, we use presence vs. absence of ejectives and uvulars. Hence, we can use the "Nonmarginal Ejective" and "Nonmarginal Uvular" columns in the datasheet. These are the number of ejectives/uvulars minus number of marginal ejectives/uvulars. For the logistic regression, these counts were used as the basis for the binary distinction. So if there is one uvular but it is coded as marginal then it is going to be noted as FALSE.
 
-For the phylognetic traits, we use presence / absence of class, e.g. a language does or does not have ejectives or uvulars. This is basically a discrete variable model for phylogenetic reconstruction. Then we’ll have the probability of the trait (variable) at the root. 
+For the phylognetic traits, we use presence / absence of class, i.e., a language does or does not have ejectives or uvulars. This is basically a discrete variable model for phylogenetic reconstruction. Then we’ll have the probability of the trait (variable) at the root. We use the Indo-European and Sino-Tibetan phylogenies published by [@Changetal2015Ancestry-constrained] and [@Zhang2019], respectively, and available in [D-PLACE](https://github.com/D-PLACE/dplace-data) [@kirby2016d].
 
-The Indo-European and Sino-Tibetan phylogenies come from:
+We use [R](https://www.r-project.org/) [@R] and the following [R packages](https://cran.r-project.org/web/packages/available_packages_by_name.html) [@dplyr;@knitr;@testthat]:
 
-* Chang W, Cathcart C, Hall D, & Garrett A. 2015. Ancestry-constrained phylogenetic analysis supports the Indo-European steppe hypothesis. Language, 91(1):194-244.
-
-* Zhang M, Yan S, Pan W, & Jin L. 2019. Phylogenetic evidence for Sino-Tibetan origin in northern China in the Late Neolithic. Nature, 569, 112-115.
-
-
-```{r echo=FALSE, message=FALSE}
+```{r message=FALSE}
 library(dplyr)
 library(knitr)
 library(testthat)
@@ -229,3 +225,6 @@ Save the traits dataframes.
 ```{r}
 save(traits, ejectives.traits, uvulars.traits, file="trees/traits.Rdata")
 ```
+
+
+# References

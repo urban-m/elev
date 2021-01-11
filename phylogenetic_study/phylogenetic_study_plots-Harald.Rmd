@@ -1,35 +1,15 @@
 ---
-title: "Phylogenetic study of ejectives and uvulars (presense / absence) in IE and ST"
-author: "Steven Moran"
+title: "Plots for the phylogenetic study of ejectives and uvulars (presense / absence) in IE and ST"
+author: "Steven Moran\n"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   github_document:
   pandoc_args: --webtex
 ---
   
-# Analyses
+# Overview
 
-For each prune phylogeny we plot the trait coverage (has or does not have ejectives and uvulars) and then we generate stochasic character maps of each trait for each phylogeny.
-
-Each phylogeny has been pruned for the data points that it contains in PHOIBLE 2.0 (Moran & McCloy, 2019). The traits (presence or absence of ejectives or uvulars) in are then plotted as present (green) or not present (red) in the languages represented in the phylogeny by Glottocodes (Hammarström et al, 2020).
-
-References
-
-* Moran, Steven & McCloy, Daniel (eds.) 2019.PHOIBLE 2.0. Jena: Max Planck Institute for the Science of Human History. (Available online at http://phoible.org, Accessed on 2020-05-16.)
-
-* Hammarström, Harald & Forkel, Robert & Haspelmath, Martin & Bank, Sebastian. 2020. Glottolog 4.2.1. Jena: Max Planck Institute for the Science of Human History. (Available online at http://glottolog.org, Accessed on 2020-05-16.)
-
-To generate stochastic character maps (Nielsen, 2002; Huelsenbeck et. al, 2003; Revell, 20120) we use the `phytools::make.simmap` function for an all rates different (ARD) model where `q` is set to `empirical` (maximum probability, full Bayesian MCMC) with 10 simulations on the ACQDIV phonology data.
-
-References
-
-* R. Nielsen, Mapping mutations on phylogenies. Syst. Biol. 51, 729–739 (2002). doi: 10.1080/10635150290102393;
-pmid: 12396587
-
-* J. P. Huelsenbeck, R. Nielsen, J. P. Bollback, Stochastic mapping of morphological characters. Syst. Biol. 52, 131–158 (2003). doi: 10.1080/10635150390192780; pmid: 12746144
-
-* L. J. Revell, phytools: An R package for phylogenetic comparative biology (and other things). Methods Ecol. Evol. 3, 217–223 (2012). doi: 10.1111/j.2041-210X.2011.00169.x
-
+We use [R](https://www.r-project.org/) [@R] and the following [R packages](https://cran.r-project.org/web/packages/available_packages_by_name.html) [@dplyr;@ggtree;@ggplot2;@phytools;@phylotools] in this script:
 
 ```{r warning=FALSE, message=FALSE}
 library(dplyr)
@@ -42,8 +22,13 @@ source('lib/functions.R')
 
 load("../Harald/traits-harald.Rdata")
 ```
+For each pruned phylogeny, we plot the trait coverage (has or does not have ejectives and uvulars) and then we generate stochasic character maps of each trait for each phylogeny.
 
-Plot function.
+Each phylogeny has been pruned for the data points that it contains in PHOIBLE 2.0 [@MoranMcCloy2019]. The traits (presence or absence of ejectives or uvulars) are then plotted as present (green) or not present (red) in the languages represented in the phylogeny by their Glottocodes [@Hammarstrom_etal2020]).
+
+To generate stochastic character maps [@Nielsen2002Mapping;@Huelsenbeck2003stochastic;@Revell2012phytools], we use the `phytools::make.simmap` function for an all rates different (ARD) model where `q` is set to `empirical` (maximum probability, full Bayesian MCMC) with 10 simulations.
+
+Here is a convenient plot function.
 
 ```{r}
 # Define color schema
@@ -71,9 +56,7 @@ plot.tree <- function(pr_sum_tree_plot, features_plot) {
 
 ## Indo-European
 
-The phylogeny comes from:
-  
-  * Chang W, Cathcart C, Hall D, & Garrett A. 2015. Ancestry-constrained phylogenetic analysis supports the Indo-European steppe hypothesis. Language, 91(1):194-244.
+The Indo-European phylogeny was published by @Changetal2015Ancestry-constrained and is available in [D-PLACE](https://github.com/D-PLACE/dplace-data) [@kirby2016d].
 
 Here are the traits plotted on the pruned phylogeny. 
 
@@ -189,9 +172,7 @@ plot(map,
 
 ## Sino-Tibetan
 
-Phylogeny comes from:
-  
-  * Zhang M, Yan S, Pan W, & Jin L. 2019. Phylogenetic evidence for Sino-Tibetan origin in northern China in the Late Neolithic. Nature, 569, 112-115.
+The Sino-Tibetan phylogeny was published by @Zhang2019 and is available in [D-PLACE](https://github.com/D-PLACE/dplace-data) [@kirby2016d].
 
 Here are the traits plotted on the pruned phylogeny.
 

@@ -1,7 +1,7 @@
 ---
 title: "PHOIBLE uvular and ejective consonants"
-author: "Steven Moran"
-date: "(`r format(Sys.time(), '%d %B, %Y')`)"
+author: "Steven Moran\n"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: github_document
 bibliography: '../bibliography/references.bib'
 ---
@@ -24,7 +24,7 @@ The final data file is available in the [uvulars_ejectives_pruned2.csv](../Data/
 
 ## Data preparation
 
-This report uses these [R](https://cran.r-project.org/) libraries [@tidyverse,@knitr]:
+This report uses these [R](https://cran.r-project.org/) libraries [@tidyverse;@knitr]:
 
 ```{r, message=F, warning=F}
 library(tidyverse)

@@ -1,7 +1,8 @@
 PHOIBLE uvular and ejective consonants
 ================
 Steven Moran
-(21 November, 2020)
+
+08 January, 2021
 
 # Overview
 
@@ -28,10 +29,12 @@ file. Here we also add Urban’s extended macroareas.
 ## Data preparation
 
 This report uses these [R](https://cran.r-project.org/) libraries
-(Wickham et al. 2019,@knitr):
+(Wickham et al. 2019; Xie 2020):
 
-    library(tidyverse)
-    library(knitr)
+``` r
+library(tidyverse)
+library(knitr)
+```
 
 Get the PHOIBLE data and merge in the metadata from
 [Glottolog](https://glottolog.org/) (Hammarström et al. 2020).
@@ -41,53 +44,69 @@ new data, make reported corrections, etc. Here we use the PHOIBLE dev
 version from [May
 2020](https://github.com/phoible/dev/tree/646f5e4f64bfefb7868bf4a3b65bcd1da243976a).
 
-    phoible <- read_csv(url("https://github.com/phoible/dev/blob/646f5e4f64bfefb7868bf4a3b65bcd1da243976a/data/phoible.csv?raw=true"), 
-                        col_types = c(InventoryID = "i", Marginal = "l", .default = "c"))
+``` r
+phoible <- read_csv(url("https://github.com/phoible/dev/blob/646f5e4f64bfefb7868bf4a3b65bcd1da243976a/data/phoible.csv?raw=true"), 
+                    col_types = c(InventoryID = "i", Marginal = "l", .default = "c"))
+```
 
 Merge in [Glottolog 4.1](https://glottolog.org/meta/downloads) data.
 
-    languoids <- read.csv("glottolog_languoid.csv/languoid.csv", stringsAsFactors = FALSE)
-    geo <- read.csv("languages_and_dialects_geo.csv", stringsAsFactors = FALSE)
-    phoible <- left_join(phoible, languoids, by = c("Glottocode" = "id"))
-    phoible <- left_join(phoible, geo)
+``` r
+languoids <- read.csv("glottolog_languoid.csv/languoid.csv", stringsAsFactors = FALSE)
+geo <- read.csv("languages_and_dialects_geo.csv", stringsAsFactors = FALSE)
+phoible <- left_join(phoible, languoids, by = c("Glottocode" = "id"))
+phoible <- left_join(phoible, geo)
+```
 
     ## Joining, by = c("name", "level", "latitude", "longitude")
 
-    rm(geo, languoids)
+``` r
+rm(geo, languoids)
+```
 
 Create a PHOIBLE index.
 
-    index <- phoible %>%
-      select(InventoryID, Glottocode, ISO6393, name, LanguageName, SpecificDialect, Source, family_id, level, status, latitude, longitude, country_ids, macroarea) %>%
-      distinct()
+``` r
+index <- phoible %>%
+  select(InventoryID, Glottocode, ISO6393, name, LanguageName, SpecificDialect, Source, family_id, level, status, latitude, longitude, country_ids, macroarea) %>%
+  distinct()
 
-    index <- index %>% rename(GlottologName = name, PhoibleName = LanguageName)
+index <- index %>% rename(GlottologName = name, PhoibleName = LanguageName)
+```
 
 Get uvular consonant counts and their number of marginals.
 
-    uvulars <- phoible %>% filter(grepl("q|ɢ|ɴ|ʀ|χ|ʁ|ʛ|ʟ̠", Phoneme))
-    uvular_counts <- uvulars %>%
-      group_by(InventoryID) %>%
-      summarize(Uvulars = n())
+``` r
+uvulars <- phoible %>% filter(grepl("q|ɢ|ɴ|ʀ|χ|ʁ|ʛ|ʟ̠", Phoneme))
+uvular_counts <- uvulars %>%
+  group_by(InventoryID) %>%
+  summarize(Uvulars = n())
+```
 
     ## `summarise()` ungrouping output (override with `.groups` argument)
 
-    uvular_marginals <- uvulars %>%
-      filter(Marginal) %>%
-      group_by(InventoryID) %>%
-      summarize(Marginal_Uvular = n())
+``` r
+uvular_marginals <- uvulars %>%
+  filter(Marginal) %>%
+  group_by(InventoryID) %>%
+  summarize(Marginal_Uvular = n())
+```
 
     ## `summarise()` ungrouping output (override with `.groups` argument)
 
 Let’s write the uvular data to disk, so that we can use it to [remove
 the rhotics](remove_uvular_rhotics.Rmd), as suggested by a reviewer.
 
-    write_csv(uvulars, 'uvulars.csv')
+``` r
+write_csv(uvulars, 'uvulars.csv')
+```
 
 We note here that these are the languages that contain uvular rhotics.
 There are 22 occurrences out of 1255 observations.
 
-    uvulars %>% filter(grepl('ʀ', Phoneme)) %>% select(InventoryID, Glottocode, LanguageName, SpecificDialect, Phoneme, Allophones, Marginal) %>% kable()
+``` r
+uvulars %>% filter(grepl('ʀ', Phoneme)) %>% select(InventoryID, Glottocode, LanguageName, SpecificDialect, Phoneme, Allophones, Marginal) %>% kable()
+```
 
 | InventoryID | Glottocode | LanguageName     | SpecificDialect                                                                                              | Phoneme | Allophones | Marginal |
 |------------:|:-----------|:-----------------|:-------------------------------------------------------------------------------------------------------------|:--------|:-----------|:---------|
@@ -118,76 +137,102 @@ We also note that the PHOIBLE features +dorsal and +back do not capture
 uvulars that are palatalized (negates \[back\]), hence the use of
 regular expression search above.
 
-    t1 <- uvulars %>%
-      select(Phoneme) %>%
-      distinct()
-    "χʲ" %in% t1$Phoneme
+``` r
+t1 <- uvulars %>%
+  select(Phoneme) %>%
+  distinct()
+"χʲ" %in% t1$Phoneme
+```
 
     ## [1] TRUE
 
-    t2 <- phoible %>%
-      filter(back == "+" & dorsal == "+") %>%
-      select(Phoneme) %>%
-      distinct()
-    "χʲ" %in% t2$Phoneme
+``` r
+t2 <- phoible %>%
+  filter(back == "+" & dorsal == "+") %>%
+  select(Phoneme) %>%
+  distinct()
+"χʲ" %in% t2$Phoneme
+```
 
     ## [1] FALSE
 
-    setdiff(t1$Phoneme, t2$Phoneme)
+``` r
+setdiff(t1$Phoneme, t2$Phoneme)
+```
 
     ##  [1] "qǀ"   "qǀʼ"  "qǁ"   "qǁʼ"  "qǂ"   "qǂʼ"  "qǃ"   "qǃʼ"  "qʘ"   "qʘʼ" 
     ## [11] "ɢǀ"   "ɢǀqʰ" "ɢǁ"   "ɢǁqʰ" "ɢǂ"   "ɢǃ"   "ɢǃqʰ" "ɢʘ"   "qm"   "qn"  
     ## [21] "xʀ̥"   "χʲ"   "qʲʼ"  "ʁʲ"   "qʲ"   "qʲʰ"  "qʷʲ"  "qʷʲʰ" "qʷʲʼ" "χʷʲ"
 
-    rm(t1, t2)
+``` r
+rm(t1, t2)
+```
 
 Get ejectives counts and their number of marginals.
 
-    ejectives <- phoible %>% filter(grepl("ʼ", Phoneme))
-    ejective_counts <- ejectives %>%
-      group_by(InventoryID) %>%
-      summarize(Ejectives = n())
+``` r
+ejectives <- phoible %>% filter(grepl("ʼ", Phoneme))
+ejective_counts <- ejectives %>%
+  group_by(InventoryID) %>%
+  summarize(Ejectives = n())
+```
 
     ## `summarise()` ungrouping output (override with `.groups` argument)
 
-    ejective_marginals <- ejectives %>%
-      filter(Marginal) %>%
-      group_by(InventoryID) %>%
-      summarize(Marginal_Ejective = n())
+``` r
+ejective_marginals <- ejectives %>%
+  filter(Marginal) %>%
+  group_by(InventoryID) %>%
+  summarize(Marginal_Ejective = n())
+```
 
     ## `summarise()` ungrouping output (override with `.groups` argument)
 
 Join the data frames.
 
-    df <- left_join(index, uvular_counts)
+``` r
+df <- left_join(index, uvular_counts)
+```
 
     ## Joining, by = "InventoryID"
 
-    df <- left_join(df, uvular_marginals)
+``` r
+df <- left_join(df, uvular_marginals)
+```
 
     ## Joining, by = "InventoryID"
 
-    df <- left_join(df, ejective_counts)
+``` r
+df <- left_join(df, ejective_counts)
+```
 
     ## Joining, by = "InventoryID"
 
-    df <- left_join(df, ejective_marginals)
+``` r
+df <- left_join(df, ejective_marginals)
+```
 
     ## Joining, by = "InventoryID"
 
-    rm(ejective_counts, ejective_marginals, uvular_counts, uvular_marginals)
+``` r
+rm(ejective_counts, ejective_marginals, uvular_counts, uvular_marginals)
+```
 
 Write the results to disk.
 
-    write_csv(df, "uvulars_ejectives.csv")
+``` r
+write_csv(df, "uvulars_ejectives.csv")
+```
 
 ## Exploratory
 
 Have a look at the data.
 
-    df %>%
-      head() %>%
-      kable()
+``` r
+df %>%
+  head() %>%
+  kable()
+```
 
 | InventoryID | Glottocode | ISO6393 | GlottologName | PhoibleName | SpecificDialect | Source | family\_id | level    | status                | latitude | longitude | country\_ids      | macroarea | Uvulars | Marginal\_Uvular | Ejectives | Marginal\_Ejective |
 |------------:|:-----------|:--------|:--------------|:------------|:----------------|:-------|:-----------|:---------|:----------------------|---------:|----------:|:------------------|:----------|--------:|-----------------:|----------:|-------------------:|
@@ -200,7 +245,9 @@ Have a look at the data.
 
 Do any languages contain uvulars that are always marginal? Yes.
 
-    kable(df[which(df$Uvulars == df$Marginal_Uvular), ])
+``` r
+kable(df[which(df$Uvulars == df$Marginal_Uvular), ])
+```
 
 | InventoryID | Glottocode | ISO6393 | GlottologName     | PhoibleName          | SpecificDialect | Source | family\_id | level    | status                |  latitude |  longitude | country\_ids      | macroarea     | Uvulars | Marginal\_Uvular | Ejectives | Marginal\_Ejective |
 |------------:|:-----------|:--------|:------------------|:---------------------|:----------------|:-------|:-----------|:---------|:----------------------|----------:|-----------:|:------------------|:--------------|--------:|-----------------:|----------:|-------------------:|
@@ -213,7 +260,9 @@ Do any languages contain uvulars that are always marginal? Yes.
 |        1241 | adam1253   | fub     | Adamawa Fulfulde  | Fulfulde (Cameroon)  | CAM             | gm     | atla1278   | language | safe                  |  8.140326 |   13.07734 | CM ER ET NG SD TD | Africa        |       1 |                1 |        NA |                 NA |
 |        2227 | sout2672   | psi     | Southeast Pashayi | Southeastern Pashayi | NA              | uz     | indo1319   | language | vulnerable            | 34.430990 |   70.30351 | AF                | Eurasia       |       1 |                1 |        NA |                 NA |
 
-    kable(phoible %>% select(InventoryID, Glottocode, LanguageName, Phoneme) %>% filter(InventoryID == 354) %>% filter(grepl("q|ɢ|ɴ|ʀ|χ|ʁ|ʛ|ʟ̠", Phoneme)))
+``` r
+kable(phoible %>% select(InventoryID, Glottocode, LanguageName, Phoneme) %>% filter(InventoryID == 354) %>% filter(grepl("q|ɢ|ɴ|ʀ|χ|ʁ|ʛ|ʟ̠", Phoneme)))
+```
 
 | InventoryID | Glottocode | LanguageName | Phoneme |
 |------------:|:-----------|:-------------|:--------|
@@ -223,13 +272,17 @@ Do any languages contain uvulars that are always marginal? Yes.
 
 Do any languages contain ejectives that are always marginal? Yes.
 
-    kable(df[which(df$Ejectives == df$Marginal_Ejective), ])
+``` r
+kable(df[which(df$Ejectives == df$Marginal_Ejective), ])
+```
 
 | InventoryID | Glottocode | ISO6393 | GlottologName | PhoibleName | SpecificDialect | Source | family\_id | level   | status | latitude | longitude | country\_ids | macroarea | Uvulars | Marginal\_Uvular | Ejectives | Marginal\_Ejective |
 |------------:|:-----------|:--------|:--------------|:------------|:----------------|:-------|:-----------|:--------|:-------|---------:|----------:|:-------------|:----------|--------:|-----------------:|----------:|-------------------:|
 |        1276 | ikal1242   | kck     | Ikalanga      | Ikalanga    | NA              | gm     | atla1278   | dialect | safe   |       NA |        NA |              | Africa    |      NA |               NA |         1 |                  1 |
 
-    kable(phoible %>% select(InventoryID, Glottocode, LanguageName, Phoneme) %>% filter(InventoryID == 1276) %>% filter(grepl("ʼ", Phoneme)))
+``` r
+kable(phoible %>% select(InventoryID, Glottocode, LanguageName, Phoneme) %>% filter(InventoryID == 1276) %>% filter(grepl("ʼ", Phoneme)))
+```
 
 | InventoryID | Glottocode | LanguageName | Phoneme |
 |------------:|:-----------|:-------------|:--------|
@@ -237,23 +290,31 @@ Do any languages contain ejectives that are always marginal? Yes.
 
 How many Glottocodes are there in phoible?
 
-    nrow(phoible %>% select(Glottocode) %>% distinct())
+``` r
+nrow(phoible %>% select(Glottocode) %>% distinct())
+```
 
     ## [1] 2177
 
 How many phoible inventories have uvular consonants?
 
-    nrow(uvulars %>% select(InventoryID) %>% distinct())
+``` r
+nrow(uvulars %>% select(InventoryID) %>% distinct())
+```
 
     ## [1] 426
 
 How many are marginal?
 
-    nrow(uvulars %>% filter(Marginal) %>% group_by(InventoryID, Marginal)) # 21 rows
+``` r
+nrow(uvulars %>% filter(Marginal) %>% group_by(InventoryID, Marginal)) # 21 rows
+```
 
     ## [1] 21
 
-    kable(uvulars %>% filter(Marginal) %>% group_by(InventoryID, Marginal))
+``` r
+kable(uvulars %>% filter(Marginal) %>% group_by(InventoryID, Marginal))
+```
 
 | InventoryID | Glottocode | ISO6393 | LanguageName         | SpecificDialect | GlyphID   | Phoneme | Allophones | Marginal | SegmentClass | Source | tone | stress | syllabic | short | long | consonantal | sonorant | continuant | delayedRelease | approximant | tap | trill | nasal | lateral | labial | round | labiodental | coronal | anterior | distributed | strident | dorsal | high | low | front | back | tense | retractedTongueRoot | advancedTongueRoot | periodicGlottalSource | epilaryngealSource | spreadGlottis | constrictedGlottis | fortis | raisedLarynxEjective | loweredLarynxImplosive | click | family\_id | parent\_id | name                 | bookkeeping | level    | status                |  latitude |  longitude | iso639P3code | description | markup\_description | child\_family\_count | child\_language\_count | child\_dialect\_count | country\_ids      | glottocode | isocodes | macroarea     |
 |------------:|:-----------|:--------|:---------------------|:----------------|:----------|:--------|:-----------|:---------|:-------------|:-------|:-----|:-------|:---------|:------|:-----|:------------|:---------|:-----------|:---------------|:------------|:----|:------|:------|:--------|:-------|:------|:------------|:--------|:---------|:------------|:---------|:-------|:-----|:----|:------|:-----|:------|:--------------------|:-------------------|:----------------------|:-------------------|:--------------|:-------------------|:-------|:---------------------|:-----------------------|:------|:-----------|:-----------|:---------------------|:------------|:---------|:----------------------|----------:|-----------:|:-------------|:------------|:--------------------|---------------------:|-----------------------:|----------------------:|:------------------|:-----------|:---------|:--------------|
@@ -281,17 +342,23 @@ How many are marginal?
 
 How many phoible inventories have ejectives?
 
-    nrow(ejectives %>% select(InventoryID) %>% distinct())
+``` r
+nrow(ejectives %>% select(InventoryID) %>% distinct())
+```
 
     ## [1] 267
 
 How many are marginal?
 
-    nrow(ejectives %>% filter(Marginal) %>% group_by(InventoryID, Marginal)) # 23 rows
+``` r
+nrow(ejectives %>% filter(Marginal) %>% group_by(InventoryID, Marginal)) # 23 rows
+```
 
     ## [1] 23
 
-    kable(ejectives %>% filter(Marginal) %>% group_by(InventoryID, Marginal))
+``` r
+kable(ejectives %>% filter(Marginal) %>% group_by(InventoryID, Marginal))
+```
 
 | InventoryID | Glottocode | ISO6393 | LanguageName         | SpecificDialect                                   | GlyphID                                                | Phoneme    | Allophones | Marginal | SegmentClass | Source | tone | stress | syllabic | short | long | consonantal | sonorant | continuant | delayedRelease | approximant | tap | trill | nasal | lateral | labial | round | labiodental | coronal | anterior | distributed | strident | dorsal | high | low | front | back | tense | retractedTongueRoot | advancedTongueRoot | periodicGlottalSource | epilaryngealSource | spreadGlottis | constrictedGlottis | fortis | raisedLarynxEjective | loweredLarynxImplosive | click | family\_id | parent\_id | name                  | bookkeeping | level    | status                | latitude |  longitude | iso639P3code | description | markup\_description | child\_family\_count | child\_language\_count | child\_dialect\_count | country\_ids      | glottocode | isocodes | macroarea     |
 |------------:|:-----------|:--------|:---------------------|:--------------------------------------------------|:-------------------------------------------------------|:-----------|:-----------|:---------|:-------------|:-------|:-----|:-------|:---------|:------|:-----|:------------|:---------|:-----------|:---------------|:------------|:----|:------|:------|:--------|:-------|:------|:------------|:--------|:---------|:------------|:---------|:-------|:-----|:----|:------|:-----|:------|:--------------------|:-------------------|:----------------------|:-------------------|:--------------|:-------------------|:-------|:---------------------|:-----------------------|:------|:-----------|:-----------|:----------------------|:------------|:---------|:----------------------|---------:|-----------:|:-------------|:------------|:--------------------|---------------------:|-----------------------:|----------------------:|:------------------|:-----------|:---------|:--------------|
@@ -321,14 +388,18 @@ How many are marginal?
 
 How are uvulars distributed in phoible (across duplicate languages)?
 
-    distribution_uvulars <- uvulars %>%
-      group_by(Phoneme) %>%
-      summarize(count = n()) %>%
-      arrange(desc(count))
+``` r
+distribution_uvulars <- uvulars %>%
+  group_by(Phoneme) %>%
+  summarize(count = n()) %>%
+  arrange(desc(count))
+```
 
     ## `summarise()` ungrouping output (override with `.groups` argument)
 
-    kable(distribution_uvulars)
+``` r
+kable(distribution_uvulars)
+```
 
 | Phoneme | count |
 |:--------|------:|
@@ -440,31 +511,37 @@ How are uvulars distributed in phoible (across duplicate languages)?
 | χʼː     |     1 |
 | χˤː     |     1 |
 
-    # Order the frequency counts and plot the distribution of uvular consonants in the sample
-    distribution_uvulars$Phoneme <- factor(distribution_uvulars$Phoneme, levels = distribution_uvulars$Phoneme[order(-distribution_uvulars$count)])
+``` r
+# Order the frequency counts and plot the distribution of uvular consonants in the sample
+distribution_uvulars$Phoneme <- factor(distribution_uvulars$Phoneme, levels = distribution_uvulars$Phoneme[order(-distribution_uvulars$count)])
 
-    # qplot(distribution_uvulars$Phoneme, distribution_uvulars$count)
+# qplot(distribution_uvulars$Phoneme, distribution_uvulars$count)
 
-    p <- ggplot(aes(y = count, x = Phoneme), data = distribution_uvulars) +
-      geom_bar(stat = "identity", width = 0.3, color = "black") +
-      xlab("Segments") +
-      ylab("# of languages") +
-      theme_minimal() +
-      ggtitle("")
-    p
+p <- ggplot(aes(y = count, x = Phoneme), data = distribution_uvulars) +
+  geom_bar(stat = "identity", width = 0.3, color = "black") +
+  xlab("Segments") +
+  ylab("# of languages") +
+  theme_minimal() +
+  ggtitle("")
+p
+```
 
 ![](get_uvulars_ejectives_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
 
 How are uvulars distributed in phoible (across duplicate languages)?
 
-    distribution_ejectives <- ejectives %>%
-      group_by(Phoneme) %>%
-      summarize(count = n()) %>%
-      arrange(desc(count))
+``` r
+distribution_ejectives <- ejectives %>%
+  group_by(Phoneme) %>%
+  summarize(count = n()) %>%
+  arrange(desc(count))
+```
 
     ## `summarise()` ungrouping output (override with `.groups` argument)
 
-    kable(distribution_ejectives)
+``` r
+kable(distribution_ejectives)
+```
 
 | Phoneme    | count |
 |:-----------|------:|
@@ -656,39 +733,47 @@ How are uvulars distributed in phoible (across duplicate languages)?
 | χʼ         |     1 |
 | χʼː        |     1 |
 
-    # Order the frequency counts and plot the distribution of uvular consonants in the sample
-    distribution_ejectives$Phoneme <- factor(distribution_ejectives$Phoneme, levels = distribution_ejectives$Phoneme[order(-distribution_ejectives$count)])
+``` r
+# Order the frequency counts and plot the distribution of uvular consonants in the sample
+distribution_ejectives$Phoneme <- factor(distribution_ejectives$Phoneme, levels = distribution_ejectives$Phoneme[order(-distribution_ejectives$count)])
 
-    # qplot(distribution_ejectives$Phoneme, distribution_ejectives$count)
+# qplot(distribution_ejectives$Phoneme, distribution_ejectives$count)
 
-    p <- ggplot(aes(y = count, x = Phoneme), data = distribution_ejectives) +
-      geom_bar(stat = "identity", width = 0.3, color = "black") +
-      xlab("Segments") +
-      ylab("# of languages") +
-      theme_minimal() +
-      ggtitle("")
-    p
+p <- ggplot(aes(y = count, x = Phoneme), data = distribution_ejectives) +
+  geom_bar(stat = "identity", width = 0.3, color = "black") +
+  xlab("Segments") +
+  ylab("# of languages") +
+  theme_minimal() +
+  ggtitle("")
+p
+```
 
 ![](get_uvulars_ejectives_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
 
 Distribution of uvular consonants per inventory (can’t use Glottocode
 because there are multiple doculects).
 
-    uvulars_counts <- uvulars %>%
-      select(InventoryID, Glottocode, Phoneme, macroarea) %>%
-      group_by(InventoryID, Glottocode, macroarea) %>%
-      summarize(count = n()) %>%
-      arrange(desc(count))
+``` r
+uvulars_counts <- uvulars %>%
+  select(InventoryID, Glottocode, Phoneme, macroarea) %>%
+  group_by(InventoryID, Glottocode, macroarea) %>%
+  summarize(count = n()) %>%
+  arrange(desc(count))
+```
 
     ## `summarise()` regrouping output by 'InventoryID', 'Glottocode' (override with `.groups` argument)
 
-    qplot(y = uvulars_counts$count)
+``` r
+qplot(y = uvulars_counts$count)
+```
 
 ![](get_uvulars_ejectives_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
 
 How are they distributed via macroarea?
 
-    kable(table(uvulars_counts$macroarea))
+``` r
+kable(table(uvulars_counts$macroarea))
+```
 
 | Var1          | Freq |
 |:--------------|-----:|
@@ -701,21 +786,27 @@ How are they distributed via macroarea?
 Distribution of ejective per inventory (can’t use Glottocode because
 there are multiple doculects).
 
-    ejectives_counts <- ejectives %>%
-      select(InventoryID, Glottocode, Phoneme, macroarea) %>%
-      group_by(InventoryID, Glottocode, macroarea) %>%
-      summarize(count = n()) %>%
-      arrange(desc(count))
+``` r
+ejectives_counts <- ejectives %>%
+  select(InventoryID, Glottocode, Phoneme, macroarea) %>%
+  group_by(InventoryID, Glottocode, macroarea) %>%
+  summarize(count = n()) %>%
+  arrange(desc(count))
+```
 
     ## `summarise()` regrouping output by 'InventoryID', 'Glottocode' (override with `.groups` argument)
 
-    qplot(y = ejectives_counts$count)
+``` r
+qplot(y = ejectives_counts$count)
+```
 
 ![](get_uvulars_ejectives_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
 
 How are they distributed via macroarea?
 
-    kable(table(ejectives_counts$macroarea))
+``` r
+kable(table(ejectives_counts$macroarea))
+```
 
 | Var1          | Freq |
 |:--------------|-----:|
@@ -726,9 +817,9 @@ How are they distributed via macroarea?
 
 # References
 
-<div id="refs" class="references hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
-<div id="ref-Hammarstrom_etal2020">
+<div id="ref-Hammarstrom_etal2020" class="csl-entry">
 
 Hammarström, Harald, Robert Forkel, Martin Haspelmath, and Sebastian
 Bank. 2020. *Glottolog 4.2.1*. Jena: Max Planck Institute for the
@@ -736,7 +827,7 @@ Science of Human History. <https://doi.org/10.5281/zenodo.3754591>.
 
 </div>
 
-<div id="ref-MoranMcCloy2019">
+<div id="ref-MoranMcCloy2019" class="csl-entry">
 
 Moran, Steven, and Daniel McCloy, eds. 2019. *PHOIBLE 2.0*. Jena: Max
 Planck Institute for the Science of Human History.
@@ -744,19 +835,19 @@ Planck Institute for the Science of Human History.
 
 </div>
 
-<div id="ref-tidyverse">
+<div id="ref-tidyverse" class="csl-entry">
 
 Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy
 D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019.
-“Welcome to the tidyverse.” *Journal of Open Source Software* 4 (43):
-1686. <https://doi.org/10.21105/joss.01686>.
+“Welcome to the <span class="nocase">tidyverse</span>.” *Journal of Open
+Source Software* 4 (43): 1686. <https://doi.org/10.21105/joss.01686>.
 
 </div>
 
-<div id="ref-knitr">
+<div id="ref-knitr" class="csl-entry">
 
 Xie, Yihui. 2020. *Knitr: A General-Purpose Package for Dynamic Report
-Generation in R*. <https://yihui.org/knitr/>.
+Generation in r*. <https://yihui.org/knitr/>.
 
 </div>
 

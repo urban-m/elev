@@ -2,10 +2,10 @@ Phylogenetic study of ejectives and uvulars (presense / absence) in IE
 and ST
 ================
 Steven Moran
-21 September, 2020
 
-Overview
-========
+08 January, 2021
+
+# Overview
 
 For the traits, we use presence vs. absence of ejectives and uvulars.
 Hence, we can use the “Nonmarginal Ejective” and “Nonmarginal Uvular”
@@ -15,36 +15,43 @@ these counts were used as the basis for the binary distinction. So if
 there is one uvular but it is coded as marginal then it is going to be
 noted as FALSE.
 
-For the phylognetic traits, we use presence / absence of class, e.g. a
+For the phylognetic traits, we use presence / absence of class, i.e., a
 language does or does not have ejectives or uvulars. This is basically a
 discrete variable model for phylogenetic reconstruction. Then we’ll have
-the probability of the trait (variable) at the root.
+the probability of the trait (variable) at the root. We use the
+Indo-European and Sino-Tibetan phylogenies published by (Chang et al.
+2015) and (Zhang et al. 2019), respectively, and available in
+[D-PLACE](https://github.com/D-PLACE/dplace-data) (Kirby et al. 2016).
 
-The Indo-European and Sino-Tibetan phylogenies come from:
+We use [R](https://www.r-project.org/) (R Core Team 2020) and the
+following [R
+packages](https://cran.r-project.org/web/packages/available_packages_by_name.html)
+(Wickham et al. 2020; Xie 2020; Wickham 2011):
 
--   Chang W, Cathcart C, Hall D, & Garrett A. 2015. Ancestry-constrained
-    phylogenetic analysis supports the Indo-European steppe hypothesis.
-    Language, 91(1):194-244.
+``` r
+library(dplyr)
+library(knitr)
+library(testthat)
+```
 
--   Zhang M, Yan S, Pan W, & Jin L. 2019. Phylogenetic evidence for
-    Sino-Tibetan origin in northern China in the Late Neolithic. Nature,
-    569, 112-115.
-
-Data prep
-=========
+# Data prep
 
 Data inspection and cleaning.
 
-    df <- read.csv('../Data/uvulars_ejectives_pruned2.csv', stringsAsFactors = FALSE)
+``` r
+df <- read.csv('../Data/uvulars_ejectives_pruned2.csv', stringsAsFactors = FALSE)
+```
 
 Which sources are <NA> for Glottocodes? This issue is discussed in
 detail here:
 
--   <a href="https://github.com/phoible/dev/issues/270" class="uri">https://github.com/phoible/dev/issues/270</a>
+-   <https://github.com/phoible/dev/issues/270>
 
 Drop NAs.
 
-    df %>% filter(is.na(Glottocode))
+``` r
+df %>% filter(is.na(Glottocode))
+```
 
     ##   InventoryID Glottocode ISO6393 GlottologName    PhoibleName
     ## 1        2281       <NA>    <NA>          <NA> Modern Aramaic
@@ -62,40 +69,48 @@ Drop NAs.
     ## 1                    0
     ## 2                    0
 
-    df <- df %>% filter(!is.na(Glottocode))
-    expect_equal(nrow(df %>% filter(is.na(Glottocode))), 0)
+``` r
+df <- df %>% filter(!is.na(Glottocode))
+expect_equal(nrow(df %>% filter(is.na(Glottocode))), 0)
+```
 
 Extract relevant data for this analysis and then investigate ejectives
 and uvulars.
 
-    ejectives <- df %>% select(InventoryID, Source, Glottocode, Nonmarginal_Ejective) %>% rename(has_ejectives = Nonmarginal_Ejective)
-    uvulars <- df %>% select(InventoryID, Source, Glottocode, Nonmarginal_Uvular) %>% rename(has_uvulars = Nonmarginal_Uvular)
+``` r
+ejectives <- df %>% select(InventoryID, Source, Glottocode, Nonmarginal_Ejective) %>% rename(has_ejectives = Nonmarginal_Ejective)
+uvulars <- df %>% select(InventoryID, Source, Glottocode, Nonmarginal_Uvular) %>% rename(has_uvulars = Nonmarginal_Uvular)
+```
 
-Ejectives
----------
+## Ejectives
 
 Check for duplicate Glottocodes (we can have only one data point per
 daughter node on the phylogeny).
 
-    e.dups <- ejectives %>% group_by(Source, Glottocode) %>% filter(n()>1)
-    e.dups %>% arrange(Glottocode) %>% kable()
+``` r
+e.dups <- ejectives %>% group_by(Source, Glottocode) %>% filter(n()>1)
+e.dups %>% arrange(Glottocode) %>% kable()
+```
 
 | InventoryID | Source | Glottocode | has\_ejectives |
 |------------:|:-------|:-----------|---------------:|
 
 Drop some of these data points.
 
-    ejectives <- ejectives %>% filter(!(InventoryID %in% c(2883, 2037, 2031, 2207, 2345,2348, 2618, 2988)))
-    expect_equal(nrow(ejectives %>% group_by(Source, Glottocode) %>% filter(n()>1)), 0)
+``` r
+ejectives <- ejectives %>% filter(!(InventoryID %in% c(2883, 2037, 2031, 2207, 2345,2348, 2618, 2988)))
+expect_equal(nrow(ejectives %>% group_by(Source, Glottocode) %>% filter(n()>1)), 0)
+```
 
-Uvulars
--------
+## Uvulars
 
 Check for duplicate Glottocodes (we can have only one data point per
 daughter node on the phylogeny).
 
-    u.dups <- uvulars %>% group_by(Source, Glottocode) %>% filter(n()>1)
-    u.dups %>% arrange(Glottocode) %>% kable()
+``` r
+u.dups <- uvulars %>% group_by(Source, Glottocode) %>% filter(n()>1)
+u.dups %>% arrange(Glottocode) %>% kable()
+```
 
 | InventoryID | Source | Glottocode | has\_uvulars |
 |------------:|:-------|:-----------|-------------:|
@@ -103,7 +118,9 @@ daughter node on the phylogeny).
 There’s disagreement about the presence of absence of uvulars between
 inventories for:
 
-    u.dups %>% filter(Glottocode %in% c('ajab1235', 'basq1248', 'mose1249', 'nort2980', 'port1283', 'stan1288', 'west2368')) %>% arrange(Glottocode) %>% kable() 
+``` r
+u.dups %>% filter(Glottocode %in% c('ajab1235', 'basq1248', 'mose1249', 'nort2980', 'port1283', 'stan1288', 'west2368')) %>% arrange(Glottocode) %>% kable() 
+```
 
 | InventoryID | Source | Glottocode | has\_uvulars |
 |------------:|:-------|:-----------|-------------:|
@@ -114,19 +131,19 @@ clear from the first inventory, and a subsequent publication by Eric
 Morey (“A Grammar of Ajagbe”) that it contains two uvulars. We take thus
 the first inventory.
 
--   <a href="https://phoible.org/inventories/view/651" class="uri">https://phoible.org/inventories/view/651</a>
--   <a href="https://phoible.org/inventories/view/652" class="uri">https://phoible.org/inventories/view/652</a>
+-   <https://phoible.org/inventories/view/651>
+-   <https://phoible.org/inventories/view/652>
 
 SPA inventory for basq1248 lists a uvular, the other does not. SPA lists
 it as a loan, so we take the second inventory.
 
--   <a href="https://phoible.org/inventories/view/179" class="uri">https://phoible.org/inventories/view/179</a>
--   <a href="https://phoible.org/inventories/view/2161" class="uri">https://phoible.org/inventories/view/2161</a>
+-   <https://phoible.org/inventories/view/179>
+-   <https://phoible.org/inventories/view/2161>
 
 The inventories for Moseten are:
 
--   <a href="https://phoible.org/inventories/view/944" class="uri">https://phoible.org/inventories/view/944</a>
--   <a href="https://phoible.org/inventories/view/1986" class="uri">https://phoible.org/inventories/view/1986</a>
+-   <https://phoible.org/inventories/view/944>
+-   <https://phoible.org/inventories/view/1986>
 
 The first contains uvular and Sakel (2004:30) states:
 
@@ -140,20 +157,20 @@ SAPHON interpretation.
 
 The inventories for Quechua include:
 
--   <a href="https://phoible.org/inventories/view/2030" class="uri">https://phoible.org/inventories/view/2030</a>
--   <a href="https://phoible.org/inventories/view/2037" class="uri">https://phoible.org/inventories/view/2037</a>
--   <a href="https://phoible.org/inventories/view/2031" class="uri">https://phoible.org/inventories/view/2031</a>
+-   <https://phoible.org/inventories/view/2030>
+-   <https://phoible.org/inventories/view/2037>
+-   <https://phoible.org/inventories/view/2031>
 
 The first two indicate one uvular.
 
 Portuguese is listed in PHOIBLE twice:
 
--   <a href="https://phoible.org/inventories/view/2206" class="uri">https://phoible.org/inventories/view/2206</a>
--   <a href="https://phoible.org/inventories/view/2207" class="uri">https://phoible.org/inventories/view/2207</a>
+-   <https://phoible.org/inventories/view/2206>
+-   <https://phoible.org/inventories/view/2207>
 
 The European dialect is noted as having a uvular. As per Wikipedia:
 
--   <a href="https://en.wikipedia.org/wiki/Portuguese_phonology" class="uri">https://en.wikipedia.org/wiki/Portuguese_phonology</a>
+-   <https://en.wikipedia.org/wiki/Portuguese_phonology>
 
 <!-- -->
 
@@ -161,34 +178,40 @@ The European dialect is noted as having a uvular. As per Wikipedia:
 
 Spanish also has two inventories:
 
--   <a href="https://phoible.org/inventories/view/2308" class="uri">https://phoible.org/inventories/view/2308</a>
--   <a href="https://phoible.org/inventories/view/2210" class="uri">https://phoible.org/inventories/view/2210</a>
+-   <https://phoible.org/inventories/view/2308>
+-   <https://phoible.org/inventories/view/2210>
 
 One with uvular (the Castilian variety).
 
 Lastly, different dialects of Western Balochi:
 
--   <a href="https://phoible.org/inventories/view/2622" class="uri">https://phoible.org/inventories/view/2622</a>
--   <a href="https://phoible.org/inventories/view/2345" class="uri">https://phoible.org/inventories/view/2345</a>
--   <a href="https://phoible.org/inventories/view/2348" class="uri">https://phoible.org/inventories/view/2348</a>
--   <a href="https://phoible.org/inventories/view/2618" class="uri">https://phoible.org/inventories/view/2618</a>
+-   <https://phoible.org/inventories/view/2622>
+-   <https://phoible.org/inventories/view/2345>
+-   <https://phoible.org/inventories/view/2348>
+-   <https://phoible.org/inventories/view/2618>
 
 the first reports a uvular, the others do not.
 
 For the time being, we drop the same inventories as we did with the
 ejectives.
 
-    uvulars <- uvulars %>% filter(!(InventoryID %in% c(2883, 2037, 2031, 2207, 2345, 2348, 2618, 2988)))
-    expect_equal(nrow(uvulars %>% group_by(Source, Glottocode) %>% filter(n()>1)), 0)
+``` r
+uvulars <- uvulars %>% filter(!(InventoryID %in% c(2883, 2037, 2031, 2207, 2345, 2348, 2618, 2988)))
+expect_equal(nrow(uvulars %>% group_by(Source, Glottocode) %>% filter(n()>1)), 0)
+```
 
 Note that we still have duplicate Glottocodes across sources.
 
-    ejectives %>% group_by(Glottocode) %>% filter(n()>1) %>% kable()
+``` r
+ejectives %>% group_by(Glottocode) %>% filter(n()>1) %>% kable()
+```
 
 | InventoryID | Source | Glottocode | has\_ejectives |
 |------------:|:-------|:-----------|---------------:|
 
-    uvulars %>% group_by(Glottocode) %>% filter(n()>1) %>% kable()
+``` r
+uvulars %>% group_by(Glottocode) %>% filter(n()>1) %>% kable()
+```
 
 | InventoryID | Source | Glottocode | has\_uvulars |
 |------------:|:-------|:-----------|-------------:|
@@ -196,29 +219,36 @@ Note that we still have duplicate Glottocodes across sources.
 We remove the UPSID inventory for the time being given the trump
 hierarchy.
 
-    ejectives <- ejectives %>% filter(!(InventoryID %in% c(648)))
-    uvulars <- uvulars %>% filter(!(InventoryID %in% c(648)))
+``` r
+ejectives <- ejectives %>% filter(!(InventoryID %in% c(648)))
+uvulars <- uvulars %>% filter(!(InventoryID %in% c(648)))
+```
 
 Since we’ve removed the same data points in the ejectives and uvulars
 data, make sure that they match.
 
-    expect_true(all(ejectives$InventoryID %in% uvulars$InventoryID))
-    expect_true(all(uvulars$InventoryID %in% ejectives$InventoryID))
+``` r
+expect_true(all(ejectives$InventoryID %in% uvulars$InventoryID))
+expect_true(all(uvulars$InventoryID %in% ejectives$InventoryID))
+```
 
 Some clean up.
 
-    rm(e.dups, u.dups)
+``` r
+rm(e.dups, u.dups)
+```
 
-Formulate the traits files
---------------------------
+## Formulate the traits files
 
 First select just the columns for Glottocodes and presence/absence of
 the variable. Then reformulate as “Y” (present) vs “N” (absent). Lastly,
 turn the dataframe into something that works in a discrete variable
 phylogenetic analysis.
 
-    ejectives.traits <- ejectives %>% select(Glottocode, has_ejectives)
-    table(ejectives.traits$has_ejectives)
+``` r
+ejectives.traits <- ejectives %>% select(Glottocode, has_ejectives)
+table(ejectives.traits$has_ejectives)
+```
 
     ## 
     ##    0    1    2    3    4    5    6    7    8    9   10   12   13   14   15   18 
@@ -226,10 +256,12 @@ phylogenetic analysis.
     ##   26   27 
     ##    1    1
 
-    ejectives.traits <- mutate_at(ejectives.traits, vars(-Glottocode), function(x) ifelse(x==0, "N", "Y"))
-    rownames(ejectives.traits) <- ejectives.traits[,1]
-    colnames(ejectives.traits)[1] <- "taxa"
-    head(ejectives.traits)
+``` r
+ejectives.traits <- mutate_at(ejectives.traits, vars(-Glottocode), function(x) ifelse(x==0, "N", "Y"))
+rownames(ejectives.traits) <- ejectives.traits[,1]
+colnames(ejectives.traits)[1] <- "taxa"
+head(ejectives.traits)
+```
 
     ##              taxa has_ejectives
     ## abkh1244 abkh1244             Y
@@ -239,23 +271,29 @@ phylogenetic analysis.
     ## afar1241 afar1241             N
     ## alab1254 alab1254             Y
 
-    table(ejectives.traits$has_ejectives)
+``` r
+table(ejectives.traits$has_ejectives)
+```
 
     ## 
     ##    N    Y 
     ## 1947  175
 
-    uvulars.traits <- uvulars %>% select(Glottocode, has_uvulars)
-    table(uvulars.traits$has_uvulars)
+``` r
+uvulars.traits <- uvulars %>% select(Glottocode, has_uvulars)
+table(uvulars.traits$has_uvulars)
+```
 
     ## 
     ##    0    1    2    3    4    5    6    7    8    9   10   11   12   20   22   23 
     ## 1856   88   63   52   30    2   16    1    5    2    1    2    1    1    1    1
 
-    uvulars.traits <- mutate_at(uvulars.traits, vars(-Glottocode), function(x) ifelse(x==0, "N", "Y"))
-    rownames(uvulars.traits) <- uvulars.traits[,1]
-    colnames(uvulars.traits)[1] <- "taxa"
-    head(uvulars.traits)
+``` r
+uvulars.traits <- mutate_at(uvulars.traits, vars(-Glottocode), function(x) ifelse(x==0, "N", "Y"))
+rownames(uvulars.traits) <- uvulars.traits[,1]
+colnames(uvulars.traits)[1] <- "taxa"
+head(uvulars.traits)
+```
 
     ##              taxa has_uvulars
     ## abkh1244 abkh1244           Y
@@ -265,7 +303,9 @@ phylogenetic analysis.
     ## afar1241 afar1241           N
     ## alab1254 alab1254           N
 
-    table(uvulars.traits$has_uvulars)
+``` r
+table(uvulars.traits$has_uvulars)
+```
 
     ## 
     ##    N    Y 
@@ -274,15 +314,21 @@ phylogenetic analysis.
 Combine the traits files so that the languages can be analyzed the
 distribution of ejectives and uvulars.
 
-    traits <- left_join(ejectives.traits, uvulars.traits)
+``` r
+traits <- left_join(ejectives.traits, uvulars.traits)
+```
 
     ## Joining, by = "taxa"
 
-    rownames(traits) <- traits[,1]
+``` r
+rownames(traits) <- traits[,1]
+```
 
 Here is the cross-tabular distribution of ejectives vs uvulars.
 
-    table(traits$has_ejectives, traits$has_uvulars) %>% kable()
+``` r
+table(traits$has_ejectives, traits$has_uvulars) %>% kable()
+```
 
 |     |    N |   Y |
 |:----|-----:|----:|
@@ -291,4 +337,70 @@ Here is the cross-tabular distribution of ejectives vs uvulars.
 
 Save the traits dataframes.
 
-    save(traits, ejectives.traits, uvulars.traits, file="trees/traits.Rdata")
+``` r
+save(traits, ejectives.traits, uvulars.traits, file="trees/traits.Rdata")
+```
+
+# References
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+
+<div id="ref-Changetal2015Ancestry-constrained" class="csl-entry">
+
+Chang, Will, Chundra Cathcart, David Hall, and Andrew Garrett. 2015.
+“Ancestry-Constrained Phylogenetic Analysis Supports Indo-European
+Steppe Hypothesis.” *Language* 91: 194–244.
+<https://doi.org/10.1353/lan.2015.0005>.
+
+</div>
+
+<div id="ref-kirby2016d" class="csl-entry">
+
+Kirby, Kathryn R., Russell D. Gray, Simon J. Greenhill, Fiona M. Jordan,
+Stephanie Gomes-Ng, Hans-Jörg Bibiko, Damián E. Blasi, et al. 2016.
+“D-PLACE: A Global Database of Cultural, Linguistic and Environmental
+Diversity.” *PLoS ONE* 11 (7): e0158391.
+
+</div>
+
+<div id="ref-R" class="csl-entry">
+
+R Core Team. 2020. *R: A Language and Environment for Statistical
+Computing*. Vienna, Austria: R Foundation for Statistical Computing.
+<https://www.R-project.org/>.
+
+</div>
+
+<div id="ref-testthat" class="csl-entry">
+
+Wickham, Hadley. 2011. “Testthat: Get Started with Testing.” *The R
+Journal* 3: 5–10.
+<https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf>.
+
+</div>
+
+<div id="ref-dplyr" class="csl-entry">
+
+Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2020.
+*Dplyr: A Grammar of Data Manipulation*.
+<https://CRAN.R-project.org/package=dplyr>.
+
+</div>
+
+<div id="ref-knitr" class="csl-entry">
+
+Xie, Yihui. 2020. *Knitr: A General-Purpose Package for Dynamic Report
+Generation in r*. <https://yihui.org/knitr/>.
+
+</div>
+
+<div id="ref-Zhang2019" class="csl-entry">
+
+Zhang, Menghan, Shi Yan, Wuyun Pan, and Li Jin. 2019. “Phylogenetic
+Evidence for Sino-Tibetan Origin in Northern China in the Late
+Neolithic.” *Nature* 569 (7754): 112–15.
+<https://doi.org/10.1038/s41586-019-1153-z>.
+
+</div>
+
+</div>

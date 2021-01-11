@@ -1,37 +1,39 @@
 ---
-title: "Phylogenetic study of ejectives and uvulars (presense / absence) in IE and ST"
-author: "Steven Moran"
+title: "Prune the IE and ST phylogenies with PHOIBLE data"
+author: "Steven Moran\n"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   github_document:
   pandoc_args: --webtex
+bibliography: '../bibliography/references.bib'  
 ---
 
-# Prune the phylogenies
+# Overview
 
-```{r echo=FALSE, message=FALSE}
+We use [R](https://www.r-project.org/) [@R] and the following [R packages](https://cran.r-project.org/web/packages/available_packages_by_name.html) [@testthat;@phylotools] in this script:
+
+```{r message=FALSE}
 library(testthat)
 library(phylotools)
 source('lib/functions.R')
 
-# Choose which traits to use to prune
+# Choose which traits to use to prune:
 # load("trees/traits.Rdata")
 load("../Harald/traits-harald.Rdata")
 ```
 
-Prune the language phylogeneies with the daughter languages that we have in the traits data. This only needs to be run once (per input source, i.e. phoible traits and extended phoible traits via Harald Hammarström).
+We prune the language phylogeneies in our sample with the daughter languages that we have in the traits data that we identified in PHOIBLE [@MoranMcCloy2019]. This only needs to be run once (per input source, i.e., phoible traits and extended phoible traits via data mining from Harald Hammarström; see main text in the paper for details).
 
 
 ## Indo-European
 
-The phylogeny comes from:
+The Indo-European phylogeny was published by @Changetal2015Ancestry-constrained and is available in [D-PLACE](https://github.com/D-PLACE/dplace-data) [@kirby2016d].
   
-  * Chang W, Cathcart C, Hall D, & Garrett A. 2015. Ancestry-constrained phylogenetic analysis supports the Indo-European steppe hypothesis. Language, 91(1):194-244.
-
+  
 ```{r}
 # Tree paths
-tree <- 'trees/indoeuropean-C-merged.nex'
-forest <- 'trees/indoeuropean-C-20k.nex'
+tree <- 'trees/ie-c-tree.nex'
+forest <- 'trees/ie-c-trees.nex'
 
 # Prune the trees
 pr_sum_tree <- PruneSummaryTree(tree, traits$taxa, 'Glottocode')
@@ -51,17 +53,15 @@ save(pr_sum_tree, pr_trees, file='trees/harald-ie-c-trees.Rdata')
 ```
 
 
-## Sinotibetan (Zhang)
+## Sino-Tibetan
 
-Phylogeny comes from:
-  
-  * Zhang M, Yan S, Pan W, & Jin L. 2019. Phylogenetic evidence for Sino-Tibetan origin in northern China in the Late Neolithic. Nature, 569, 112-115.
+The Sino-Tibetan phylogeny was published by @Zhang2019 and is available in [D-PLACE](https://github.com/D-PLACE/dplace-data) [@kirby2016d].
 
 
 ```{r}
 # Tree paths
-tree <- 'trees/sinotibetan-zhang-merged.nex'
-forest <- 'trees/sinotibetan-zhang-10k.nex'
+tree <- 'trees/sinotibetan-z-tree.nex'
+forest <- 'trees/sinotibetan-z-trees.nex'
 
 # Prune the trees
 pr_sum_tree <- PruneSummaryTree(tree, traits$taxa, 'Glottocode')
@@ -85,4 +85,7 @@ Clean up.
 ```{r}
 rm(pr_sum_tree, pr_trees, tree, forest)
 ```
+
+
+# References
 
