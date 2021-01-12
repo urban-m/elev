@@ -3,13 +3,15 @@ absence) in IE and ST
 ================
 Steven Moran
 
-08 January, 2021
+12 January, 2021
 
 # Overview
 
-We use [R](https://www.r-project.org/) \[@R\] and the following [R
+We use [R](https://www.r-project.org/) (R Core Team 2020) and the
+following [R
 packages](https://cran.r-project.org/web/packages/available_packages_by_name.html)
-\[@dplyr;@ggtree;@ggplot2;@phytools;@phylotools\] in this script:
+(Wickham et al. 2020; Yu et al. 2017; Wickham 2016; Revell 2012b; J.
+Zhang 2017) in this script:
 
 ``` r
 library(dplyr)
@@ -28,16 +30,16 @@ have ejectives and uvulars) and then we generate stochasic character
 maps of each trait for each phylogeny.
 
 Each phylogeny has been pruned for the data points that it contains in
-PHOIBLE 2.0 \[@MoranMcCloy2019\]. The traits (presence or absence of
+PHOIBLE 2.0 (Moran and McCloy 2019). The traits (presence or absence of
 ejectives or uvulars) are then plotted as present (green) or not present
 (red) in the languages represented in the phylogeny by their Glottocodes
-\[@Hammarstrom\_etal2020\]).
+(Hammarström et al. 2020)).
 
-To generate stochastic character maps
-\[@Nielsen2002Mapping;@Huelsenbeck2003stochastic;@Revell2012phytools\],
-we use the `phytools::make.simmap` function for an all rates different
-(ARD) model where `q` is set to `empirical` (maximum probability, full
-Bayesian MCMC) with 10 simulations.
+To generate stochastic character maps (Nielsen 2002; Huelsenbeck,
+Nielsen, and Bollback 2003; Revell 2012a), we use the
+`phytools::make.simmap` function for an all rates different (ARD) model
+where `q` is set to `empirical` (maximum probability, full Bayesian
+MCMC) with 10 simulations.
 
 Here is a convenient plot function.
 
@@ -66,9 +68,9 @@ plot.tree <- function(pr_sum_tree_plot, features_plot) {
 
 ## Indo-European
 
-The Indo-European phylogeny was published by
-@Changetal2015Ancestry-constrained and is available in
-[D-PLACE](https://github.com/D-PLACE/dplace-data) \[@kirby2016d\].
+The Indo-European phylogeny was published by Chang et al. (2015) and is
+available in [D-PLACE](https://github.com/D-PLACE/dplace-data) (Kirby et
+al. 2016).
 
 Here are the traits plotted on the pruned phylogeny.
 
@@ -256,8 +258,9 @@ plot(map,
 
 ## Sino-Tibetan
 
-The Sino-Tibetan phylogeny was published by @Zhang2019 and is available
-in [D-PLACE](https://github.com/D-PLACE/dplace-data) \[@kirby2016d\].
+The Sino-Tibetan phylogeny was published by M. Zhang et al. (2019) and
+is available in [D-PLACE](https://github.com/D-PLACE/dplace-data) (Kirby
+et al. 2016).
 
 Here are the traits plotted on the pruned phylogeny.
 
@@ -437,3 +440,119 @@ plot(map,
 ```
 
 ![](phylogenetic_study_plots-Harald_files/figure-gfm/hh_simmap_uvulars_st-1.png)<!-- -->
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+
+<div id="ref-Changetal2015Ancestry-constrained" class="csl-entry">
+
+Chang, Will, Chundra Cathcart, David Hall, and Andrew Garrett. 2015.
+“Ancestry-Constrained Phylogenetic Analysis Supports Indo-European
+Steppe Hypothesis.” *Language* 91: 194–244.
+<https://doi.org/10.1353/lan.2015.0005>.
+
+</div>
+
+<div id="ref-Hammarstrom_etal2020" class="csl-entry">
+
+Hammarström, Harald, Robert Forkel, Martin Haspelmath, and Sebastian
+Bank. 2020. *Glottolog 4.2.1*. Jena: Max Planck Institute for the
+Science of Human History. <https://doi.org/10.5281/zenodo.3754591>.
+
+</div>
+
+<div id="ref-Huelsenbeck2003stochastic" class="csl-entry">
+
+Huelsenbeck, John P, Rasmus Nielsen, and Jonathan P Bollback. 2003.
+“Stochastic Mapping of Morphological Characters.” *Systematic Biology*
+52 (2): 131–58. <https://doi.org/10.1080/10635150390192780>.
+
+</div>
+
+<div id="ref-kirby2016d" class="csl-entry">
+
+Kirby, Kathryn R., Russell D. Gray, Simon J. Greenhill, Fiona M. Jordan,
+Stephanie Gomes-Ng, Hans-Jörg Bibiko, Damián E. Blasi, et al. 2016.
+“D-PLACE: A Global Database of Cultural, Linguistic and Environmental
+Diversity.” *PLoS ONE* 11 (7): e0158391.
+
+</div>
+
+<div id="ref-MoranMcCloy2019" class="csl-entry">
+
+Moran, Steven, and Daniel McCloy, eds. 2019. *PHOIBLE 2.0*. Jena: Max
+Planck Institute for the Science of Human History.
+<https://doi.org/10.5281/zenodo.2562766>.
+
+</div>
+
+<div id="ref-Nielsen2002Mapping" class="csl-entry">
+
+Nielsen, Rasmus. 2002. “Mapping Mutations on Phylogenies.” *Systematic
+Biology* 51: 729–32. <https://doi.org/10.1080/10635150290102393>.
+
+</div>
+
+<div id="ref-R" class="csl-entry">
+
+R Core Team. 2020. *R: A Language and Environment for Statistical
+Computing*. Vienna, Austria: R Foundation for Statistical Computing.
+<https://www.R-project.org/>.
+
+</div>
+
+<div id="ref-Revell2012phytools" class="csl-entry">
+
+Revell, Liam J. 2012a. “`phytools`: An R Package for Phylogenetic
+Comparative Biology (and Other Things).” *Methods in Ecology and
+Evolution* 3: 217–23.
+
+</div>
+
+<div id="ref-phytools" class="csl-entry">
+
+———. 2012b. “Phytools: An r Package for Phylogenetic Comparative Biology
+(and Other Things).” *Methods in Ecology and Evolution* 3: 217–23.
+
+</div>
+
+<div id="ref-ggplot2" class="csl-entry">
+
+Wickham, Hadley. 2016. *Ggplot2: Elegant Graphics for Data Analysis*.
+Springer-Verlag New York. <https://ggplot2.tidyverse.org>.
+
+</div>
+
+<div id="ref-dplyr" class="csl-entry">
+
+Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2020.
+*Dplyr: A Grammar of Data Manipulation*.
+<https://CRAN.R-project.org/package=dplyr>.
+
+</div>
+
+<div id="ref-ggtree" class="csl-entry">
+
+Yu, Guangchuang, David K Smith, Huachen Zhu, Yi Guan, and Tommy Tsan-Yuk
+Lam. 2017. “Ggtree: An r Package for Visualization and Annotation of
+Phylogenetic Trees with Their Covariates and Other Associated Data.”
+*Methods in Ecology and Evolution* 8 (1): 28–36.
+
+</div>
+
+<div id="ref-phylotools" class="csl-entry">
+
+Zhang, Jinlong. 2017. *Phylotools: Phylogenetic Tools for
+Eco-Phylogenetics*. <https://CRAN.R-project.org/package=phylotools>.
+
+</div>
+
+<div id="ref-Zhang2019" class="csl-entry">
+
+Zhang, Menghan, Shi Yan, Wuyun Pan, and Li Jin. 2019. “Phylogenetic
+Evidence for Sino-Tibetan Origin in Northern China in the Late
+Neolithic.” *Nature* 569 (7754): 112–15.
+<https://doi.org/10.1038/s41586-019-1153-z>.
+
+</div>
+
+</div>

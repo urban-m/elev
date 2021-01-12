@@ -5,6 +5,7 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   github_document:
   pandoc_args: --webtex
+bibliography: '../bibliography/references.bib'  
 ---
   
 # Overview
